@@ -76,6 +76,7 @@ public class TalkController {
 		String path = request.getContextPath(); // /bombom
 		int index = request.getRequestURL().indexOf(path);
 		String url = request.getRequestURL().substring(0, index);
+		System.out.println("1");
 		
 		// https://localhost:8080/bombom/resources/upload/파일이름
 		return url + request.getContextPath() + "/resources/upload/" + newFileName;
