@@ -1,0 +1,132 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+	font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+/* 공통속성 */
+body {
+    font-size: 100%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}	
+
+/* 헤더 시작 */
+.header{
+	width: 100%;
+}
+
+.header_content{
+	
+	border-bottom: 1px solid #eee;
+}
+
+
+/* 모든 본문 내용의  공통 마진 */
+.content{
+	width: 1000px;
+	margin: 0 auto;
+} 
+
+.logo {
+	
+	padding: 15px 0;
+	text-align: center;
+	height: 100px;
+}		
+
+.logo img {
+	width: auto;
+	height: 80px;
+}
+
+.nav {
+	min-width: 1200px; 
+	height:50px;
+	border-bottom: 2px solid #fb4357;
+	text-align: center;
+	position: sticky;
+	top: 0;	
+	background-color: white;
+	vertical-align: middle;
+	z-index: 3;
+	
+	opacity: 0.9;
+}
+
+.nav ul{
+	padding: 0;
+	margin: 0;
+}
+
+.nav li {
+	text-decoration: none;
+	list-style: none;
+	display: inline-block;
+	width: 230px;
+	line-height: 50px;
+	
+}
+
+.nav span {
+	font-weight: 700;
+    font-size: 16px;
+    color: #222;
+}
+
+.nav span:hover {
+	cursor: pointer;
+	color: #fb4357;
+}
+
+.nav span#on {
+	color: #fb4357;
+}
+
+
+.login {
+	padding-top: 5px;
+	text-align: right;
+}
+
+.login ul {
+	margin: 5px;
+	padding: 0;
+}
+
+.login li {
+	text-decoration: none;
+	list-style: none;
+	display: inline-block;
+	width: 80px;
+}
+
+.login span {
+	font-size: 13px;
+	font-weight: 500;
+	color: gray;
+}
+
+.login span:hover {
+	font-weight: 700;
+	cursor: pointer;
+	color: charcoal;
+}
+
+.login img {
+	
+	width: auto;
+	height: 30px;
+}
+
+/* 헤더 끝  */
+
+
+/* 본문 article 태그*/
+.article {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}

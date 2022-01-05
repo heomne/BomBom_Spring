@@ -1,0 +1,421 @@
+@charset "UTF-8";
+
+html {
+	scroll-behavior: smooth;
+}
+
+.bg {
+	background-color:black;
+	z-index: 1;
+}
+
+.bg .bg_img {
+	background:url(../image/car2.jpg) 50% 50% no-repeat;
+	width:100%;
+	height:420px;
+	opacity:0.25;
+	position: absolute;
+	z-index: 2;
+}
+.bg .bg_content{
+	width:1000px;
+	height:420px;
+	position:relative;
+	margin:0 auto;
+	z-index: 2;
+} 
+
+.bg_content .mov_title{
+	
+	width:600px;
+	padding-top: 70px;
+	color:white;
+	font-size: 2.6em;
+	float: left;
+}
+
+.bg_content .mov_time{
+	
+	width:600px;
+	padding-top: 20px;
+	color:white;
+	float: left;
+}
+
+.bg_content .mov_info{
+	
+	padding-top: 150px;
+	color:white;
+	width:600px;
+	float: left;
+	
+}
+
+.bg_content .mov_info:after {
+	
+	clear: both;
+	
+}
+
+.bg_content .mov_poster{
+	
+	padding-top:50px;
+	width:260px;
+	height:330px;
+	color:white;
+	float: right;
+}
+
+.bg_content .mov_poster img{
+	
+	border-radius: 15px;
+}
+
+.info_nav {
+	
+	margin : 50px 0;
+	width:100%;
+	height:52px;
+	text-align: center;
+	position: sticky;
+	top: 50px;	
+	vertical-align: middle;
+	z-index: 2;
+
+}
+
+.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	margin-top:50px;
+}
+
+.info_nav ul{
+	padding: 0;
+	margin: 0;
+}
+
+
+.info_nav li {
+	text-decoration: none;
+	position:relative;
+	list-style: none;
+	display: inline-block;
+	width: 320px;
+	line-height: 50px;
+	border: 1px solid #eee;
+	background-color:#fb4357;
+	border-radius:15px 15px 0 0;
+	margin: 0;
+	
+	opacity : 0.9;
+	
+}
+
+.info_nav a {
+	font-weight: 700;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    
+}
+
+
+
+.info_nav a:hover {
+	cursor: pointer;
+	color: #fb4357;
+}
+
+.on {
+	
+	background-color:white;
+	border: 1px solid #fb4357;
+    border-bottom: 0;
+    z-index: 2;
+}
+
+.info_nav a#on {
+	color: #fb4357;
+}
+
+/*  .info_nav ul::after{
+	content:'';
+	display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    margin-top:2px;
+    height: 2px;
+	background-color: #fb4357;
+} */
+
+.info_content{
+	
+	position:relative;
+	width: 1000px;
+	margin: 0 auto;
+	
+} 
+
+.info_content .content_text .text_subtitle{
+	padding-top:60px;
+	font-size:1.8em;
+	font-weight:bold;
+	width:100%;
+}
+
+.info_content .content_text .text_synopsis{
+	padding-top:30px;
+	width:100%;
+}
+
+.info_content .graph{
+	padding-top:100px;
+	width:100%;
+}
+
+.info_content .teaser {
+	
+	margin: 0 auto;
+	padding-top: 100px;
+	
+}
+
+.info_content .teaser span{
+	
+	font-size:1.5em;
+	font-weight:bold;
+}
+
+.info_content .teaser span::before{
+	
+	content:'';
+	width:100%;
+	margin-bottom:5px;
+	height:1px;
+	background-color: #fb4357;
+	display: block;
+    position: absolute;
+}
+
+.info_content .teaser span::after{
+	
+	content:'';
+	margin-top:5px;
+	width:100%;
+	height:1px;
+	background-color: #fb4357;
+	display: block;
+    position: absolute;
+}
+
+.info_content .teaser .video{
+	
+	margin-top:40px;
+}
+
+.review_cont {
+	
+	padding-top:92px;
+	width: 100%;
+	
+}
+
+.review_cont .insert_review {
+	
+	margin: 25px 0;
+	width: 100%;
+	height: 100px;
+}
+
+.review_cont .insert_review .reviewer{
+	
+	width: 18%;
+	float: left;
+	height: 100px;
+}
+
+.review_cont .insert_review .grade{
+	
+	width: 10%;
+	text-align:center;
+	vertical-align:middle;
+	font-size: 2.5em;
+	float: left;
+	height: 100px;
+	background-color: #f8f8fa;
+	border : 1px solid #f8f8fa;
+	border-radius: 15px;
+	font-weight: bold;
+	color:#fb4357;
+}
+
+.review_cont .insert_review .conts{
+	
+	margin-left:10px;
+	padding-top:20px;
+	padding-left:20px;
+	width: 54%;
+	float: left;
+	height: 78px;
+	background-color: #f8f8fa;
+	border : 1px solid #f8f8fa;
+	border-radius: 15px;
+}
+
+.review_cont .insert_review .doReview{
+	border : 1px solid #f8f8fa;
+	border-radius: 15px;
+	background-color:#f8f8fa;
+	margin-left:10px;
+	float:left;
+	width: 10%;
+	height: 102px;
+}
+
+.review_cont .insert_review .doReview:hover{
+	cursor: pointer;
+}
+
+.review_cont .reviews {
+	
+	margin: 25px 0;
+	width: 100%;
+	height: 100px;
+}
+
+.review_cont .reviews .reviewer{
+	
+	width: 18%;
+	float: left;
+	height: 100px;
+}
+
+.review_cont .reviews .grade{
+	
+	width: 10%;
+	text-align:center;
+	vertical-align:middle;
+	font-size: 2.5em;
+	float: left;
+	height: 80px;
+	padding-top: 20px;
+	background-color: #f8f8fa;
+	border : 1px solid #f8f8fa;
+	border-radius: 15px;
+	font-weight: bold;
+	color:#fb4357;
+}
+
+.review_cont .reviews .conts{
+	
+	margin-left:10px;
+	padding-top:20px;
+	padding-left:20px;
+	width: 65%;
+	float: left;
+	height: 78px;
+	background-color: #f8f8fa;
+	border : 1px solid #f8f8fa;
+	border-radius: 15px;
+}
+
+.review_cont .reviews .conts .conts_time{
+	
+	padding-top:50px;
+	padding-right:15px;
+	float: right;
+	height: 20px;
+}
+
+.review_cont .review_guide::before{
+	
+	content:'';
+	width:100%;
+	height:1px;
+	background-color: #fb4357;
+	display: block;
+    position: absolute;
+}
+
+.review_cont .review_guide {
+	
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.review_cont .review_guide span{
+	
+	font-size: 1.6em;
+	font-weight: bold;
+	color:#fb4357;
+}
+
+.paging {
+	
+  padding-top : 30px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.paging .paging_first,
+.paging .paging_prev,
+.paging .paging_next,
+.paging .paging_last,
+.paging .paging_number_active {
+  transition: all 0.2s;
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 -1px;
+  box-sizing: border-box;
+  border: 1px solid #ebebeb;
+  color: #cccccc;
+  font-size: 16px;
+}
+
+.paging .paging_first:hover,
+.paging .paging_prev:hover,
+.paging .paging_next:hover,
+.paging .paging_last:hover {
+  border-color: #fb4357;
+  color: #fb4357;
+}
+
+.paging .paging_number {
+  transition: background-color, 0.2s;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 -1px;
+  padding: 0 5px;
+  color: #000;
+  box-sizing: border-box;
+  line-height: 40px;
+}
+
+.paging .paging_number:hover {
+  background-color: #b8b8b8;
+  color: #fff;
+}
+
+.paging .paging_number_active {
+  font-style: normal;
+  background-color: #fb4357;
+  color: #fff;
+  line-height: 40px;
+}
+
+.paging .paging_prev {
+  margin-right: 15px;
+}
+
+.paging .paging_next {
+  margin-left: 15px;
+}

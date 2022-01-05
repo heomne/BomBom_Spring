@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+.join_box{
+	width: 800px;
+	margin: 0 auto;
+}
+
+
+.join_form {
+	
+	border-top: 2px solid black;
+	border-bottom: 1px solid black;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+.join_form th {
+	text-align: left;
+	font-weight: 500;
+	width: 150px;
+}
+
+.join_form td {
+	text-align: left;
+	vertical-align: middle;
+}
+
+.join_form tr {
+	height: 60px;
+}
+
+.join_form select {
+	height: 40px;
+	border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #ccc;
+}
+
+.join_form select:focus {
+	
+	border: 1px solid gray;
+	color: gray;
+}
+
+.article input{
+
+	width: 330px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none;
+   
+}
+
+.article input:focus {
+	
+	border: 1px solid gray;
+}
+
+.article input::placeholder {
+	color: #ccc;
+}
+
+.article button{
+	
+	height: 45px;
+    border-radius: 3px;
+    font-size: 14px;	
+    font-weight: 700;
+}
+
+.btn_general {
+	
+	border: 1px solid #fb4357;
+	color: #fb4357;
+    background-color: white;
+    width: 100px;
+}
+
+.btn_address{
+	border: 1px solid #fb4357;
+	color: #fb4357;
+    background-color: white;
+    width: 100%;
+}
+	
+
+.btn_register{
+	border: 1px solid #fb4357;
+	color: white;
+    background-color: #fb4357;  
+    width: 170px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn_reset {
+	border: 1px solid #fb4357;
+	color: #fb4357;
+    background-color: white;
+    width: 170px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+

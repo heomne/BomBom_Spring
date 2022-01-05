@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 본문 시작 */
+
+  
+.img{ 
+	list-style-type : none;
+	position: absolute; 
+	left: 0; 
+	top: 0; 
+	/* width: 2500px;  슬라이드할 사진과 마진 총 넓이 */ 
+	transition: left 2000s;
+	}
+
+.popular {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+
+/* 본문 끝  */

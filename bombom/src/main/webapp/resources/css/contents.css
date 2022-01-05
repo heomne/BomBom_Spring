@@ -1,0 +1,233 @@
+button {
+  font-family: "Noto Sans KR", monospace;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  color: #404340;
+}
+
+.container .title {
+  padding: 20px;
+  border-bottom: 2px solid #222;
+}
+
+.container .info_block {
+  height: 44px;
+  border-radius: 10px;
+  line-height: 44px;
+  background-color: #f7f7f7;
+  padding: 0 25px;
+}
+
+.info_block {
+  font-size: 15px;
+}
+
+.info_block .date {
+  margin-left: 30px;
+}
+
+.info_block .info_left {
+  float: left;
+}
+
+.info_block .info_right {
+  float: right;
+}
+
+.info_block .comment_count {
+  color: #fb4357;
+}
+
+.info_block .info_right .hit,
+.info_block .info_right .like,
+.info_block .info_right .comment {
+  padding: 0 5px;
+}
+
+.board_content {
+  padding: 50px 30px;
+  line-height: 2em;
+  font-weight: 300;
+}
+
+.container .content_like {
+  margin: 0 25px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.content_like .like {
+  transition: all 0.2s;
+  width: 120px;
+  height: 50px;
+  line-height: 25px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.content_like .like:hover {
+  border: 1px solid #fb4357;
+}
+
+.cmt_notice {
+  margin: 15px 0;
+  padding: 15px 15px 15px 30px;
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.comment_block .cmt_list {
+  padding: 10px;
+}
+
+.cmt_list .cmt_unit {
+  margin-top: 30px;
+  padding-left: 20px;
+  font-size: 15px;
+}
+
+.cmt_unit.nested {
+  padding-left: 60px;
+}
+
+.cmt_list .cmt_unit:first-child {
+  margin-top: 0;
+}
+
+.cmt_unit .cmt_header {
+  padding-left: 7px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+
+.cmt_unit .cmt_content {
+  position: relative;
+  display: inline-block;
+  min-width: 250px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.cmt_unit .cmt_date {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  left: 100%;
+  bottom: 0;
+  vertical-align: bottom;
+  margin-left: 5px;
+  font-size: 13px;
+  color: #777;
+}
+
+.cmt_content .cmt_btns {
+  margin-top: 10px;
+}
+
+.cmt_content .cmt_btns button {
+  transition: all 0.2s;
+  padding: 7px;
+  margin-right: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.cmt_content .cmt_btns button:last-child {
+  margin-right: 0;
+}
+
+.cmt_content .cmt_btns button:hover {
+  background-color: #fb4357;
+  color: white;
+}
+
+.cmt_list .cmt_write {
+  margin-top: 30px;
+  padding-left: 20px;
+  height: 180px;
+}
+
+.cmt_list .cmt_write textarea {
+  transition: all 0.2s;
+  width: 100%;
+  border-radius: 10px;
+  border-style: none;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 15px;
+  background-color: #f7f7f7;
+  color: #222;
+  box-sizing: border-box;
+}
+
+.cmt_list .cmt_write textarea:focus {
+  outline: none;
+  border-style: none;
+  background-color: #eee;
+}
+
+.cmt_write .cmt_write_btns {
+  float: right;
+}
+
+.cmt_write .cmt_write_btns button {
+  transition: all 0.2s;
+  background-color: #fb4357;
+  color: #fff;
+  margin-top: 5px;
+  padding: 7px;
+  border-style: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cmt_write .cmt_write_btns button:hover {
+  background-color: #ff223b;
+}
+
+.cmt_header .modify_remove {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.cmt_content .parent_cmt {
+  color: #777;
+  font-size: 12px;
+  padding-bottom: 3px;
+}
+
+.content_area {
+  margin-top: 50px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #222;
+}
+
+.list_area {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
