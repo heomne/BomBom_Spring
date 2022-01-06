@@ -23,13 +23,13 @@
 			
 			<div class="reviewer" align="center">
 				<img src="resources/image/profile.png" width="70" height="70"> <br>
-				<!-- input type="hidden" name="" value="bombom" -->bombom
+				<input type="hidden" name="user_nickname" value="bombom"> bombom
 			</div>
 			
 			
-			<input type="number" min="1" max="10" value="1" class="grade" name="grade" align="center">
+			<input type="number" name="review_rate" min="1" max="10" value="10" class="grade" name="grade" align="center">
 			
-			<textarea class="conts" placeholder="영화 재미있게 보셨나요? 영화에 대한 한줄평을 작성해주세요!" required="required"></textarea>
+			<textarea class="conts" name="review_cont" placeholder="영화 재미있게 보셨나요? 영화에 대한 한줄평을 작성해주세요!" required="required" style="resize: none;"></textarea>
 			
 			<input type="submit" value="작성하기" class="doReview">
 		</div>
