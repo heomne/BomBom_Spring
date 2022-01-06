@@ -9,9 +9,10 @@ const editor = new toastui.Editor({
       formData.append("image", blob);
       const imageURL = imageUpload(formData);
       console.log(imageURL);
-      callback(imageURL, "alt text");
+      callback(imageURL, "image");
     },
   },
+  language: 'ko-KR'
 });
 
 function imageUpload(formData) {		

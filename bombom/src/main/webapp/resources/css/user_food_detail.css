@@ -96,3 +96,27 @@
 .bloglist tr:hover {
 	background-color: #f9f9f9;
 }
+
+.more {
+	margin-bottom: 50px;
+	border-top: 1px lightgray solid;
+	border-bottom: 1px lightgray solid;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #f9f9f9;
+}
+
+.more:hover {
+	background-color: #f1f1f1;
+}
+
+.more span{
+	color: gray;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.blog_wrap {
+	margin-top: 30px;
+}

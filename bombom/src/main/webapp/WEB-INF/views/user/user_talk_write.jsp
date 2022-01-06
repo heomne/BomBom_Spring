@@ -21,7 +21,7 @@
 		
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
-			$('.menu3').attr('id', 'on');
+			$('.menu1').attr('id', 'on');
 			}
 		);
 		
@@ -39,7 +39,7 @@
     </div>
 
 	<div class="container">
-        <form>
+        <form name="postForm" action="${pageContext.request.contextPath}/user_write.do" method="post">
             <header class="write_header">
                 <h2>영화수다 : 글쓰기</h2>
             </header>
@@ -52,12 +52,14 @@
                 <div class="editor_wrap">
                     <div id="editor"></div>
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+                    <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
+                    <input id="contValue" type="hidden" name="cont" value=""/>
                 </div>
             </div>
             <div class="write_btns">
                 <button class="submit_btn" type="button">등록</button>
-                <button class="goBack_btn" type="button">뒤로가기</button>
+                <button class="goBack_btn" type="button" onClick="location.href='history.back()'">뒤로가기</button>
             </div>
         </form>
     </div>
