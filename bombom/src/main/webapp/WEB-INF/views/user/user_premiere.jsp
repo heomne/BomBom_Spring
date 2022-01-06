@@ -15,6 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/premiere.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
 	
+	<%-- 아이콘 만들기--%>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
@@ -45,12 +48,14 @@
 		  document.body.classList.remove("stop-scroll");
 		}
 		
-		$("#modal").click(function(){
-			$("#modal").hide();
-			 $(".modal-con").hide();
-			 //body 스크롤 방지 해제
-			 document.body.classList.remove("stop-scroll");
-		});
+		// 모달창 닫기(검은 바탕 눌러도 닫힐 수 있게)
+		function closeAllModal(){
+		  document.get
+		  $("#modal").hide();
+		  $(".modal-con").hide();
+		  //body 스크롤 방지 해제
+		  document.body.classList.remove("stop-scroll");
+		}
 		
 	</script>
 </head>
@@ -68,58 +73,48 @@
     
     <!-- 옆에 따라다니는 바 -->
 	 <div class="list_buttons">
-		<div>
-			<a href="">✐</a><br>
-			<a href="">🔍</a>
-		</div>
+		<a href="<%=request.getContextPath() %>/premiere_write.do">✐</a><br>
+		<a href="">🔍</a>
 	</div>
     	
 	<div class="content">
-		<%-- 여기에 작업 해야함 (좌우 여백 설정되어있음) --%>			
+		<%-- 여기에 작업 해야함 (좌우 여백 설정되어있음) --%>				
 		
 		<div class="premiere_title">
 			<div class="premiere_text">
 				<h2>진행중인 시사회</h2>
 			</div>
-			<div class="premiere_notice">
-				<ul>
-					<li>
-						<img src="resources/image/공지사항 아이콘.png" alt="공지사항 아이콘" width="35px;" height="auto">
-						<!-- <span class="notice_button">공지</span> -->
-						<a href="javascript:openModal('notice');">시사회  당첨 확률 올리는 법</a>
-						<span class="notice_date">21.12.30.</span>
-					</li>
-				</ul>	
+					    
+			<div class="premiere_notice" onclick="openModal('notice')">
+				<img src="resources/image/공지사항 아이콘.png" alt="공지사항 아이콘" width="35px;" height="auto">
+				<span class="notice_writer">시사회  당첨 확률 올리는 법</span>
+				<span class="notice_date">21.11.30.</span>
 			</div>
 		</div>
 		
 		<%-- 더미컨텐츠 (필요시 .article, .content 사용) --%>
-		<div class="premiere_list_wrap">
+		<div class="premiere_list_wrap">	
 			<div class="premiere_content">
 				<!-- 게시물 영역을 누르면 모달창으로 넘어갈 수 있도록 -->
-				<a href="javascript:openModal('modal1');">
-					<div class="content_cards">
-						<span class="new_atc">N</span>
-						<img src="resources/image/premiere_poster.jpg" alt="'청춘적니' 한줄평/리뷰 이벤트">
-						<div class="content_body">
-							<p class="content_title">'청춘적니' 한줄평/리뷰 이벤트</p>
-							<p class="content_summary">영화 '청춘적니' 한줄평/리뷰 이벤트입니다. '청춘적니' 관람 후 아직 못 본 분...</p>
-							<p class="content_date">2일전</p>
-						</div>
+				<div class="content_cards" onclick="openModal('modal1')">
+					<span class="new_atc">N</span>
+					<img src="resources/image/premiere_poster.jpg" alt="'청춘적니' 한줄평/리뷰 이벤트">
+					<div class="content_body">
+						<p class="content_title">'청춘적니' 한줄평/리뷰 이벤트</p>
+						<p class="content_summary">영화 '청춘적니' 한줄평/리뷰 이벤트입니다. '청춘적니' 관람 후 아직 못 본 분...</p>
+						<p class="content_date">2일전</p>
 					</div>
-				</a> 
+				</div>
 			
-				<a href="javascript:openModal();">
-					<div class="content_cards">
-						<span class="new_atc">N</span>
-						<img src="resources/image/premiere_poster2.jpg" alt="'스피드 : 레이스 1' 언론 배급 시사회에 초대합니다.">
-						<div class="content_body">
-							<p class="content_title">'스피드 : 레이스 1' ...</p>
-							<p class="content_summary">● 본 시사회는 백신 접종 완료자만 입장 가능합니다. (글 하단 안내문 꼭 참조하...</p>
-							<p class="content_date">3일전</p>
-						</div>
+				<div class="content_cards">
+					<span class="new_atc">N</span>
+					<img src="resources/image/premiere_poster2.jpg" alt="'스피드 : 레이스 1' 언론 배급 시사회에 초대합니다.">
+					<div class="content_body">
+						<p class="content_title">'스피드 : 레이스 1' ...</p>
+						<p class="content_summary">● 본 시사회는 백신 접종 완료자만 입장 가능합니다. (글 하단 안내문 꼭 참조하...</p>
+						<p class="content_date">3일전</p>
 					</div>
-				</a> 
+				</div>
 				
 				<div class="content_cards">
 					<h1>시사회정보 본문 내용 들어갈 자리</h1>
@@ -178,8 +173,8 @@
       
    </div>   
 	
-	<!-- 모달창 -->
-	<div id="modal"></div>
+	<!-- 모달창 -->	
+	<div id="modal" onclick="closeAllModal()"></div>
 	  	<div class="modal-con modal1">
 	  		<div class="close">	  		
 	  			<a href="javascript:closeModal('modal1');">X</a>
@@ -276,7 +271,7 @@
                     </div>
 
                     <div class="cmt_write">
-                        <textarea cols="50" rows="4" placeholder="댓글을 입력해주세요"></textarea>
+                        <textarea cols="50" rows="4" placeholder="댓글을 입력해주세요" style="resize: none;" required="required"></textarea>
                         <div class="cmt_write_btns">
                             <button>댓글 등록</button>
                         </div>
@@ -288,6 +283,7 @@
         </div>	<!-- modal1 창 end -->
          
          <!-- 공지사항 모달 -->
+         <div id="modal" onclick="closeAllModal()"></div>
          <div class="modal-con notice">
 	  		<div class="close">	  		
 	  			<a href="javascript:closeModal('notice');">X</a>
@@ -297,7 +293,7 @@
 		    </div>
 		    <div class="writer_date">
 		    	<img src="resources/image/관리자.png" alt="관리자 아이콘" width="35px;" height="auto">
-		    	<span class="writer">관리자</spans>
+		    	<span class="writer">관리자</span>
 		    	<span class="date">2021.12.30. 20:05</span>
 		    </div>
 		    <div class="con">
@@ -383,7 +379,6 @@
 제가 쓰는 글에 댓글 자주 다시는 분은 자동적으로 닉네임을 기억하게 됩니다
 
 은근히 당첨확률 높이는 지름길이에요...</pre>
-
 		    	<br>		
          </div> 
       </div> <!-- notice 창 end --> 
