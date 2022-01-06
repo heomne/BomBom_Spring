@@ -133,7 +133,11 @@
 					<p>어쩌고저쩌고</p>
 				</div>
 				
-				
+				<div class="info_bottom">
+                    <button type="button" class="search_btn">🔎</button>
+                    <a href="${pageContext.request.contextPath}/user_info_write.do" class="post_btn">글쓰기</a>
+                </div>
+                
                 <div class="paging">
                     <a href="#" class="paging_first"><<</a>
                     <a href="#" class="paging_prev"><</a>

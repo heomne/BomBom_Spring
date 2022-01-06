@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+.container {
+  width: 1000px;
+  margin: 50px auto;
+  color: #404340;
+}
+
+.write_header {
+  border-bottom: 2px solid #222;
+}
+
+.write_header h2 {
+  padding-left: 20px;
+}
+
+.title_wrap {
+	width:80%;
+}
+
+.title_wrap tr::after{
+	content:'';
+  	background-color:#eee;
+  	height: 1px;
+}
+
+.title_wrap th{
+	
+	text-align: left;
+	width:30%;
+}
+
+.title_wrap td{
+	
+	width:70%;
+	text-align: left;
+}
+.title_wrap input#info_title,
+.title_wrap input#info_runtime,
+.title_wrap input#info_year,
+.title_wrap input#info_teaser,
+.title_wrap input#info_subtitle
+ {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+  font-family: 'Noto Sans KR', monospace;
+  font-size:26px;
+  border: 1px solid #eee;
+  padding: 10px 10px 10px 15px;
+}
+
+.title_wrap input#info_thumbnail,
+.title_wrap input#info_bgimg
+ {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+  font-size: 18px;
+  font-family: 'Noto Sans KR', monospace;
+  border: 1px solid #eee;
+  padding: 10px 10px 10px 15px;
+}
+
+.title_wrap input:focus {
+  outline: none;
+}
+
+.title_wrap textarea#info_cast {
+	width:100%;
+	height:120px;
+	box-sizing: border-box;
+	background-color: #f7f7f7;
+	font-family: 'Noto Sans KR', monospace;
+	border: 1px solid #eee;
+	padding: 10px 10px 10px 15px;
+	resize: none;
+}
+
+.title_wrap textarea#info_synopsis {
+	width:100%;
+	height:240px;
+	box-sizing: border-box;
+	background-color: #f7f7f7;
+	font-family: 'Noto Sans KR', monospace;
+	border: 1px solid #eee;
+	padding: 10px 10px 10px 15px;
+	resize: none;
+}
+/* tui editor p tag font size */
+.ProseMirror p {
+  font-size: 16px;
+  font-family: 'Noto Sans KR', monospace;
+}
+
+.write_btns {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.write_btns .submit_btn,
+.write_btns .goBack_btn {
+  transition: all 0.2s;
+  width: 165px;
+  height: 50px;
+  margin: 0 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.write_btns .submit_btn {
+  background-color: #fb4357;
+  color: #fff;
+  border-style: none;
+}
+
+.write_btns .goBack_btn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #fb4357;
+}
+
+.write_btns .submit_btn:hover {
+  background-color: #f33417;
+}
+
+.write_btns .goBack_btn:hover {
+  border-color: #fb4357;
+}

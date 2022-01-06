@@ -110,6 +110,11 @@
 	margin : 0 auto;
 }
 
+.info_content .info_bottom {
+	clear:both;
+	margin : 0 auto;
+	padding-top: 30px;
+}
 .jumbotron {
   position: relative;
   width: 100%;
@@ -161,6 +166,32 @@
   border: 1px solid #ebebeb;
   color: #cccccc;
   font-size: 16px;
+}
+
+.info_bottom {
+	
+}
+.info_bottom .search_btn {
+	
+  background-color: white;
+  color: white;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.info_bottom .post_btn {
+  float: right;
+  background-color: #fb4357;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.paging {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .paging .paging_first:hover,
