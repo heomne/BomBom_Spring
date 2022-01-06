@@ -46,7 +46,7 @@ public class NavController {
 		return "/home";
 	}
 	
-
+	
 	
 	
 }
