@@ -18,7 +18,7 @@
 		
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
-			$('.menu3').attr('id', 'on');
+			$('.menu1').attr('id', 'on');
 			}
 		);
 		

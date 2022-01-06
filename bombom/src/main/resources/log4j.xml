@@ -10,6 +10,11 @@
 		</layout>
 	</appender>
 	
+	<!-- talkController -->
+	<logger name="com.bombom.controller.talkController">
+		<level value="info" />
+	</logger>
+	
 	<!-- Application Loggers -->
 	<logger name="com.sist.test">
 		<level value="info" />

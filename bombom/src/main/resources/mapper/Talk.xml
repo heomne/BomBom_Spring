@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bombom.model.TalkDAO">
+	<insert id="insertPost" parameterType="com.bombom.model.TalkDTO">
+		insert into bombom_talk values(talk_seq.nextval, #{id}, #{nickname}, #{title}, #{cont}, 0, 0, 0, SYSDATE)
+	</insert>
+</mapper>
