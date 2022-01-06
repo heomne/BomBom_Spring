@@ -32,11 +32,11 @@
 	<div class="nav">
 	
 		<ul>
+			<li><span class="menu0" onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">봄봄소식</span></li>
 			<li><span class="menu1" onclick="location.href='${pageContext.request.contextPath}/user_talk.do'">영화수다</span></li>
 			<li><span class="menu2" onclick="location.href='${pageContext.request.contextPath}/user_info.do'">영화정보</span></li>
 			<li><span class="menu3" onclick="location.href='${pageContext.request.contextPath}/user_food.do'">극장맛집</span></li>
 			<li><span class="menu4" onclick="location.href='${pageContext.request.contextPath}/user_premiere.do'">시사회</span></li>
-			<li><span class="menu5" onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">봄봄소식</span></li>
 		</ul>
 			
 	</div>

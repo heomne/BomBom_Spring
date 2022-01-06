@@ -30,6 +30,17 @@
 			$('.menu3').attr('id', 'on');
 			}
 		);
+	
+		//블로그 글 더보기 기능
+		function showMore(num, increase){
+			
+			for(let i = num; i < (num + increase); i++){
+				$('.bloglist tr#' + i).css('display', 'block');
+				$('.bloglist').load(window.location.href + ' .bloglist');
+			}
+			
+			$('.more').attr('onclick', 'showMore(' + (num + increase) + ', ' + increase + ')');
+		}	
 		
 	</script>
 	
@@ -47,10 +58,8 @@
     </div>
 	
 	<div class="content">
-	
-		
+			
 		<h2><span>${keyword }</span> 주변 식당 정보</h2>
-		
 		
 		<%-- 카카오 지도 불러오기 --%>
 
@@ -72,23 +81,40 @@
 		    </div>
 		</div>
 		
-		
-		<h2><span>${keyword} 맛집</span> 블로그 검색 결과</h2>
-		
-		<%-- 블로그 테이블 --%>
-		<table class="bloglist">
-			<c:forEach items="${itemList }" var="dto">
-				<tr>
-					<td onclick="window.open('${dto.getLink() }')">
-						<h4>${dto.getTitle() }<br></h4>
-						<span class="desc">${dto.getDesc() } </span>
-						<br>
-						<span class="blogger">${dto.getDate() } &nbsp;|&nbsp; ${dto.getBlogger() }</span>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
+		<div class="blog_wrap">
+			<h2><span>${keyword} 맛집</span> 블로그 검색 결과</h2>
+			
+			<%-- 블로그 테이블 --%>
+			<table class="bloglist">
+				<c:forEach items="${itemList }" var="dto" varStatus="status">
+					<c:if test="${status.index < 5 }">
+						<tr>
+							<td onclick="window.open('${dto.getLink() }')">
+								<h4>${dto.getTitle() }<br></h4>
+								<span class="desc">${dto.getDesc() } </span>
+								<br>
+								<span class="blogger">${dto.getDate() } &nbsp;|&nbsp; ${dto.getBlogger() }</span>
+							</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${status.index >= 5 }">
+						<tr id="${status.index }" style="display: none">
+							<td onclick="window.open('${dto.getLink() }')">
+								<h4>${dto.getTitle() }<br></h4>
+								<span class="desc">${dto.getDesc() } </span>
+								<br>
+								<span class="blogger">${dto.getDate() } &nbsp;|&nbsp; ${dto.getBlogger() }</span>
+							</td>
+						</tr>
+					</c:if>
+					
+				</c:forEach>
+			</table>
+			
+			<div class="more" onclick="showMore(5, 5)"><span>더 보기</span></div>
+			
+		</div>
 	</div>
 	
 	<jsp:include page="../include/footer.jsp" flush="false"/>
