@@ -41,7 +41,7 @@ public class EditorController {
 		String newFileName = LocalDate.now() + "_" + System.currentTimeMillis() + ext;
 		
 		try {
-			File image = new File(request.getSession().getServletContext().getRealPath("resources/upload/talk") + newFileName);
+			File image = new File(request.getSession().getServletContext().getRealPath("resources/upload/talk/") + newFileName);
 			
 			multipartFile.transferTo(image);
 			
@@ -53,7 +53,7 @@ public class EditorController {
 //			logger.info("FileName is changed to {}", newFileName);
 			
 			System.out.println("File uploaded.");
-			System.out.println("Path : " + request.getSession().getServletContext().getRealPath("resources/upload/talk"));
+			System.out.println("Path : " + request.getSession().getServletContext().getRealPath("resources/upload/talk/"));
 			System.out.println("File Name : " + newFileName);
 		}
 		
@@ -63,6 +63,6 @@ public class EditorController {
 		String url = request.getRequestURL().substring(0, index);
 		
 		// https://localhost:8080/bombom/resources/upload/파일이름
-		return url + request.getContextPath() + "/resources/upload/talk" + newFileName;
+		return url + request.getContextPath() + "/resources/upload/talk/" + newFileName;
 	}
 }

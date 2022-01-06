@@ -59,7 +59,7 @@
             </div>
             <div class="write_btns">
                 <button class="submit_btn" type="button">등록</button>
-                <button class="goBack_btn" type="button" onClick="location.href='history.back()'">뒤로가기</button>
+                <button class="goBack_btn" type="button" onclick="history.back()">뒤로가기</button>
             </div>
         </form>
     </div>
