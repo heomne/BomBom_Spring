@@ -37,9 +37,14 @@
 			for(let i = num; i < (num + increase); i++){
 				$('.bloglist tr#' + i).css('display', 'block');
 				$('.bloglist').load(window.location.href + ' .bloglist');
-			}
 			
+				if(i > 15){
+					$('.more').css('display', 'none');
+				}
+			}
+		
 			$('.more').attr('onclick', 'showMore(' + (num + increase) + ', ' + increase + ')');
+		
 		}	
 		
 	</script>
