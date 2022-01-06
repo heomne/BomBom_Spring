@@ -121,7 +121,7 @@ function getListItem(index, places) {
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <h5 onclick="showImages(\'' + places.place_name + '\')">' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
@@ -137,6 +137,31 @@ function getListItem(index, places) {
     el.className = 'item';
 
     return el;
+}
+
+// 맛집 제목으로 검색하여 이미지를 띄워주는 함수입니다
+function showImages(keyword){
+	
+	//let query = keyword.trim().replace(/ /gi,'+');	//키워드 공백 -> '+'기호로 대체
+
+	//query = encodeURI(query);
+	
+	$.ajax({
+    
+        url: "https://openapi.naver.com/v1/search/image?query=용산맛집"  // 네이버 이미지검색 API
+        
+        ,dataType:"json"
+        ,data: {
+        	'X-Naver-Client-Id' : "6JrHyX7NsCshdEmcCZGR",
+        	'X-Naver-Client-Secret' : "OQiQk1ECkt"
+        }
+		,jsonpCallback: "myCallback"
+		,success: callback
+	});	
+	
+	function myCallback(){
+		alert(성공);
+	}
 }
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
