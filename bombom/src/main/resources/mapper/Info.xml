@@ -6,7 +6,7 @@
   
 <mapper namespace="com.bombom.model.InfoDAO">
 
-	<insert id="add" parameterType="com.bombom.model.InfoDTO">
+	<insert id="addInfo" parameterType="com.bombom.model.InfoDTO">
 		<selectKey resultType="int" keyProperty="info_no" order="BEFORE">
 			select max(info_no) from bombom_movie_info
 		</selectKey>
