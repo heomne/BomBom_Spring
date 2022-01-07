@@ -30,20 +30,5 @@ public class NavController {
 	public String user_event() {
 		return "/user/user_notice";
 	}
-	
-	@RequestMapping("user_login.do")
-	public String user_login() {
-		return "/user/user_login";
-	}
-	
-	@RequestMapping("user_join.do")
-	public String user_join() {
-		return "/user/user_join";
-	}
-	
-	@RequestMapping("user_join_ok.do")
-	public String user_join_ok() {
-		return "/home";
-	}
 
 }

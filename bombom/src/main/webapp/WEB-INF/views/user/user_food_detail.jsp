@@ -38,7 +38,7 @@
 				$('.bloglist tr#' + i).css('display', 'block');
 				$('.bloglist').load(window.location.href + ' .bloglist');
 			
-				if(i > 15){
+				if(i > 45){
 					$('.more').css('display', 'none');
 				}
 			}
