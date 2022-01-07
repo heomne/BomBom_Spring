@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/talk.css?after"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Tui_Editor.css" />
 
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -40,7 +41,7 @@
 	<div class="container">
         <div class="content_area">
             <header>
-                <div class="title">``
+                <div class="title">
                     <h1>${dto.getTalk_title()}</h1>
                 </div>
                 <div class="info_block">
@@ -59,7 +60,11 @@
             
             <article>
                 <div class="board_content">
-					${dto.getTalk_cont()}
+                	<div id="viewer">
+                		${dto.getTalk_cont()}
+                	</div>
+                	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
+                	<script src="${pageContext.request.contextPath}/resources/js/viewer.js"></script>
                 </div>
             </article>
 

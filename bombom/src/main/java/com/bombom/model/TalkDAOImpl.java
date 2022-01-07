@@ -14,8 +14,7 @@ public class TalkDAOImpl implements TalkDAO {
 	
 	@Override
 	public List<TalkDTO> getPosts() {
-		
-		return null;
+		return this.sqlSession.selectList("getPosts");
 	}
 	
 	@Override

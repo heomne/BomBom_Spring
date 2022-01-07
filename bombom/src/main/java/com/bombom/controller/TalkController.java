@@ -1,5 +1,8 @@
 package com.bombom.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,16 @@ public class TalkController {
 	private TalkDAO dao;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@RequestMapping(value = "/user_talk.do", method = RequestMethod.GET)
+	public String getPosts(Model model) {
+		List<TalkDTO> posts = dao.getPosts();
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("today", LocalDate.now().toString());
+		
+		return "user/user_talk";
+	}
 
 	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.GET)
 	public String content(@PathVariable("id")String boardNo, Model model) {
@@ -47,7 +60,7 @@ public class TalkController {
 			logger.info("Post inserted, result value : {}", result);
 		}
 		
-		return "redirect:user_write.do";
+		return "redirect:user_talk.do";
 	}
 	
 }
