@@ -14,7 +14,7 @@
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <script defer src="${pageContext.request.contextPath}/resources/js/write.js"></script>
+    <script defer src="${pageContext.request.contextPath}/resources/js/info_write.js"></script>
 
 	<script>
 		
@@ -38,8 +38,8 @@
     </div>
 
 	<div class="container">
-        <form method="post" enctype="multipart/form-data"
-			action="<%=request.getContextPath() %>/upload_ok.do">>
+        <form method="post" enctype="multipart/form-data" name="postForm"
+			action="<%=request.getContextPath() %>/user_info_write.do">>
             <header class="write_header">
                 <h2>영화정보 : 글쓰기</h2>
             </header>
@@ -58,14 +58,14 @@
                		<tr>
                 		<th> 썸네일 이미지</th>
                     	<td> 
-                    		<input type="file" id="info_thumbnail" name="info_thumbnail" required="required"/>
+                    		<input type="file" id="info_thumbnail" name="thumbnail" required="required"/>
                			</td>
                		</tr>
                     
                 	<tr>
                 		<th> 배경 이미지</th>
                     	<td> 
-                    		<input type="file" id="info_bgimg" name="info_bgimg" required="required"/>
+                    		<input type="file" id="info_bgimg" name="bgimg" required="required"/>
                			</td>
                		</tr>
                 

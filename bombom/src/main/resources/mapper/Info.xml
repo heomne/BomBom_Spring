@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bombom.model.InfoDAO">
+
+	<insert id="add" parameterType="com.bombom.model.InfoDTO">
+		<selectKey resultType="int" keyProperty="info_no" order="BEFORE">
+			select max(info_no) from bombom_movie_info
+		</selectKey>
+		insert into bombom_movie_info values (#{info_no} + 1, #{info_year}, #{info_runtime},
+			#{info_thumbnail}, #{info_bgimg}, #{info_teaser}, #{info_title}, #{info_subtitle}, #{info_synopsis}, #{info_cast})
+	</insert>
+</mapper>
