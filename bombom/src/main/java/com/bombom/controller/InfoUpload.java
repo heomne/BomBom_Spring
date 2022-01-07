@@ -41,6 +41,7 @@ public void fileUpload(MultipartHttpServletRequest mRequest, InfoDTO dto, HttpSe
 			// 실제 폴더를 만들어 보자.
 			// ...\\resources\\upload\\2021-12-24
 			String homedir = uploadPath + year + "-" + month + "-" + day;
+			String date = year + "-" + month + "-" + day;
 			
 			File path1 = new File(homedir);
 			

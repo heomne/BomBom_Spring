@@ -72,7 +72,7 @@
 	                <tr>
                 		<th> 개봉 연도</th>
                     	<td> 
-                    		<input type="date" id="info_thumbnail" name="info_thumbnail" placeholder="개봉연도를 입력해주세요." required="required"/>
+                    		<input type="date" id="info_year" name="info_year" placeholder="개봉연도를 입력해주세요." required="required"/>
                			</td>
                		</tr>
                		
