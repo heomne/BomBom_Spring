@@ -34,7 +34,7 @@
 		<div class="notice">
 		
 			<img id="notice" alt="" src="resources/image/notice.png"
-				onclick="location.href='${pageContext.request.contextPath}/user_bombom.do'">
+				onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">
 	
 		</div>
 		<br>

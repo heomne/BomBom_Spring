@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.search{
+	
+	margin-left : 300px;
+	margin-top: 50px;
+	margin-bottom: 70px;
+	
+}
+
+
+.table{
+	
+	
+  table-layout: auto;
+  border-collapse: collapse;
+
+	
+}
+
+
+th{
+	font-size: 20px;
+}

@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/user_food.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/noticee.css?after">
 	
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -41,22 +42,22 @@
 	
 	<%-- 옮길것 --%>
 		<div class="boardArea">
-			<table border="1" cellspacing="0" width="950" align="center">
+			<table border="1" cellspacing="0" width="1000" align="center" class="table">
 				<tr>
 					<th>글번호</th> <th>글제목</th>
 					<th>작성자</th> <th>작성날짜</th> <th>조회수</th>
 				</tr>
 				
 				<tr>
-					<td>1</td>
-					<td>안녕하세요. 봄봄입니다</td>
+					<td align="center">1</td>
+					<td><a href="<%=request.getContextPath() %>/user_notice_cont.do">안녕하세요. 봄봄입니다</a></td>
 					<td>관리자</td>
 					<td>2022.01.06</td>
 					<td>10</td>
 				</tr>
 				
 				<tr>
-					<td>2</td>
+					<td align="center">2</td>
 					<td>시사회 관련 공지</td>
 					<td>관리자</td>
 					<td>2022.01.06</td>
@@ -64,7 +65,7 @@
 				</tr>
 				
 				<tr>
-					<td>3</td>
+					<td align="center">3</td>
 					<td>영화수다 관련 공지</td>
 					<td>관리자</td>
 					<td>2022.01.06</td>
@@ -73,7 +74,7 @@
 				
 				
 				<tr>
-					<td>4</td>
+					<td align="center">4</td>
 					<td>극장맛집에 새 맛집이 추가되었어요!</td>
 					<td>관리자</td>
 					<td>2022.01.06</td>
@@ -94,10 +95,10 @@
 			
 					</select>
 		
-				<input type="text" name="keyword">&nbsp;&nbsp;&nbsp;
+				<input size="40px" type="text" name="keyword">&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="검색">
 		
-		</form>
+				</form>
 				
 			</div>
 			
