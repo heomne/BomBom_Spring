@@ -81,7 +81,7 @@
                         	<td>${fn:substring(post.getTalk_date(), 11, 16)}</td>
                        	</c:if>
                        	
-                       	<c:if test="${!(fn:substring(post.getTalk_date(), 0, 10) eq today)}">
+                       	<c:if test="${fn:substring(post.getTalk_date(), 0, 10) ne today}">
                        		<td>${fn:substring(post.getTalk_date(), 0, 10)}</td>
                        	</c:if>
                         <td>${post.getTalk_hit()}</td>
