@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +37,7 @@
 	    <div class="textBlock1">
 	        <span class="main_title">봄봄소식</span>
 	        <br>
-	        <span class="sub_title">커뮤니티 봄봄의 이모저모를 담은 공간</span> 
+	        <span class="sub_title">커뮤니티 봄봄의 새로운 소식들을 담은 공간</span> 
 	    </div>
     </div>
 	
@@ -47,6 +50,20 @@
 					<th>글번호</th> <th>글제목</th>
 					<th>작성자</th> <th>작성날짜</th> <th>조회수</th>
 				</tr>
+				
+				<c:set value="${List }" var="list" />
+				<c:if test="${!empty list }" var="list">
+				<c:forEach var="dto" items="${list }">
+					<tr>
+						<td>${dto.getNews_no() }</td>
+						<td>${dto.getNews_title() }</td>
+						<td>${dto.getNews_writer() }</td>
+						<td>${dto.getNews_date() }</td>
+						<td>${dto.getNews_hit() }</td>
+					</tr>
+				
+				</c:forEach>
+				</c:if>
 				
 				<tr>
 					<td align="center">1</td>
