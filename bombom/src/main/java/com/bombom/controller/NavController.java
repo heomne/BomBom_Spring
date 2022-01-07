@@ -26,9 +26,5 @@ public class NavController {
 		return "/user/user_premiere";
 	}
 	
-	@RequestMapping("user_notice.do")
-	public String user_event() {
-		return "/user/user_notice";
-	}
-
+	
 }
