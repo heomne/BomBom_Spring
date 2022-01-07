@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 	<%-- 헤더 --%>
 	<div class="header">
@@ -8,12 +9,23 @@
 			<div class="content">
 				<div class="login">
 					<ul>
-						<li>
-							<span onclick="location.href='user_login.do'">로그인</span>
-						</li>
-						<li>
-							<span onclick="location.href='user_join.do'">회원가입</span>
-						</li>	
+						<c:if test="${empty user }">
+							<li>
+								<span onclick="location.href='user_login.do'">로그인</span>
+							</li>
+							<li>
+								<span onclick="location.href='user_join.do'">회원가입</span>
+							</li>
+						</c:if>	
+						
+						<c:if test="${!empty user }">
+							<li>
+								<span>마이페이지</span>
+							</li>
+							<li>
+								<span onclick="location.href='user_logout.do'">로그아웃</span>
+							</li>
+						</c:if>	
 					</ul>
 				</div>
 			</div>
