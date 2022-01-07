@@ -3,6 +3,7 @@ package com.bombom.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -34,7 +35,7 @@ public class MemberController {
 	
 	//로그인 진행
 	@RequestMapping("user_login_ok.do")
-	public String user_login_ok(MemberDTO dto, HttpSession session) {
+	public String user_login_ok(MemberDTO dto, HttpSession session, HttpServletRequest request) {
 		
 		//반환주소값
 		String url = "";
@@ -44,14 +45,16 @@ public class MemberController {
 			session.removeAttribute("user");
 		}
 		
+		//로그인
 		MemberDTO result = dao.login(dto);
 		
-
-		if(result!= null) {		//로그인 성공
+		if(result != null) {	//로그인 성공 - 세션이름 : 'user'(MemberDTO 타입)
 			session.setAttribute("user", result);
-			url = "/";
+			url = "redirect:/";
+			System.out.println("로그인성공");
 		}else {					//로그인 실패
-			url = "/user/user_login";
+			url = "redirect:user_login.do?status=fail";
+			System.out.println("로그인실패");
 		}
 		
 		return url;
