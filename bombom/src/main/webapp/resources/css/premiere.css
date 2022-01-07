@@ -5,7 +5,6 @@
 .list_buttons {
 	position: sticky;
 	top: 100px;
-	right: 380px;
 	margin-top: 60px;
 	float: right;
 }
@@ -195,6 +194,10 @@
 	border-radius: 10px;
 }
 
+.wrap_common {
+	display: inline-block;
+}
+
 .modal-con .writer_date img{
 	vertical-align: middle;
 	margin-right: 5px;
@@ -202,6 +205,15 @@
 
 .modal-con .writer_date .date{
   margin-left: 30px;
+}
+
+.modal-con .writer_date .modify_remove {
+	margin-left: 30px;
+}
+
+.modal-con .writer_date .modify_remove a{
+	text-decoration: none;
+	color: #404340;
 }
 
 .modal-con .comment{
@@ -244,11 +256,12 @@
   color:#000; 
 }
 
+/* 상단 배너 */
 .jumbotron {
   position: relative;
   width: 100%;
   height: 250px;
-  background-image: url("../image/suda_img.jpg");
+  background-image: url("../image/banner_premiere.png");
   background-size: cover;
   object-fit: cover;
 }
@@ -279,7 +292,6 @@
 }
 
 /* 하단 페이징 처리 */
-
 .paging {
 	clear: both;
 	margin-bottom: 72px;
@@ -483,7 +495,6 @@
   text-decoration: none;
   color: #404340;
 }
-
 
 .cmt_content .parent_cmt {
   color: #777;
