@@ -1,5 +1,10 @@
 package com.bombom.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +20,25 @@ public class TalkController {
 	
 	@Autowired
 	private TalkDAO dao;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@RequestMapping(value = "/user_talk.do", method = RequestMethod.GET)
+	public String getPosts(Model model) {
+		List<TalkDTO> posts = dao.getPosts();
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("today", LocalDate.now().toString());
+		
+		return "user/user_talk";
+	}
 
-	@RequestMapping(value = "/user_content.do/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.GET)
 	public String content(@PathVariable("id")String boardNo, Model model) {
 		
-		model.addAttribute("boardNo", boardNo);
+		TalkDTO dto = dao.getPost(Integer.parseInt(boardNo));
+		
+		model.addAttribute("content", dto);
 		
 		return "user/user_talk_contents";
 	}
@@ -32,16 +51,16 @@ public class TalkController {
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.POST)
 	public String insertPost(TalkDTO dto, Model model) {
 		// test
-		dto.setId("alsghl9607");
-		dto.setNickname("Spring");
+		dto.setUser_id("alsghl9607");
+		dto.setUser_nickname("Spring");
 		
 		int result = dao.insertPost(dto);
 		
 		if(result > 0) {
-			System.out.println("TalkController : Post inserted");
+			logger.info("Post inserted, result value : {}", result);
 		}
 		
-		return "redirect:user/user_talk_contents";
+		return "redirect:user_talk.do";
 	}
 	
 }

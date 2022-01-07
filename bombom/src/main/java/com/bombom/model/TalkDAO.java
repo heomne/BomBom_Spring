@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TalkDAO {
 	List<TalkDTO> getPosts(); // pagination
-	List<TalkDTO> getSerachPosts();
+	List<TalkDTO> getSearchPosts();
 	TalkDTO getPost(int talk_no);
 	int insertPost(TalkDTO dto);
 	int deletePost(int talk_no);

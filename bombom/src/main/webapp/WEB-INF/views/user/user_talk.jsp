@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>봄봄 : 봄봄수다</title>
 
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
@@ -39,6 +41,8 @@
             </div>
         </div>
 
+		<c:set var="dto" value="${posts}"/>
+		<c:set var="today" value="${today}"/>
         <div class="boardArea">
             <div class="board">
                 <table width="100%">
@@ -63,89 +67,26 @@
                         <td>2021.12.30</td>
                         <td>5</td>
                     </tr>
+                    
+                    <c:forEach var="post" items="${dto}" varStatus="status">
                     <tr>
-                        <td>2</td>
+                        <td>${post.getTalk_no()}</td>
                         <td class="title_left">
-                            <a href="user_content.do/2">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
+                            <a href="${pageContext.request.contextPath}/user_talk.do/${post.getTalk_no()}">${post.getTalk_title()}</a>
                         </td>
                         <td>
-                            <a href="#">heo</a>
+                            <a href="#">${post.getUser_nickname()}</a>
                         </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
+                        <c:if test="${fn:substring(post.getTalk_date(), 0, 10) eq today}">
+                        	<td>${fn:substring(post.getTalk_date(), 11, 16)}</td>
+                       	</c:if>
+                       	
+                       	<c:if test="${!(fn:substring(post.getTalk_date(), 0, 10) eq today)}">
+                       		<td>${fn:substring(post.getTalk_date(), 0, 10)}</td>
+                       	</c:if>
+                        <td>${post.getTalk_hit()}</td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="title_left">
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="title_left">
-                            <a href="#">글이 어디까지써지나ㅈㄷㄱ러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td class="title_left">
-                            <a href="#">글이 ㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>6</td>
-                        <td class="title_left">
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>7</td>
-                        <td class="title_left">
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heasasdasdqweo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>8</td>
-                        <td class="title_left">
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-
+                    </c:forEach>
                 </table>
             </div>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/talk.css?after"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Tui_Editor.css" />
 
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -35,20 +37,21 @@
         </div>
     </div>
 
+	<c:set var="dto" value="${content}"/>
 	<div class="container">
         <div class="content_area">
             <header>
                 <div class="title">
-                    <h1>킹스맨 재밌네요.</h1>
+                    <h1>${dto.getTalk_title()}</h1>
                 </div>
                 <div class="info_block">
                     <div class="info_left">
-                        <span class="writer">BomBom_user</span>
-                        <span class="date">2022.01.03</span>
+                        <span class="writer">${dto.getUser_nickname() }</span>
+                        <span class="date">${dto.getTalk_date()}</span>
                     </div>
 
                     <div class="info_right">
-                        <span class="hit">👁5864</span>
+                        <span class="hit">👁${dto.getTalk_hit()}</span>
                         <span class="like">👍5</span>
                         <span class="comment">💭3</span>
                     </div>
@@ -57,16 +60,11 @@
             
             <article>
                 <div class="board_content">
-                    	안녕하세요. 킹스맨 정말 재밌네요
-                    <br>
-                    	너무 재밌어요 꼭 보세요.
-                    <br>
-                   	 저는 CGV에서 봤어요
-                    <br>
-                    	팝콘은 안에서 못먹는데 밖에서 먹고들어가래요
-                    <br>
-                    	팝콘없으면 영화 왜보나요
-                    
+                	<div id="viewer">
+                		${dto.getTalk_cont()}
+                	</div>
+                	<script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
+                	<script src="${pageContext.request.contextPath}/resources/js/viewer.js"></script>
                 </div>
             </article>
 

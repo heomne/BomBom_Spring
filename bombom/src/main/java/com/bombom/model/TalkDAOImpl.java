@@ -2,7 +2,7 @@ package com.bombom.model;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,16 +10,15 @@ import org.springframework.stereotype.Repository;
 public class TalkDAOImpl implements TalkDAO {
 
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public List<TalkDTO> getPosts() {
-		
-		return null;
+		return this.sqlSession.selectList("getPosts");
 	}
-
+	
 	@Override
-	public List<TalkDTO> getSerachPosts() {
+	public List<TalkDTO> getSearchPosts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -31,8 +30,7 @@ public class TalkDAOImpl implements TalkDAO {
 
 	@Override
 	public TalkDTO getPost(int talk_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectOne("getPost", talk_no);
 	}
 
 	@Override
@@ -46,5 +44,7 @@ public class TalkDAOImpl implements TalkDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 }

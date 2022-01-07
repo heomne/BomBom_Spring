@@ -46,7 +46,7 @@
             
             <div class="write_block">
                 <div class="title_wrap">
-                    <input type="text" id="title" name="title" placeholder="제목을 입력해주세요"/>
+                    <input type="text" id="title" name="talk_title" placeholder="제목을 입력해주세요"/>
                 </div>
 
                 <div class="editor_wrap">
@@ -54,7 +54,7 @@
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
                     <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
-                    <input id="contValue" type="hidden" name="cont" value=""/>
+                    <input id="contValue" type="hidden" name="talk_cont" value=""/>
                 </div>
             </div>
             <div class="write_btns">
