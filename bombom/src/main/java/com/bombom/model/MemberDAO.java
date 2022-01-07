@@ -10,5 +10,6 @@ public interface MemberDAO {
 	int deleteMember(String user_id);
 	
 	List<MemberDTO> getMembers(); //전체회원보기(option)
+	MemberDTO login(MemberDTO dto);
 	
 }
