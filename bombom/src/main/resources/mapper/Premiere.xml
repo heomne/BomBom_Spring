@@ -7,15 +7,15 @@
 <mapper namespace="com.bombom.model.PremiereDAO">
 
 	<!-- 시사회 게시판 글 작성-->
-	<insert id="add" parameterType="com.bombom.model.PremiereDTO">
-		<selectKey resultType="int" keyProperty="board_no" order="BEFORE">
-			select max(premiere_no)+1 from board
-		</selectKey>
-		insert into board values(
-			#{premiere_no}, 
+	<insert id="addPremiere" parameterType="com.bombom.model.PremiereDTO">
+		<!-- <selectKey resultType="int" keyProperty="premiere_no" order="BEFORE">
+			select max(premiere_no)+1 from bombom_premiere
+		</selectKey> -->
+		insert into bombom_premiere values(
+			1, 
 			#{premiere_thumbnail}, 
 			#{premiere_title}, 
 			#{premiere_cont},
-			sysdate, '1')	
+			sysdate, 1)	
 	</insert>
 </mapper>
