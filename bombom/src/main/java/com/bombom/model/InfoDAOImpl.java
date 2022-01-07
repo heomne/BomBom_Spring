@@ -27,7 +27,7 @@ public class InfoDAOImpl implements InfoDAO{
 	@Override
 	public int insertBoard(InfoDTO dto) {
 		// TODO Auto-generated method stub
-		return this.sqlSession.insert("add", dto);
+		return this.sqlSession.insert("addInfo", dto);
 	}
 
 	@Override
