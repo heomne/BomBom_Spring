@@ -25,6 +25,13 @@
 	</update>
 
 	<insert id="insertPost" parameterType="com.bombom.model.TalkDTO">
-		insert into bombom_talk values(talk_seq.nextval, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE)
+		<selectKey keyProperty="talk_no" resultType="long" order="BEFORE">
+			select talk_seq.nextval from dual
+		</selectKey>
+		insert into bombom_talk values(#{talk_no}, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE)
 	</insert>
+	
+	<update id="updatePost" parameterType="com.bombom.model.TalkDTO">
+		update bombom_talk set talk_title = #{talk_title}, talk_cont = #{talk_cont}	
+	</update>
 </mapper>

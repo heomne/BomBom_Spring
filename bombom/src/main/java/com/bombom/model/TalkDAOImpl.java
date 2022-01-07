@@ -46,7 +46,6 @@ public class TalkDAOImpl implements TalkDAO {
 
 	@Override
 	public int updatePost(TalkDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("updatePost", dto);
 	}
 }

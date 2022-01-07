@@ -26,8 +26,6 @@
 		);
 		
 	</script>
-	
-	<script defer src="${pageContext.request.contextPath}/resources/js/content_rest.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -77,8 +75,8 @@
             
             <div class="content_bottom">
             	<input id="talkNo" type="hidden" value="${dto.getTalk_no()}"/>
-            	<button id="put_btn" onClick="putRequest()">수정</button>
-            	<button id="delete_btn" onClick="deleteRequest()">삭제</button>
+            	<button id="put_btn" onClick="location.href='${pageContext.request.contextPath}/user_write.do/${dto.getTalk_no()}'">수정</button>
+            	<button id="delete_btn">삭제</button>
             </div>
 
 

@@ -37,8 +37,8 @@
 
 .boardArea {
   width: 1000px;
-  height: 700px;
   margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 .board {

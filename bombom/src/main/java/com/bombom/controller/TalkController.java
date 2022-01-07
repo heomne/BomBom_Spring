@@ -52,27 +52,41 @@ public class TalkController {
 		dao.increaseHit(Long.parseLong(talkNo));
 		TalkDTO dto = dao.getPost(Integer.parseInt(talkNo));
 		
+		if(dto == null) {
+			return "redirect:/user_talk.do";
+		}
+		
 		model.addAttribute("content", dto);
 		
 		return "user/user_talk_contents";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.PUT)
-	public String updatePost(@PathVariable("id")String talkNo, Model model) {
-		
-		System.out.println("REST API PUT clicked");
-		
-		return "put request success";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.DELETE)
-	public String deletePost(@PathVariable("id")String talkNo, Model model) {
-		System.out.println("REST API DELETE clicked");
-		
-		return "delete request success";
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.PUT)
+//	public String updatePost(@PathVariable("id")String talkNo, Model model) {
+//		
+//		logger.info("REST-PUT clicked");
+//		logger.info("Received data : {}", talkNo);
+//		
+//		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
+//		model.addAttribute("post", dto);
+//		
+//		boolean isSucceed = true;
+//		
+//		return isSucceed ? "true" : "false";
+//	}
+//	
+//	@ResponseBody
+//	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.DELETE)
+//	public String deletePost(@PathVariable("id")String talkNo, Model model) {
+//		
+//		logger.info("REST-DELETE clicked");
+//		logger.info("Received data : {}", talkNo);
+//		
+//		boolean isSucceed = true;
+//		
+//		return isSucceed ? "true" : "false";
+//	}
 	
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.GET)
 	public String content(Model model) {
@@ -88,12 +102,35 @@ public class TalkController {
 		int result = dao.insertPost(dto);
 		
 		if(result > 0) {
-			logger.info("Post inserted, inserted post's talk_no : {}", result);
+			logger.info("Post inserted, Talk_no : {}", dto.getTalk_no());
+			model.addAttribute("talk_no", dto.getTalk_no());
 		}
 		
-		return "redirect:user_talk.do/" + result;
+		return "redirect:/user_talk.do/{talk_no}";
 	}
 	
-
+	@RequestMapping(value = "/user_write.do/{id}", method = RequestMethod.GET)
+	public String getPostToUpdate(@PathVariable("id")String talkNo, Model model) {
+		
+		// 세션에 존재하는 아이디 일치하는지 확인 필요
+		
+		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
+		model.addAttribute("post", dto);
+		
+		return "user/user_talk_update";
+	}
+	
+	@RequestMapping(value = "/user_write.do/{id}", method = RequestMethod.POST)
+	public String updateContent(@PathVariable("id")String talkNo, TalkDTO dto, Model model) {
+		
+		int result = dao.updatePost(dto);
+		
+		if(result > 0) {
+			logger.info("Post updated, result value : {}", result);
+			model.addAttribute("talkNo", talkNo);
+		}
+				
+		return "redirect:/user_talk.do/{talkNo}";
+	}
 	
 }
