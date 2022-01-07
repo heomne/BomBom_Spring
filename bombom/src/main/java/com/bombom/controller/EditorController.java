@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class EditorController {
 
-	// private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/**
 	 * 파일이름 추출하기
@@ -34,6 +34,9 @@ public class EditorController {
 		if(multipartFile.isEmpty()) {
 			System.out.println("user_write image upload detected, but there's no file.");
 		}
+		
+		// 이미지 저장 경로
+		String directory = request.getSession().getServletContext().getRealPath("resources/upload/talk/");
 
 		String fileName = multipartFile.getOriginalFilename();
 		int lastIndex = fileName.lastIndexOf(".");
@@ -41,20 +44,16 @@ public class EditorController {
 		String newFileName = LocalDate.now() + "_" + System.currentTimeMillis() + ext;
 		
 		try {
-			File image = new File(request.getSession().getServletContext().getRealPath("resources/upload/talk/") + newFileName);
+			File image = new File(directory + newFileName);
 			
 			multipartFile.transferTo(image);
 			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		} finally {
-//			logger.info("image detected, FileName is {}", fileName);
-//			logger.info("directory is {}", request.getSession().getServletContext().getRealPath("resources/upload/"));
-//			logger.info("FileName is changed to {}", newFileName);
-			
-			System.out.println("File uploaded.");
-			System.out.println("Path : " + request.getSession().getServletContext().getRealPath("resources/upload/talk/"));
-			System.out.println("File Name : " + newFileName);
+			logger.info("TalkController image uploaded");
+			logger.info("Image Path : {}", directory);
+			logger.info("File_name : {}", newFileName);
 		}
 		
 		// 주소값 알아내기

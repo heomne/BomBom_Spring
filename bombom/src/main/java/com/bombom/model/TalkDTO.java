@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class TalkDTO {
-	private long no;
-	private String id;
-	private String nickname;
-	private String title;
-	private String cont;
-	private int hit;
-	private int comment_avail;
-	private int report;
-	private String date;
+	private long talk_no;
+	private String user_id;
+	private String user_nickname;
+	private String talk_title;
+	private String talk_cont;
+	private int talk_hit;
+	private int talk_comment_avail;
+	private int talk_report;
+	private String talk_date;
 }

@@ -66,7 +66,7 @@
                     <tr>
                         <td>2</td>
                         <td class="title_left">
-                            <a href="user_content.do/2">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
+                            <a href="${pageContext.request.contextPath}/user_talk.do/2">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
                         </td>
                         <td>
                             <a href="#">heo</a>
