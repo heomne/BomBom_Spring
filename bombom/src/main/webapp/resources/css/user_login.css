@@ -37,6 +37,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 5px;
+	cursor: pointer;
 }
 
 .btn_login {
