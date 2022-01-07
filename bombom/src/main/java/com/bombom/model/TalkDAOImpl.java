@@ -18,10 +18,10 @@ public class TalkDAOImpl implements TalkDAO {
 	}
 	
 	@Override
-	public List<TalkDTO> getSearchPosts() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TalkDTO> getSearchPosts(String keyword) {
+		return this.sqlSession.selectList("searchPosts", keyword);
 	}
+
 
 	@Override
 	public int insertPost(TalkDTO dto) {
@@ -29,12 +29,17 @@ public class TalkDAOImpl implements TalkDAO {
 	}
 
 	@Override
-	public TalkDTO getPost(int talk_no) {
+	public TalkDTO getPost(long talk_no) {
 		return this.sqlSession.selectOne("getPost", talk_no);
+	}
+	
+	@Override
+	public int increaseHit(long talk_no) {
+		return this.sqlSession.update("increaseHit", talk_no);
 	}
 
 	@Override
-	public int deletePost(int talk_no) {
+	public int deletePost(long talk_no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -44,7 +49,4 @@ public class TalkDAOImpl implements TalkDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
-
 }

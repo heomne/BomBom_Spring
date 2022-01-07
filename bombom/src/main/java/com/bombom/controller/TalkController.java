@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bombom.model.TalkDAO;
 import com.bombom.model.TalkDTO;
@@ -32,15 +34,44 @@ public class TalkController {
 		
 		return "user/user_talk";
 	}
+	
+	@RequestMapping(value = "/user_talk.do", method = RequestMethod.POST)
+	public String searchPosts(@RequestParam("keyword")String keyword, Model model) {
+		
+		List<TalkDTO> posts = dao.getSearchPosts(keyword);
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("today", LocalDate.now().toString());
+		
+		return "user/user_talk";
+	}
 
 	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.GET)
-	public String content(@PathVariable("id")String boardNo, Model model) {
+	public String content(@PathVariable("id")String talkNo, Model model) {
 		
-		TalkDTO dto = dao.getPost(Integer.parseInt(boardNo));
+		dao.increaseHit(Long.parseLong(talkNo));
+		TalkDTO dto = dao.getPost(Integer.parseInt(talkNo));
 		
 		model.addAttribute("content", dto);
 		
 		return "user/user_talk_contents";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.PUT)
+	public String updatePost(@PathVariable("id")String talkNo, Model model) {
+		
+		System.out.println("REST API PUT clicked");
+		
+		return "put request success";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.DELETE)
+	public String deletePost(@PathVariable("id")String talkNo, Model model) {
+		System.out.println("REST API DELETE clicked");
+		
+		return "delete request success";
 	}
 	
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.GET)
@@ -57,10 +88,12 @@ public class TalkController {
 		int result = dao.insertPost(dto);
 		
 		if(result > 0) {
-			logger.info("Post inserted, result value : {}", result);
+			logger.info("Post inserted, inserted post's talk_no : {}", result);
 		}
 		
-		return "redirect:user_talk.do";
+		return "redirect:user_talk.do/" + result;
 	}
+	
+
 	
 }
