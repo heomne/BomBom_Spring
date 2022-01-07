@@ -1,5 +1,6 @@
 package com.bombom.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -121,7 +122,12 @@ public class TalkController {
 	}
 	
 	@RequestMapping(value = "/user_write.do/{id}", method = RequestMethod.POST)
-	public String updateContent(@PathVariable("id")String talkNo, TalkDTO dto, Model model) {
+	public String updateContent(@PathVariable("id")String talkNo, TalkDTO dto, Model model) throws UnsupportedEncodingException {
+		
+		
+		//수정된 제목, 본문 인코딩 변환 : iso-8859-1 to utf-8
+		dto.setTalk_title(new String(dto.getTalk_title().getBytes("iso-8859-1"), "utf-8"));
+		dto.setTalk_cont(new String(dto.getTalk_cont().getBytes("iso-8859-1"), "utf-8"));
 		
 		int result = dao.updatePost(dto);
 		
