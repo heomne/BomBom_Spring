@@ -42,4 +42,10 @@ public class MemberImplDAO implements MemberDAO{
 		return null;
 	}
 
+	@Override
+	public MemberDTO login(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
