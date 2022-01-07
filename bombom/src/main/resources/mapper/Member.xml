@@ -9,4 +9,8 @@
 		insert into bombom_member values(#{user_id}, #{user_pwd}, #{user_nickname}, #{user_name}, #{user_age}, 
 			#{user_email}, #{user_gender}, #{user_addr}, #{user_phone}, #{user_profile}, 1, SYSDATE)
 	</insert>
+	
+	<select id="memberLogin" parameterType="com.bombom.model.MemberDTO" resultType="com.bombom.model.MemberDTO">
+		select * from bombom_member where user_id = #{user_id, jdbcType=VARCHAR} and user_pwd = #{user_pwd, jdbcType=VARCHAR}
+	</select>
 </mapper>
