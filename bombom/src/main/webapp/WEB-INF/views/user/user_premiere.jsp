@@ -61,7 +61,7 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
-	<%-- 가로 배너 들어갈 위치 --%>
+	<%-- 가로 배너 --%>
 	
 	<div class="jumbotron">
 	    <div class="textBlock1">
@@ -70,15 +70,14 @@
 	        <span class="sub_title">각종 시사회 정보를 확인하세요</span> 
 	    </div>
     </div>
-    
-    <!-- 옆에 따라다니는 바 -->
-	 <div class="list_buttons">
-		<a href="<%=request.getContextPath() %>/premiere_write.do">✐</a><br>
-		<a href="">🔍</a>
-	</div>
     	
 	<div class="content">
-		<%-- 여기에 작업 해야함 (좌우 여백 설정되어있음) --%>				
+		<%-- 여기에 작업 해야함 (좌우 여백 설정되어있음) --%>	
+		<!-- 옆에 따라다니는 바 -->
+		 <div class="list_buttons">
+			<a href="<%=request.getContextPath() %>/premiere_write.do">✐</a><br>
+			<a href="">🔍</a>
+		</div>			
 		
 		<div class="premiere_title">
 			<div class="premiere_text">
@@ -186,6 +185,11 @@
 		    	<img src="resources/image/관리자.png" alt="관리자 아이콘" width="30px;" height="auto">
 		    	<span class="writer">관리자</span>
 		    	<span class="date">2021.12.30. 20:05</span>
+		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
+		    	<div class="modify_remove wrap_common">
+                   <a href="">수정</a>
+                   <a href="">삭제</a>
+                </div>
 		    	<span class="comment">💭 2</span>
 		    </div>
 		    <div class="con">
@@ -295,6 +299,11 @@
 		    	<img src="resources/image/관리자.png" alt="관리자 아이콘" width="35px;" height="auto">
 		    	<span class="writer">관리자</span>
 		    	<span class="date">2021.12.30. 20:05</span>
+		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
+		    	<div class="modify_remove wrap_common">
+                   <a href="">수정</a>
+                   <a href="">삭제</a>
+                </div>
 		    </div>
 		    <div class="con">
 <pre>

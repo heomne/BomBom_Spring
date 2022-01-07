@@ -10,6 +10,6 @@ public class PremiereDTO {
 	private String premiere_thumbnail;	// 썸네일
 	private String premiere_title;	// 제목
 	private String premiere_cont;	// 글 내용
-	private String premiere_upload; // 업로드 파일
 	private String premiere_date;	// 글 작성일시
+	private int premiere_status;	// 진행중/종료된 여부 확인
 }

@@ -9,10 +9,6 @@ public interface PremiereDAO {
 	List<PremiereDTO> getBoardList(PremierePageDTO dto);	// 페이징 처리
 		
 	int insertBoard(PremiereDTO dto);	// 글 삽입
-		
-	PremiereDTO boardCont(int no);	// 글 내용 가져오기
-		
-	void readCount(int no);	// 조회수 증가
 	
 	int updateBoard(PremiereDTO dto);	// 글 수정
 	

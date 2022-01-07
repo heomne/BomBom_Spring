@@ -2,11 +2,16 @@ package com.bombom.model;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class PremiereImplDAO implements PremiereDAO{
-
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
@@ -18,23 +23,11 @@ public class PremiereImplDAO implements PremiereDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	// 글 작성
 	@Override
 	public int insertBoard(PremiereDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public PremiereDTO boardCont(int no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void readCount(int no) {
-		// TODO Auto-generated method stub
-		
+		return this.sqlSession.insert("add", dto);
 	}
 
 	@Override
