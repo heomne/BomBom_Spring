@@ -27,7 +27,7 @@ public class PremiereImplDAO implements PremiereDAO{
 	// 글 작성
 	@Override
 	public int insertBoard(PremiereDTO dto) {
-		return this.sqlSession.insert("add", dto);
+		return this.sqlSession.insert("addPremiere", dto);
 	}
 
 	@Override

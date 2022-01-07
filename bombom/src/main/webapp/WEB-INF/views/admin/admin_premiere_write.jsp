@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-   
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,16 +18,14 @@
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-	<script defer src="${pageContext.request.contextPath}/resources/js/premiere_write.js"></script>
+	<script defer src="${pageContext.request.contextPath}/resources/js/write.js"></script>
 
 	<script>
-		
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
 			$('.menu4').attr('id', 'on');
 			}
 		);
-		
 	</script>
 </head>
 <body>
@@ -46,7 +42,9 @@
     </div>	
     
 	<div class="container">
-        <form name="postForm" action="${pageContext.request.contextPath}/premiere_write.do" method="post">
+        <form enctype="multipart/form-data" method="post" name="postForm" 
+        	action="${pageContext.request.contextPath}/premiere_write.do">
+            
             <header class="write_header">
                 <h2>시사회 : 글쓰기</h2>
             </header>
@@ -72,7 +70,7 @@
 	               		<tr>
 	                		<th> 썸네일 이미지</th>
 	                    	<td> 
-	                    		<input type="file" id="premiere_thumbnail" name="premiere_thumbnail" required="required"/>
+	                    		<input type="file" id="premiere_thumbnail" name="thumbnail" required="required"/>
 	               			</td>
 	               		</tr>
                		</table>
@@ -84,7 +82,7 @@
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
                     <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
-                    <input id="contValue" type="hidden" name="cont" value=""/>
+                    <input id="contValue" type="hidden" name="premiere_cont" value=""/>
                 </div>
             </div>
             
