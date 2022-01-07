@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface TalkDAO {
 	List<TalkDTO> getPosts(); // pagination
-	List<TalkDTO> getSearchPosts();
-	TalkDTO getPost(int talk_no);
+	List<TalkDTO> getSearchPosts(String keyword);
+	TalkDTO getPost(long talk_no);
+	int increaseHit(long talk_no);
 	int insertPost(TalkDTO dto);
-	int deletePost(int talk_no);
+	int deletePost(long talk_no);
 	int updatePost(TalkDTO dto);
 }

@@ -9,10 +9,20 @@
 	<select id="getPosts" resultType="com.bombom.model.TalkDTO">
 		select * from bombom_talk order by talk_date desc
 	</select>
+	
+	<select id="searchPosts" parameterType="String" resultType="com.bombom.model.TalkDTO">
+		select * from bombom_talk 
+		where user_nickname like '%' || #{keyword} || '%' or talk_title like '%' || #{keyword} || '%' or talk_cont like '%' || #{Spring} || '%'
+		order by talk_date desc
+	</select>
 
-	<select id="getPost" parameterType="int" resultType="com.bombom.model.TalkDTO">
+	<select id="getPost" parameterType="long" resultType="com.bombom.model.TalkDTO">
 		select * from bombom_talk where talk_no = #{talk_no}
 	</select>
+	
+	<update id="increaseHit" parameterType="long">
+		update bombom_talk set talk_hit = talk_hit + 1 where talk_no = #{talkNo}
+	</update>
 
 	<insert id="insertPost" parameterType="com.bombom.model.TalkDTO">
 		insert into bombom_talk values(talk_seq.nextval, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE)

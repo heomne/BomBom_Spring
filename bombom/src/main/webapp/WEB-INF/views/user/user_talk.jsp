@@ -92,7 +92,14 @@
 
             <div class="board_footer">
                 <div class="board_bottom">
-                    <button type="button" class="search_btn">🔎</button>
+                
+	                <form method="post" action="${pageContext.request.contextPath}/user_talk.do" class="search-container">
+					  <input id="search-box" type="text" class="search-box" name="keyword" />
+					  <label for="search-box">
+					    <span>🔍</span>
+					  </label>
+					  <input type="submit" id="search-submit" />
+					</form>
                     <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
                 </div>
 

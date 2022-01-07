@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,8 @@
 		);
 		
 	</script>
+	
+	<script defer src="${pageContext.request.contextPath}/resources/js/content_rest.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -47,7 +50,7 @@
                 <div class="info_block">
                     <div class="info_left">
                         <span class="writer">${dto.getUser_nickname() }</span>
-                        <span class="date">${dto.getTalk_date()}</span>
+                        <span class="date">${fn:substring(dto.getTalk_date(), 0, 16)}</span>
                     </div>
 
                     <div class="info_right">
@@ -70,6 +73,12 @@
 
             <div class="content_like">
                 <button type="button" class="like">👍 5</button>
+            </div>
+            
+            <div class="content_bottom">
+            	<input id="talkNo" type="hidden" value="${dto.getTalk_no()}"/>
+            	<button id="put_btn" onClick="putRequest()">수정</button>
+            	<button id="delete_btn" onClick="deleteRequest()">삭제</button>
             </div>
 
 
@@ -288,7 +297,14 @@
 
             <div class="board_footer">
                 <div class="board_bottom">
-                    <button type="button" class="search_btn">🔎</button>
+                	<form class="search-container">
+					  <input id="search-box" type="text" class="search-box" name="q" />
+					  <label for="search-box">
+					    <span class="glyphicon glyphicon-search search-icon"></span>
+					  </label>
+					  <input type="submit" id="search-submit" />
+					</form>
+<!--                     <button type="button" class="search_btn">🔎</button> -->
                     <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
                 </div>
 
