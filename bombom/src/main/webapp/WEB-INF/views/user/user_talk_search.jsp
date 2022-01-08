@@ -33,8 +33,6 @@
 	
 	<c:set var="session" value="${user}"/>
 	<c:set var="paging" value="${paging}"/>
-	<c:set var="dto" value="${posts}"/>
-	<c:set var="today" value="${today}"/>
 	<div class="containter">
         <div class="jumbotron">
             <div class="textBlock1">
@@ -44,6 +42,8 @@
             </div>
         </div>
 
+		<c:set var="dto" value="${posts}"/>
+		<c:set var="today" value="${today}"/>
         <div class="boardArea">
             <div class="board">
                 <table width="100%">
@@ -90,7 +90,7 @@
                     </c:forEach>
                 </table>
             </div>
-            
+
             <div class="board_footer">
                 <div class="board_bottom">
                 
@@ -108,10 +108,10 @@
 
                 <div class="paging">
                 	<c:if test="${paging.currRange ne 1}">
-                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.startPage}" class="paging_first"><<</a>
+                		<a href="${pageContext.request.contextPath}/user_search.do?page=${paging.startPage}&keyword=${paging.keyword}" class="paging_first"><<</a>
                 	</c:if>
                 	<c:if test="${paging.currPage ne 1}">
-                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.prevPage}" class="paging_prev"><</a>
+                		<a href="${pageContext.request.contextPath}/user_search.do?page=${paging.prevPage}&keyword=${paging.keyword}" class="paging_prev"><</a>
                 	</c:if>
                 	<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
                 		<c:choose>
@@ -119,15 +119,15 @@
                 				<a href="javascript:void(0);" class="paging_number_active">${pageNum}</a>
                 			</c:when>
                 			<c:otherwise>
-                				<a href="${pageContext.request.contextPath}/user_talk.do?page=${pageNum}" class="paging_number">${pageNum}</a>
+                				<a href="${pageContext.request.contextPath}/user_search.do?page=${pageNum}&keyword=${paging.keyword}" class="paging_number">${pageNum}</a>
                 			</c:otherwise>
                 		</c:choose>
                 	</c:forEach>
                 	<c:if test="${paging.currPage ne paging.pageCount && paging.pageCount > 0}">
-                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.nextPage}" class="paging_next">></a>
+                    	<a href="${pageContext.request.contextPath}/user_search.do?page=${paging.nextPage}&keyword=${paging.keyword}" class="paging_next">></a>
                     </c:if>
                     <c:if test="${paging.currRange ne paging.rangeCount && paging.rangeCount > 0}">
-                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.endPage}" class="paging_last">>></a>
+                    	<a href="${pageContext.request.contextPath}/user_search.do?page=${paging.endPage}&keyword=${paging.keyword}" class="paging_last">>></a>
                     </c:if>
                 </div>
             </div>

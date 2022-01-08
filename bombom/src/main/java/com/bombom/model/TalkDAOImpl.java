@@ -13,13 +13,13 @@ public class TalkDAOImpl implements TalkDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<TalkDTO> getPosts() {
-		return this.sqlSession.selectList("getPosts");
+	public List<TalkDTO> getPosts(TalkPagination pagination) {
+		return this.sqlSession.selectList("getPosts", pagination);
 	}
 	
 	@Override
-	public List<TalkDTO> getSearchPosts(String keyword) {
-		return this.sqlSession.selectList("searchPosts", keyword);
+	public List<TalkDTO> getSearchPosts(TalkPagination pagination) {
+		return this.sqlSession.selectList("searchPosts", pagination);
 	}
 
 
@@ -46,5 +46,15 @@ public class TalkDAOImpl implements TalkDAO {
 	@Override
 	public int updatePost(TalkDTO dto) {
 		return this.sqlSession.update("updatePost", dto);
+	}
+
+	@Override
+	public int getPostCount() {
+		return this.sqlSession.selectOne("postCount");
+	}
+	
+	@Override
+	public int getPostCount(String keyword) {
+		return this.sqlSession.selectOne("searchCount", keyword);
 	}
 }

@@ -7,13 +7,26 @@
 <mapper namespace="com.bombom.model.TalkDAO">
 
 	<select id="getPosts" resultType="com.bombom.model.TalkDTO">
-		select * from bombom_talk order by talk_date desc
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by talk_date desc) rnum from bombom_talk b)	
+			   		where rnum >= #{startIndex} and rnum <= #{endIndex}
+		]]>
 	</select>
 	
-	<select id="searchPosts" parameterType="String" resultType="com.bombom.model.TalkDTO">
-		select * from bombom_talk 
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from bombom_talk 
 		where user_nickname like '%' || #{keyword} || '%' or talk_title like '%' || #{keyword} || '%' or talk_cont like '%' || #{Spring} || '%'
-		order by talk_date desc
+	</select>
+	
+	<select id="searchPosts" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by talk_date desc) rnum from bombom_talk b where b.user_nickname like '%' || #{keyword} || '%' or b.talk_title like '%' || #{keyword} || '%' or b.talk_cont like '%' || #{keyword} || '%')
+			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+		]]>
 	</select>
 
 	<select id="getPost" parameterType="long" resultType="com.bombom.model.TalkDTO">
@@ -38,4 +51,8 @@
 	<delete id="deletePost" parameterType="long">
 		delete from bombom_talk where talk_no = #{talk_no}
 	</delete>
+	
+	<select id="postCount" resultType="int">
+		select count(*) from bombom_talk
+	</select>
 </mapper>

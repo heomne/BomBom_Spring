@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bombom.model.MemberDTO;
 import com.bombom.model.TalkDAO;
 import com.bombom.model.TalkDTO;
+import com.bombom.model.TalkPagination;
 
 @Controller
 public class TalkController {
@@ -29,43 +31,67 @@ public class TalkController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/user_talk.do", method = RequestMethod.GET)
-	public String getPosts(Model model) {
-		List<TalkDTO> posts = dao.getPosts();
+	public String getPosts(@RequestParam(defaultValue = "1")int page, Model model) {
+		
+		int listCount = dao.getPostCount();
+		TalkPagination pagination = new TalkPagination(listCount, page);
+		List<TalkDTO> posts = dao.getPosts(pagination);
 		
 		model.addAttribute("posts", posts);
 		model.addAttribute("today", LocalDate.now().toString());
-		
-		return "user/user_talk";
-	}
-	
-	@RequestMapping(value = "/user_talk.do", method = RequestMethod.POST)
-	public String searchPosts(@RequestParam("keyword")String keyword, Model model) {
-		
-		List<TalkDTO> posts = dao.getSearchPosts(keyword);
-		
-		model.addAttribute("posts", posts);
-		model.addAttribute("today", LocalDate.now().toString());
+		model.addAttribute("paging", pagination);
 		
 		return "user/user_talk";
 	}
 
 	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.GET)
-	public String content(@PathVariable("id")String talkNo, Model model) {
+	public String content(@PathVariable("id")Long talkNo, Model model, HttpSession session) {
 		
-		dao.increaseHit(Long.parseLong(talkNo));
-		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
+		dao.increaseHit(talkNo);
+		TalkDTO dto = dao.getPost(talkNo);
 		
-		List<TalkDTO> list = dao.getPosts();
+		int listCount = dao.getPostCount();
+		TalkPagination pagination = new TalkPagination(listCount, 1);
+		List<TalkDTO> posts = dao.getPosts(pagination);
 		
-		// 세션에 user 없으면 리턴
-		if(dto == null) {
-			return "redirect:/user_talk.do";
-		}
-		
+		model.addAttribute("posts", posts);
+		model.addAttribute("today", LocalDate.now().toString());
+		model.addAttribute("paging", pagination);
 		model.addAttribute("content", dto);
-		model.addAttribute("posts", list);
 		
 		return "user/user_talk_contents";
+	}
+	
+	@RequestMapping(value = "/user_search.do", method = RequestMethod.GET)
+	public String searchPosts(@RequestParam int page, @RequestParam String keyword, Model model) {
+		
+		int searchCount = dao.getPostCount(keyword);
+		TalkPagination pagination = new TalkPagination(searchCount, page);
+		pagination.setKeyword(keyword);
+		
+		List<TalkDTO> posts = dao.getSearchPosts(pagination);
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("paging", pagination);
+		model.addAttribute("today", LocalDate.now().toString());
+		
+		return "user/user_talk_search";
+	}
+	
+	@RequestMapping(value = "/user_search.do", method = RequestMethod.POST)
+	public String searchPostsPost(@RequestParam String keyword, Model model) {
+		
+		int searchCount = dao.getPostCount(keyword);
+		TalkPagination pagination = new TalkPagination(searchCount, 1);
+		pagination.setKeyword(keyword);
+		
+		List<TalkDTO> posts = dao.getSearchPosts(pagination);
+		
+		model.addAttribute("posts", posts);
+		model.addAttribute("paging", pagination);
+		model.addAttribute("today", LocalDate.now().toString());
+		
+		return "user/user_talk_search";
 	}
 
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.GET)
@@ -79,10 +105,12 @@ public class TalkController {
 	}
 	
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.POST)
-	public String insertPost(TalkDTO dto, Model model) {
-		// test
-		dto.setUser_id("alsghl9607");
-		dto.setUser_nickname("Spring");
+	public String insertPost(TalkDTO dto, Model model, HttpSession session) {
+		
+		// 세션에 user 없으면 리턴
+		if(session.getAttribute("user") == null) {
+			return "redirect:/user_talk.do";
+		}
 		
 		int result = dao.insertPost(dto);
 		
@@ -95,11 +123,17 @@ public class TalkController {
 	}
 	
 	@RequestMapping(value = "/user_write.do/{id}", method = RequestMethod.GET)
-	public String getPostToUpdate(@PathVariable("id")String talkNo, Model model) {
+	public String getPostToUpdate(@PathVariable("id")Long talkNo, Model model, HttpSession session) {
 		
-		// 세션에 존재하는 아이디 일치하는지 확인 필요
+		TalkDTO dto = dao.getPost(talkNo);
 		
-		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
+		MemberDTO member = (MemberDTO)session.getAttribute("user");
+	
+		// 게시글 작성자 id, session 작성자 id 일치하지 않을 경우 redirect
+		if(!(member.getUser_id().equals(dto.getUser_id()))) {
+			return "redirect:/user_talk.do";
+		}
+		
 		model.addAttribute("post", dto);
 		
 		return "user/user_talk_update";
