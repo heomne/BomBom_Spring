@@ -8,11 +8,11 @@
 
 	<!-- 시사회 게시판 글 작성-->
 	<insert id="addPremiere" parameterType="com.bombom.model.PremiereDTO">
-		<!-- <selectKey resultType="int" keyProperty="premiere_no" order="BEFORE">
+		<selectKey resultType="int" keyProperty="premiere_no" order="BEFORE">
 			select max(premiere_no)+1 from bombom_premiere
-		</selectKey> -->
+		</selectKey>
 		insert into bombom_premiere values(
-			1, 
+			#{premiere_no}, 
 			#{premiere_thumbnail}, 
 			#{premiere_title}, 
 			#{premiere_cont},
