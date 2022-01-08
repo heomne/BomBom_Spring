@@ -51,7 +51,7 @@ public class EditorController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		} finally {
-			logger.info("TalkController image uploaded");
+			logger.info("EditorController image uploaded");
 			logger.info("Image Path : {}", directory);
 			logger.info("File_name : {}", newFileName);
 		}

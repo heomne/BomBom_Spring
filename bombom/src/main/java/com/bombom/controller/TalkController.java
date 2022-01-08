@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,46 +53,28 @@ public class TalkController {
 	public String content(@PathVariable("id")String talkNo, Model model) {
 		
 		dao.increaseHit(Long.parseLong(talkNo));
-		TalkDTO dto = dao.getPost(Integer.parseInt(talkNo));
+		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
 		
+		List<TalkDTO> list = dao.getPosts();
+		
+		// 세션에 user 없으면 리턴
 		if(dto == null) {
 			return "redirect:/user_talk.do";
 		}
 		
 		model.addAttribute("content", dto);
+		model.addAttribute("posts", list);
 		
 		return "user/user_talk_contents";
 	}
-	
-//	@ResponseBody
-//	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.PUT)
-//	public String updatePost(@PathVariable("id")String talkNo, Model model) {
-//		
-//		logger.info("REST-PUT clicked");
-//		logger.info("Received data : {}", talkNo);
-//		
-//		TalkDTO dto = dao.getPost(Long.parseLong(talkNo));
-//		model.addAttribute("post", dto);
-//		
-//		boolean isSucceed = true;
-//		
-//		return isSucceed ? "true" : "false";
-//	}
-//	
-//	@ResponseBody
-//	@RequestMapping(value = "/user_talk.do/{id}", method = RequestMethod.DELETE)
-//	public String deletePost(@PathVariable("id")String talkNo, Model model) {
-//		
-//		logger.info("REST-DELETE clicked");
-//		logger.info("Received data : {}", talkNo);
-//		
-//		boolean isSucceed = true;
-//		
-//		return isSucceed ? "true" : "false";
-//	}
-	
+
 	@RequestMapping(value = "/user_write.do", method = RequestMethod.GET)
-	public String content(Model model) {
+	public String content(Model model, HttpSession session) {
+		
+		if(session.getAttribute("user") == null) {
+			return "redirect:user_talk.do";
+		}
+		
 		return "user/user_talk_write";
 	}
 	
@@ -124,19 +108,33 @@ public class TalkController {
 	@RequestMapping(value = "/user_write.do/{id}", method = RequestMethod.POST)
 	public String updateContent(@PathVariable("id")String talkNo, TalkDTO dto, Model model) throws UnsupportedEncodingException {
 		
-		
 		//수정된 제목, 본문 인코딩 변환 : iso-8859-1 to utf-8
 		dto.setTalk_title(new String(dto.getTalk_title().getBytes("iso-8859-1"), "utf-8"));
 		dto.setTalk_cont(new String(dto.getTalk_cont().getBytes("iso-8859-1"), "utf-8"));
 		
+		dto.setTalk_no(Long.parseLong(talkNo));
 		int result = dao.updatePost(dto);
 		
 		if(result > 0) {
 			logger.info("Post updated, result value : {}", result);
-			model.addAttribute("talkNo", talkNo);
+			model.addAttribute("talk_no", dto.getTalk_no());
 		}
 				
-		return "redirect:/user_talk.do/{talkNo}";
+		return "redirect:/user_talk.do/{talk_no}";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user_delete.do", method = RequestMethod.POST)
+	public String deletePost(@RequestParam("id")String talkNo, Model model) {
+		
+		int result = dao.deletePost(Long.parseLong(talkNo));
+		
+		if(result > 0) {
+			logger.info("Post deleted, Talk_no : {}", talkNo);
+			return "200";
+		}
+		
+		return "400";
 	}
 	
 }

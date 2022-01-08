@@ -231,3 +231,17 @@ h1 {
   margin-top: 50px;
   margin-bottom: 100px;
 }
+
+.content_bottom {
+  margin-bottom: 30px;
+  padding-left: 870px;
+}
+
+.content_bottom button{
+  background-color: #fff;
+  color: #222;
+  border-style: none;
+  cursor: pointer;
+}
+
+

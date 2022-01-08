@@ -31,7 +31,7 @@
 	<jsp:include page="../include/header.jsp" flush="false"/>
 	
 	
-
+	<c:set var="session" value="${user}"/>
 	<div class="containter">
         <div class="jumbotron">
             <div class="textBlock1">
@@ -100,7 +100,9 @@
 					  </label>
 					  <input type="submit" id="search-submit" />
 					</form>
-                    <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+					<c:if test="${session.user_id ne null}">
+                    	<a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+                    </c:if>
                 </div>
 
                 <div class="paging">

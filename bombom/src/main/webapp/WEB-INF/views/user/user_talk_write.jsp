@@ -44,6 +44,8 @@
                 <h2>영화수다 : 글쓰기</h2>
             </header>
             
+            <input type="hidden" name="user_id" value="${user.user_id}"/>
+            <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
             <div class="write_block">
                 <div class="title_wrap">
                     <input type="text" id="title" name="talk_title" placeholder="제목을 입력해주세요"/>

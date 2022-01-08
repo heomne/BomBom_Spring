@@ -9,10 +9,10 @@
 				<div class="login">
 					<ul>
 						<li>
-							<span onclick="location.href='user_login.do'">로그인</span>
+							<span onclick="location.href='${pageContext.request.contextPath}/user_login.do'">로그인</span>
 						</li>
 						<li>
-							<span onclick="location.href='user_join.do'">회원가입</span>
+							<span onclick="location.href='${pageContext.request.contextPath}/user_join.do'">회원가입</span>
 						</li>	
 					</ul>
 				</div>

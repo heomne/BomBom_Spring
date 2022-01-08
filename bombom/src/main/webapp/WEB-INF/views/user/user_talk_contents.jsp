@@ -16,7 +16,8 @@
 
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+	<script defer src="${pageContext.request.contextPath}/resources/js/talk_delete.js"></script>
+	<script defer src="https://kit.fontawesome.com/2c8a84bfa2.js" crossorigin="anonymous"></script>
 	<script>
 		
 		//문서 로딩 후 선택메뉴 css 변경
@@ -39,6 +40,7 @@
     </div>
 
 	<c:set var="dto" value="${content}"/>
+	<c:set var="session" value="${user}"/>
 	<div class="container">
         <div class="content_area">
             <header>
@@ -75,11 +77,17 @@
             
             <div class="content_bottom">
             	<input id="talkNo" type="hidden" value="${dto.getTalk_no()}"/>
-            	<button id="put_btn" onClick="location.href='${pageContext.request.contextPath}/user_write.do/${dto.getTalk_no()}'">수정</button>
-            	<button id="delete_btn">삭제</button>
+            	<c:if test="${session.user_id eq dto.getUser_id()}">
+	            	<button id="put_btn" onClick="location.href='${pageContext.request.contextPath}/user_write.do/${dto.getTalk_no()}'">
+	            		<i class="fas fa-pen-square"></i>
+	            		수정
+	            	</button>
+	            	<button id="delete_btn" onClick="delete_post()">
+	            		<i class="fas fa-trash-alt"></i>
+	            		삭제
+	            	</button>
+	            </c:if>
             </div>
-
-
 
             <div class="comment_block">
                 <div class="info_block">
@@ -295,21 +303,21 @@
 
             <div class="board_footer">
                 <div class="board_bottom">
-                	<form class="search-container">
-					  <input id="search-box" type="text" class="search-box" name="q" />
+                	<form method="post" action="${pageContext.request.contextPath}/user_talk.do" class="search-container">
+					  <input id="search-box" type="text" class="search-box" name="keyword" />
 					  <label for="search-box">
-					    <span class="glyphicon glyphicon-search search-icon"></span>
+					    <span>🔍</span>
 					  </label>
 					  <input type="submit" id="search-submit" />
 					</form>
-<!--                     <button type="button" class="search_btn">🔎</button> -->
-                    <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+					<c:if test="${session.user_id ne null}">
+                    	<a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+                    </c:if>
                 </div>
-
                 <div class="paging">
                     <a href="#" class="paging_first"><<</a>
                     <a href="#" class="paging_prev"><</a>
-                    <a href="#" class="paging_number_active" disabled>1</a>
+                    <a href="javascript:void(0);" class="paging_number_active">1</a>
                     <a href="#" class="paging_number">2</a>
                     <a href="#" class="paging_number">3</a>
                     <a href="#" class="paging_number">4</a>

@@ -32,6 +32,10 @@
 	</insert>
 	
 	<update id="updatePost" parameterType="com.bombom.model.TalkDTO">
-		update bombom_talk set talk_title = #{talk_title}, talk_cont = #{talk_cont}	
+		update bombom_talk set talk_title = #{talk_title}, talk_cont = #{talk_cont}	where talk_no = #{talk_no}
 	</update>
+	
+	<delete id="deletePost" parameterType="long">
+		delete from bombom_talk where talk_no = #{talk_no}
+	</delete>
 </mapper>

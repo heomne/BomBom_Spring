@@ -40,8 +40,7 @@ public class TalkDAOImpl implements TalkDAO {
 
 	@Override
 	public int deletePost(long talk_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.delete("deletePost", talk_no);
 	}
 
 	@Override
