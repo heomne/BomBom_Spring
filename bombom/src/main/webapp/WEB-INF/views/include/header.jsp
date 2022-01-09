@@ -19,8 +19,8 @@
 						</c:if>	
 						
 						<c:if test="${!empty user }">
-							<li>
-								<span>마이페이지</span>
+							<li id="first">
+								<span>${user.getUser_nickname() } 님</span>
 							</li>
 							<li>
 								<span onclick="location.href='user_logout.do'">로그아웃</span>

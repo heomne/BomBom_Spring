@@ -2,7 +2,7 @@
 
 .join_box{
 	width: 800px;
-	margin: 0 auto;
+	margin: 80px auto;
 }
 
 
@@ -10,10 +10,9 @@
 	
 	border-top: 2px solid black;
 	border-bottom: 1px solid black;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	margin: 30px auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 
@@ -21,6 +20,10 @@
 	text-align: left;
 	font-weight: 500;
 	width: 150px;
+}
+
+.join_form th span{
+	color: #fb4357;
 }
 
 .join_form td {

@@ -27,28 +27,28 @@
 				<form method="post" action="user_join_ok.do">
 					<table class="join_form"> 
 						<tr>
-							<th>아이디</th>
+							<th>아이디<span>*</span></th>
 							<td><input name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
 							<td><button class="btn_general">중복확인</button></td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
+							<th>비밀번호<span>*</span></th>
 							<td><input type="password" name="user_pwd" placeholder="비밀번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>비밀번호확인</th>
+							<th>비밀번호확인<span>*</span></th>
 							<td><input type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>이름</th>
+							<th>이름<span>*</span></th>
 							<td><input name="user_name" placeholder="이름을 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>닉네임</th>
+							<th>닉네임<span>*</span></th>
 							<td><input name="user_nickname" placeholder="닉네임을 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>이메일</th>
+							<th>이메일<span>*</span></th>
 							<td><input name="user_email" placeholder="예: bom2022@bombom.com"></td>
 							<td><button class="btn_general">중복확인</button></td>
 						</tr>
@@ -59,15 +59,10 @@
 						<tr>
 							<th>주소</th>
 							<td><button class="btn_address">주소 검색</button></td>
-							<td><input name="user_addr" placeholder="API 적용 전 임시 주소 입력창"></td>
 						</tr>
 						<tr>
 							<th>나이</th>
 							<td><input name="user_age" placeholder="나이를 입력해주세요"></td>
-						</tr>
-						<tr>
-							<th>프로필</th>
-							<td><input name="user_profile" placeholder="일단 임시로 아무 스트링 저장"></td>
 						</tr>
 						<tr>
 							<th>성별</th>
