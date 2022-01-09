@@ -14,7 +14,29 @@
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-
+	
+	<%-- 다음 Postcode API --%>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		
+		function findAddr(){
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		           
+		            document.getElementById("addr_general").value = data.address;
+		            document.getElementById("addr_detail").focus();
+		        }
+		    }).open({left: '640', top: '200', popupTitle: '봄봄 - 주소 찾기'});
+		}
+		
+		//기본주소와 상세주소를 합쳐주는 함수
+		function addAddr(){
+			
+			console.log($('#addr_general').val());
+			$('#user_addr').val(($('#addr_general').val() + ' ' + $('#addr_detail').val()));
+		}
+	</script>
+	
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -29,7 +51,7 @@
 						<tr>
 							<th>아이디<span>*</span></th>
 							<td><input name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
-							<td><button class="btn_general">중복확인</button></td>
+							<td><button type="button" class="btn_general">중복확인</button></td>
 						</tr>
 						<tr>
 							<th>비밀번호<span>*</span></th>
@@ -50,15 +72,26 @@
 						<tr>
 							<th>이메일<span>*</span></th>
 							<td><input name="user_email" placeholder="예: bom2022@bombom.com"></td>
-							<td><button class="btn_general">중복확인</button></td>
+							<td><button type="button" class="btn_general">중복확인</button></td>
 						</tr>
 						<tr>
 							<th>휴대폰</th>
 							<td><input name="user_phone" placeholder="휴대폰 번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>주소</th>
-							<td><button class="btn_address">주소 검색</button></td>
+							<th rowspan="2">주소</th>
+							<td>
+								<input id="addr_general" placeholder="주소찾기 버튼을 클릭해주세요" readonly>
+							</td>
+							<td>
+								<button type="button" class="btn_address" onclick="findAddr()">주소찾기</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input id="addr_detail" placeholder="나머지 주소를 입력해주세요">
+								<input type="hidden" id="user_addr" name="user_addr">		<%-- 최종 주소 --%>
+							</td>
 						</tr>
 						<tr>
 							<th>나이</th>
@@ -76,7 +109,7 @@
 						</tr>
 					</table>
 				
-					<button type="submit" class="btn_register">가입하기</button>		
+					<button type="button" class="btn_register" onclick="addAddr(); submit();">가입하기</button>		
 					<button type="reset" class="btn_reset">다시작성</button>
 				</form>
 				
