@@ -14,28 +14,11 @@
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-	
 	<%-- 다음 Postcode API --%>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-		
-		function findAddr(){
-			new daum.Postcode({
-		        oncomplete: function(data) {
-		           
-		            document.getElementById("addr_general").value = data.address;
-		            document.getElementById("addr_detail").focus();
-		        }
-		    }).open({left: '640', top: '200', popupTitle: '봄봄 - 주소 찾기'});
-		}
-		
-		//기본주소와 상세주소를 합쳐주는 함수
-		function addAddr(){
-			
-			console.log($('#addr_general').val());
-			$('#user_addr').val(($('#addr_general').val() + ' ' + $('#addr_detail').val()));
-		}
-	</script>
+	
+	<%-- user_join.js --%>
+	<script src="resources/js/user_join.js" type="text/javascript" defer="defer"></script>
 	
 </head>
 <body>
@@ -50,8 +33,8 @@
 					<table class="join_form"> 
 						<tr>
 							<th>아이디<span>*</span></th>
-							<td><input name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
-							<td><button type="button" class="btn_general">중복확인</button></td>
+							<td><input id="user_id" name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
+							<td><button type="button" class="btn_general" onclick="idCheck()">중복확인</button></td>
 						</tr>
 						<tr>
 							<th>비밀번호<span>*</span></th>
@@ -71,8 +54,8 @@
 						</tr>
 						<tr>
 							<th>이메일<span>*</span></th>
-							<td><input name="user_email" placeholder="예: bom2022@bombom.com"></td>
-							<td><button type="button" class="btn_general">중복확인</button></td>
+							<td><input id="user_email" name="user_email" placeholder="예: bom2022@bombom.com"></td>
+							<td><button type="button" class="btn_general" onclick="emailCheck()">중복확인</button></td>
 						</tr>
 						<tr>
 							<th>휴대폰</th>

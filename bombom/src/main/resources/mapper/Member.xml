@@ -13,4 +13,12 @@
 	<select id="memberLogin" parameterType="com.bombom.model.MemberDTO" resultType="com.bombom.model.MemberDTO">
 		select * from bombom_member where user_id = #{user_id, jdbcType=VARCHAR} and user_pwd = #{user_pwd, jdbcType=VARCHAR}
 	</select>
+	
+	<select id="checkId" parameterType="String" resultType="integer">
+		select count(*) from bombom_member where user_id = #{user_id}
+	</select>
+	
+	<select id="checkEmail" parameterType="String" resultType="integer">
+		select count(*) from bombom_member where user_email = #{user_email}
+	</select>
 </mapper>
