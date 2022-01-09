@@ -12,4 +12,6 @@ public interface TalkDAO {
 	int insertPost(TalkDTO dto);
 	int deletePost(long talk_no);
 	int updatePost(TalkDTO dto);
+	int increaseLike(TalkLikeDTO dto);
+	int decreaseLike(TalkLikeDTO dto);
 }

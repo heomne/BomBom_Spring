@@ -17,6 +17,7 @@
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script defer src="${pageContext.request.contextPath}/resources/js/talk_delete.js"></script>
+	<script defer src="${pageContext.request.contextPath}/resources/js/talk_like.js"></script>
 	<script defer src="https://kit.fontawesome.com/2c8a84bfa2.js" crossorigin="anonymous"></script>
 	<script>
 		
@@ -42,6 +43,8 @@
 	<c:set var="dto" value="${content}"/>
 	<c:set var="session" value="${user}"/>
 	<div class="container">
+		<input type="hidden" id="talk_no" value="${dto.getTalk_no()}"/>
+		<input type="hidden" id="user_id" value="${session.user_id}"/>
         <div class="content_area">
             <header>
                 <div class="title">
@@ -55,7 +58,7 @@
 
                     <div class="info_right">
                         <span class="hit">👁${dto.getTalk_hit()}</span>
-                        <span class="like">👍5</span>
+                        <span class="like">👍${dto.getTalk_like()}</span>
                         <span class="comment">💭3</span>
                     </div>
                 </div>
@@ -72,7 +75,15 @@
             </article>
 
             <div class="content_like">
-                <button type="button" class="like">👍 5</button>
+            	<c:choose>
+            		<c:when test="${isLiked}">
+            			<button id="like_btn" type="button" class="like_active">👍 ${dto.getTalk_like()}</button>
+            		</c:when>
+            		<c:otherwise>
+            			<button id="like_btn" type="button" class="like">👍 ${dto.getTalk_like()}</button>
+            		</c:otherwise>
+            	</c:choose>
+                
             </div>
             
             <div class="content_bottom">

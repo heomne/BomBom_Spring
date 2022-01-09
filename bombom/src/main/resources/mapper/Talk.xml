@@ -41,7 +41,7 @@
 		<selectKey keyProperty="talk_no" resultType="long" order="BEFORE">
 			select talk_seq.nextval from dual
 		</selectKey>
-		insert into bombom_talk values(#{talk_no}, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE)
+		insert into bombom_talk values(#{talk_no}, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE, 0)
 	</insert>
 	
 	<update id="updatePost" parameterType="com.bombom.model.TalkDTO">
@@ -55,4 +55,18 @@
 	<select id="postCount" resultType="int">
 		select count(*) from bombom_talk
 	</select>
+	
+	<update id="increaseLike" parameterType="com.bombom.model.TalkLikeDTO">
+		update bombom_talk set talk_like = talk_like + 1 where talk_no = #{talkNo}
+		<selectKey keyProperty="likeCount" resultType="int" order="AFTER">
+			select talk_like from bombom_talk where talk_no = #{talkNo}
+		</selectKey>
+	</update>
+	
+	<update id="decreaseLike" parameterType="com.bombom.model.TalkLikeDTO">
+		update bombom_talk set talk_like = talk_like - 1 where talk_no = #{talkNo}
+		<selectKey keyProperty="likeCount" resultType="int" order="AFTER">
+			select talk_like from bombom_talk where talk_no = #{talkNo}
+		</selectKey>
+	</update>
 </mapper>

@@ -57,4 +57,14 @@ public class TalkDAOImpl implements TalkDAO {
 	public int getPostCount(String keyword) {
 		return this.sqlSession.selectOne("searchCount", keyword);
 	}
+
+	@Override
+	public int increaseLike(TalkLikeDTO dto) {
+		return this.sqlSession.update("increaseLike", dto);
+	}
+
+	@Override
+	public int decreaseLike(TalkLikeDTO dto) {
+		return this.sqlSession.update("decreaseLike", dto);
+	}
 }

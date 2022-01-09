@@ -32,7 +32,7 @@ public class EditorController {
 	public String imageUpload(@RequestParam("image")MultipartFile multipartFile, HttpServletRequest request) {
 		
 		if(multipartFile.isEmpty()) {
-			System.out.println("user_write image upload detected, but there's no file.");
+			logger.warn("user_write image upload detected, but there's no file.");
 		}
 		
 		// 이미지 저장 경로

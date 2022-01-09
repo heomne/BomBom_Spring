@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bombom.model.TalkLikeDAO">
+	<select id="checkLike" parameterType="com.bombom.model.TalkLikeDTO" resultType="int">
+		select count(*) from bombom_talk_like where talk_no = #{talkNo} and user_id = #{user_id}
+	</select>
+	
+	<insert id="addLike" parameterType="com.bombom.model.TalkLikeDTO">
+		insert into bombom_talk_like values(#{talkNo}, #{user_id})
+	</insert>
+	
+	<delete id="cancelLike" parameterType="com.bombom.model.TalkLikeDTO">
+		delete from bombom_talk_like where talk_no = #{talkNo} and user_id = #{user_id}
+	</delete>
+	
+	<delete id="deleteLikes" parameterType="long">
+		delete from bombom_talk_like where talk_no = #{talkNo}
+	</delete>
+</mapper>
