@@ -48,4 +48,16 @@ public class MemberImplDAO implements MemberDAO{
 		return this.sqlSession.selectOne("memberLogin", dto);
 	}
 
+	@Override
+	public int checkId(String user_id) {
+		// id 중복검사
+		return this.sqlSession.selectOne("checkId", user_id);
+	}
+
+	@Override
+	public int checkEmail(String user_email) {
+		// email 중복검사
+		return this.sqlSession.selectOne("checkEmail", user_email);
+	}
+
 }

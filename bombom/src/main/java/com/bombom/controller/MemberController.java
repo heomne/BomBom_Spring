@@ -1,16 +1,16 @@
 package com.bombom.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bombom.model.MemberDAO;
 import com.bombom.model.MemberDTO;
@@ -21,12 +21,6 @@ public class MemberController {
 	@Autowired
 	private MemberDAO dao;
 	
-	//홈으로 이동
-	@RequestMapping("home.do")
-	public String user_home() {
-		return "redirect:/";
-	}
-	
 	//로그인 페이지 이동
 	@RequestMapping("user_login.do")
 	public String user_login() {
@@ -35,7 +29,7 @@ public class MemberController {
 	
 	//로그인 진행
 	@RequestMapping("user_login_ok.do")
-	public String user_login_ok(MemberDTO dto, HttpSession session, HttpServletRequest request) {
+	public String user_login_ok(MemberDTO dto, HttpSession session) {
 		
 		//반환주소값
 		String url = "";
@@ -53,9 +47,9 @@ public class MemberController {
 			url = "redirect:/";
 			System.out.println("로그인성공");
 		}else {					//로그인 실패
-			url = "redirect:user_login.do?status=fail";
+			url = "redirect:user_login.do?login=fail";
 			System.out.println("로그인실패");
-		}
+		}	
 		
 		return url;
 	}
@@ -77,26 +71,45 @@ public class MemberController {
 	
 	//회원가입 진행
 	@RequestMapping("user_join_ok.do")
-	public void user_join_ok(MemberDTO dto, Model model, HttpServletResponse response) throws IOException {
+	public String user_join_ok(MemberDTO dto) throws IOException {
 		
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = response.getWriter();
+		String url = "";
 		
 		int result = dao.insertMember(dto);
 		
-		if(result > 0) {
-			out.println("<script>");
-			out.println("alert('회원가입이 완료되었습니다')");
-			out.println("location.href='home.do'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('회원가입에 실패했습니다')");
-			out.println("history.back()");
-			out.println("</script>");
-		}
-
+		if(result > 0) {	//회원가입 성공 - 로그인페이지로 이동 후 안내메시지 출력
+			url = "redirect:user_login.do?register=success";
+		}else {				//회원가입 실패 - 로그인페이지로 이동 후 안내메시지 출력
+			url = "redirect:user_login.do?register=fail";
+		}	
+		
+		return url;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value= "/user_join_idcheck.do", produces = "application/json; charset=utf8")
+	public Map<String, Object> user_join_idcheck(@RequestParam("user_id") String user_id) {
+		
+		int result = dao.checkId(user_id);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("result", result);
+		
+		return data;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value= "/user_join_emailcheck.do", produces = "application/json; charset=utf8")
+	public Map<String, Object> user_join_emailcheck(@RequestParam("user_email") String user_email) {
+		
+		int result = dao.checkEmail(user_email);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("result", result);
+		
+		return data;
 	}
 	
 }
