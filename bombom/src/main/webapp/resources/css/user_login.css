@@ -8,9 +8,20 @@
 	text-align: center;
 }
 
+.toast{
+	display: none;
+	color: #fb4357;
+	font-size: 16px;
+	font-weight: 500;	
+}
+
 .login_box{
 	width: 500px;
 	margin: 0 auto;
+}
+
+.article {
+	min-height: 480px;
 }
 
 .article input{

@@ -11,5 +11,7 @@ public interface MemberDAO {
 	
 	List<MemberDTO> getMembers(); //전체회원보기(option)
 	MemberDTO login(MemberDTO dto);
+	int checkId(String user_id);
+	int checkEmail(String user_email);
 	
 }

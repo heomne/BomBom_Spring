@@ -24,12 +24,20 @@
 	<div class="content">
 		<div class="article">	
 			
-			<c:if test="${param.status eq 'fail'}">
-				<div class="toast_box"><span class="toast" style="display: none">아이디와 비밀번호를 확인해주시기 바랍니다.</span></div>		
-			</c:if>
+			<div class="toast_box">
+				<c:if test="${param.login eq 'fail'}">
+					<span class="toast">아이디와 비밀번호를 확인해주시기 바랍니다</span>		
+				</c:if>
+				<c:if test="${param.register eq 'success'}">
+					<span class="toast">회원가입이 완료되었습니다. 로그인해주세요.</span>		
+				</c:if>
+				<c:if test="${param.register eq 'fail'}">
+					<span class="toast">회원가입에 실패했습니다. 고객센터로 문의해주세요.</span>		
+				</c:if>
+			</div>
 			
 			<script>
-				$('.toast').fadeIn(500).delay(2000).fadeOut(500);
+				$('.toast').fadeIn(700).delay(2000).fadeOut(700);
 			</script>
 			
 			<div class="login_box" align="center">

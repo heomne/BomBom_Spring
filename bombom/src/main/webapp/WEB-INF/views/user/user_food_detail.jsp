@@ -35,11 +35,12 @@
 		function showMore(num, increase){
 			
 			for(let i = num; i < (num + increase); i++){
-				$('.bloglist tr#' + i).css('display', 'block');
-				$('.bloglist').load(window.location.href + ' .bloglist');
+				
+				$('.bloglist tr#' + i).fadeIn(500);
 			
 				if(i > 45){
-					$('.more').css('display', 'none');
+					
+					$('.more').delay(500).fadeOut(500);
 				}
 			}
 		
@@ -48,7 +49,6 @@
 		}	
 		
 	</script>
-	
 
 </head>
 <body>
