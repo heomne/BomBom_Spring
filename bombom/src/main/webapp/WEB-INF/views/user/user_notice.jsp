@@ -42,67 +42,76 @@
     </div>
 	
 	<div class="content">
+	<c:set value="${page }" var="dto"/>
 	
 	<%-- 옮길것 --%>
-		<div class="boardArea">
+		<div class="boardArea" >
 			<table border="1" cellspacing="0" width="1000" align="center" class="table">
 				<tr>
 					<th>글번호</th> <th>글제목</th>
 					<th>작성자</th> <th>작성날짜</th> <th>조회수</th>
 				</tr>
 				
-				<c:set value="${List }" var="list" />
-				<c:if test="${!empty list }" var="list">
-				<c:forEach var="dto" items="${list }">
+				<c:set value="${newsList }" var="list" />
+				<c:if test="${!empty list }" >
+				<c:forEach items="${list }" var="i">
 					<tr>
-						<td>${dto.getNews_no() }</td>
-						<td>${dto.getNews_title() }</td>
-						<td>${dto.getNews_writer() }</td>
-						<td>${dto.getNews_date() }</td>
-						<td>${dto.getNews_hit() }</td>
+						<td>${i.getNews_no() }</td>
+						<td><a href="<%=request.getContextPath() %>/user_notice_cont.do?no=${i.getNews_no() }&page=${dto.getPage() }"">${i.getNews_title() }</a></td>
+						<td>${i.getNews_writer() }</td>
+						<td>${i.getNews_date().substring(0,10) }</td>
+						<td>${i.getNews_hit() }</td>
 					</tr>
 				
 				</c:forEach>
 				</c:if>
 				
-				<tr>
-					<td align="center">1</td>
-					<td><a href="<%=request.getContextPath() %>/user_notice_cont.do">안녕하세요. 봄봄입니다</a></td>
-					<td>관리자</td>
-					<td>2022.01.06</td>
-					<td>10</td>
-				</tr>
-				
-				<tr>
-					<td align="center">2</td>
-					<td>시사회 관련 공지</td>
-					<td>관리자</td>
-					<td>2022.01.06</td>
-					<td>10</td>
-				</tr>
-				
-				<tr>
-					<td align="center">3</td>
-					<td>영화수다 관련 공지</td>
-					<td>관리자</td>
-					<td>2022.01.06</td>
-					<td>10</td>
-				</tr>
-				
-				
-				<tr>
-					<td align="center">4</td>
-					<td>극장맛집에 새 맛집이 추가되었어요!</td>
-					<td>관리자</td>
-					<td>2022.01.06</td>
-					<td>10</td>
-				</tr>
-				
 				
 			
 			</table>
 			
-			<div class="search">
+			<br>
+			
+			<!-- 관리자만 글쓰기 버튼 보여야함** -->
+			 <input class="write" type="button" value="✐"
+	                 onclick="location.href='admin_notice_write.do'">
+		
+			
+		</div>
+		<!-- 옮길것 끝 -->	
+		
+	
+	      
+	
+	<%-- 페이징처리 부분 --%>
+	
+	<div class="page" align="center">
+		
+		<c:if test="${!empty dto }">
+	   <c:if test="${dto.getPage() > dto.getBlock() }">
+	      <a href="user_notice.do?page=1">◀◀</a>
+	      <a href="user_notice.do?page=${dto.getStartBlock() - 1 }">◀</a>
+	   </c:if>
+	   
+	   <c:forEach begin="${dto.getStartBlock() }"
+	                   end="${dto.getEndBlock() }" var="i">
+	      <c:if test="${i == dto.getPage() }">
+	         <b> <a href="user_notice.do?page=${i }">[${i }]</a></b>
+	      </c:if>
+	      
+	      <c:if test="${i != dto.getPage() }">
+	         <a href="user_notice.do?page=${i }">[${i }]</a>
+	      </c:if>
+	   </c:forEach>
+	   
+	   <c:if test="${dto.getEndBlock() < dto.getAllPage() }">
+	       <a href="user_notice.do?page=${dto.getEndBlock() + 1}">▶</a>
+	      <a href="user_notice.do?page=${dto.getAllPage() }">▶▶</a>
+	   </c:if>
+		</c:if>
+	</div>
+		
+		<div class="search">
 				<form method="post"
 					action="<%=request.getContextPath() %>/user_bombom_search.do">
 			
@@ -118,12 +127,8 @@
 				</form>
 				
 			</div>
-			
-		</div>
-		<!-- 옮길것 끝 -->	
 		
 	</div>
-	
 	<jsp:include page="../include/footer.jsp" flush="false"/>
 </body>
 </html>

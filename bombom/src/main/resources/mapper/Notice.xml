@@ -6,13 +6,59 @@
   
  <mapper namespace="com.bombom.model.NoticeDAO">
  
- 	<select id="notice_list" resultType="com.bombom.model.NoticeDTO">
- 		select * from bombom_news order by news_no desc
+ 	<select id="count" resultType="int">
+		select count(*) from bombom_news
+	</select>
+	
+	<select id="notice_list" parameterType="com.bombom.model.NoticePageDTO"
+			resultType="com.bombom.model.NoticeDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by news_no desc) rnum from bombom_news b)	
+			   		where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+ 	
+ 
+ 	<update id="Hit" parameterType="int">
+		update bombom_news set news_hit = news_hit + 1
+				where news_no = #{no}
+	</update>
+ 
+ 
+ 	<select id="notice_cont" parameterType="int" resultType="com.bombom.model.NoticeDTO">
+ 		select * from bombom_news where news_no = #{no}
  	</select>
+ 	
  
- 
- 
- 
+ 	<insert id="notice_insert" parameterType="com.bombom.model.NoticeDTO">
+		<selectKey resultType="int" keyProperty="news_no" order="BEFORE">
+			select max(news_no) from bombom_news
+		</selectKey>
+		
+		insert into bombom_news values(#{news_no} + 1, #{news_title}, #{news_cont},
+				#{news_writer}, sysdate , 0)
+	</insert>
+	
+	<update id="notice_update" parameterType="com.bombom.model.NoticeDTO">
+		update bombom_news set news_title = #{news_title},
+			news_cont = #{news_cont}
+			where news_no = #{news_no}
+	</update>
+	
+ 	<delete id="del" parameterType="int">
+		delete from bombom_news where news_no = #{no}
+	</delete>
+	
+	<update id="seq" parameterType="int">
+	
+		<![CDATA[
+			update bombom_news set news_no = news_no - 1
+				where news_no > #{no}
+	    ]]>
+	    
+	</update>
  
  
  </mapper>
