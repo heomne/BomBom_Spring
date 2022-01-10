@@ -61,6 +61,18 @@
   padding: 10px 10px 10px 15px;
 }
 
+.title_wrap textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+  font-size: 22px;
+  font-family: 'Noto Sans KR', monospace;
+  border: 1px solid #eee;
+  padding: 10px 10px 10px 15px;
+}
+
 .title_wrap table th {
 	text-align: left;
 	width:30%;

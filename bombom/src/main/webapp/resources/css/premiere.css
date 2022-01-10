@@ -2,11 +2,17 @@
 
 /* 시사회 게시판 */
 
+.premiere_content{
+	width: 1045px;
+	margin: 0 auto;
+} 
+
 .list_buttons {
 	position: sticky;
-	top: 100px;
-	margin-top: 60px;
+	top: 120px;
+	left: 0px;
 	float: right;
+	margin-top: 18px;
 }
 
 .list_buttons a {
@@ -20,15 +26,20 @@
 	text-decoration: none;
 }
 
-/* .premiere_content { 
-	clear: both;
-} */
+.list_buttons :hover {
+	transform: scale(1.15);
+	transition: all ease 1.5s 0s;	/* 천천히 변화시킴 */
+}
+
+.premiere_list_wrap { 
+	display : inline-block;
+}
 
 .content_cards {
 	border : 1px solid #EAEAEA;
 	border-radius: 15px;
 	width : 290px;
-	height : 415px;
+	height : 425px;
 	margin : 20px 20px;	
 	float:left;
 	position: relative;
@@ -41,13 +52,21 @@
 	transition: all ease 1.5s 0s;	/* 천천히 변화시킴 */
 }
 
+.content_img_wrapper {
+	width: 290px;
+	height: 290px;
+	position: relative;
+}
+
 .content_cards img{
-	outline: none;
     display: block;
-    width : 290px;
-    height : auto;
+    /* width : 290px; */
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0; left:0;
+    transfom: translate(50,50);
+    object-fit: cover;
     z-index: 1;
 }
 
@@ -64,13 +83,15 @@
 .content_title {
     font-size: 15px;
     margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.5px;
 }
 
 .content_summary {
     padding: 0;
+    margin: 7px 0px;
     word-break: break-all;
-    line-height: 180%;
-    margin: 5px 0 -2px;
+    line-height: 160%;
     color: #444;
 }
 
@@ -78,6 +99,10 @@
     font-size: 10px;
     color: #666;
     text-align: left;
+    top: 30px;
+    position: absolute;
+    z-index: 1;
+    top: 100px;
 }
 
 /* 새로 올린 글에는 N 딱지 붙게 */
@@ -118,6 +143,12 @@
     margin-bottom: 25px;
     color: #242424;
     cursor: pointer;
+    width: 945px;
+}
+
+.premiere_notice:hover {
+    background-color: #ffced3;
+    transition: all ease 1.5s 0s;	/* 천천히 변화시킴 */
 }
 
 .premiere_notice img {
@@ -138,6 +169,8 @@
   top:0; left:0; 
   background:rgba(0,0,0,0.5);
   z-index: 6;
+  cursor: pointer;
+  
 }
 
 .modal-con{
@@ -241,7 +274,7 @@
   display:block;
   width:20px; height:20px;
   border-radius:50%; 
-  border: 2px solid #000;
+  border: 2px solid #000000;
   text-align:center; 
   line-height: 22px;
   color:#000; font-size:15px; font-weight: bold;
@@ -291,74 +324,6 @@
   overflow: hidden;
 }
 
-/* 하단 페이징 처리 */
-.paging {
-	clear: both;
-	margin-bottom: 72px;
-	margin-top: 35px;
-}
-
-.paging a{
-	text-decoration : none;
-}
-
-.paging .paging_first,
-.paging .paging_prev,
-.paging .paging_next,
-.paging .paging_last,
-.paging .paging_number_active {
-  transition: all 0.2s;
-  display: inline-block;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  margin: 0 -1px;
-  box-sizing: border-box;
-  border: 1px solid #ebebeb;
-  color: #cccccc;
-  font-size: 16px;
-}
-
-.paging .paging_first:hover,
-.paging .paging_prev:hover,
-.paging .paging_next:hover,
-.paging .paging_last:hover {
-  border-color: #fb4357;
-  color: #fb4357;
-}
-
-.paging .paging_number {
-  transition: background-color, 0.2s;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: 0 -1px;
-  padding: 0 5px;
-  color: #000;
-  box-sizing: border-box;
-  line-height: 40px;
-}
-
-.paging .paging_number:hover {
-  background-color: #b8b8b8;
-  color: #fff;
-}
-
-.paging .paging_number_active {
-  font-style: normal;
-  background-color: #fb4357;
-  color: #fff;
-  line-height: 40px;
-}
-
-.paging .paging_prev {
-  margin-right: 15px;
-}
-
-.paging .paging_next {
-  margin-left: 15px;
-}
 
 /* 댓글창 */
 .comment_block {

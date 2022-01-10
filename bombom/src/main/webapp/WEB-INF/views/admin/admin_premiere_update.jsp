@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,18 +43,19 @@
 	    </div>
     </div>	
     
+    
 	<div class="container">
         <form enctype="multipart/form-data" method="post" name="postForm" 
-        	action="${pageContext.request.contextPath}/premiere_write.do">
+        	action="${pageContext.request.contextPath}/premiere_update_ok.do">
             
             <header class="write_header">
-                <h2>시사회 : 글쓰기</h2>
+                <h2>시사회 : 글 수정</h2>
             </header>
-            
+            <c:set var="dto" value="${modify }" />
             <div class="write_block">
                 <div class="title_wrap">
+                <input type="hidden" name="premiere_no" value="${dto.getPremiere_no() }">
 	                <table width="100%">
-	                
 	                	<tr>
 	                		<th> 작성자 </th>
 	                    	<td> 
@@ -63,14 +66,16 @@
 	                    <tr>
 	                		<th> 글 제목 </th>
 	                    	<td> 
-	                    		<input type="text" id="premiere_title" name="premiere_title" placeholder="글 제목을 입력해주세요." required="required"/>
+	                    		<input type="text" id="premiere_title" name="premiere_title" 
+	                    			value="${dto.getPremiere_title() }" required="required"/>
 	               			</td>
 	               		</tr>
 	                
 	               		<tr>
 	                		<th> 썸네일 이미지</th>
 	                    	<td> 
-	                    		<input type="file" id="premiere_thumbnail" name="thumbnail" required="required"/>
+	                    		<input type="file" id="premiere_thumbnail" name="thumbnail" 
+	                    		accept="image/png, image/jpeg" required="required"/>
 	               			</td>
 	               		</tr>
 	               		
@@ -78,7 +83,7 @@
 	                		<th> 글 요약 </th>
 	                    	<td> 
 	                    		<textarea id="premiere_summary" name="premiere_summary" style="resize: none;"
-	                    		placeholder="화면에 보여질 글 요약 내용을 입력하세요." required="required"></textarea>
+	                    		required="required">${dto.getPremiere_summary() }</textarea>
 	               			</td>
 	               		</tr>
 	               		
@@ -87,20 +92,20 @@
 				
 				<!-- 글 쓰기 에디터 -->
                 <div class="editor_wrap">
-                    <div id="editor"></div>
+                    <div id="editor">${dto.getPremiere_cont() }</div>
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
                     <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
                     <input id="contValue" type="hidden" name="premiere_cont" value=""/>
                 </div>
-            </div>
-            
+            </div>      
             <div class="write_btns">
-                <button class="submit_btn" type="button">등록</button>
+                <button class="submit_btn" type="button">글 수정</button>
                 <button class="goBack_btn" type="button" onclick="history.back()">뒤로가기</button>
             </div>
         </form>
     </div>
+    
     
     <jsp:include page="../include/footer.jsp" flush="false"/>
 </body>

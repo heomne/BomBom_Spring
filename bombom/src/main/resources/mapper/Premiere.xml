@@ -6,6 +6,11 @@
   
 <mapper namespace="com.bombom.model.PremiereDAO">
 
+	<!-- 시사회 게시판 글 전체 조회 -->
+	<select id="allPremiere" resultType="com.bombom.model.PremiereDTO">
+		select * from bombom_premiere order by premiere_no desc
+	</select>
+
 	<!-- 시사회 게시판 글 작성-->
 	<insert id="addPremiere" parameterType="com.bombom.model.PremiereDTO">
 		<selectKey resultType="int" keyProperty="premiere_no" order="BEFORE">
@@ -15,7 +20,35 @@
 			#{premiere_no}, 
 			#{premiere_thumbnail}, 
 			#{premiere_title}, 
+			#{premiere_summary}, 
 			#{premiere_cont},
 			sysdate, 1)	
 	</insert>
+	
+	<!-- 시사회 게시판 글 상세내역 가져오기 -->
+	<select id="contentPremiere" parameterType="int" resultType="com.bombom.model.PremiereDTO">
+		select * from bombom_premiere where premiere_no = #{no}
+	</select>
+	
+	<!-- 시사회 게시판 글 수정 -->
+	<update id="editPremiere" parameterType="com.bombom.model.PremiereDTO">
+		update bombom_premiere set premiere_thumbnail = #{premiere_thumbnail}, 
+		premiere_title = #{premiere_title}, premiere_summary = #{premiere_summary}, 
+		premiere_cont = #{premiere_cont} where premiere_no = #{premiere_no}
+	</update>
+	
+	<!-- 시사회 게시판 글 삭제 -->
+	<delete id="delPremiere" parameterType="int">
+		delete from bombom_premiere where premiere_no = #{premiere_no}
+	</delete>
+	
+	<!-- 시사회 게시판 글 삭제에 따른 글 번호 재정렬 -->
+	<update id="seqPremiere" parameterType="int">
+		<![CDATA[
+			update bombom_premiere set premiere_no = premiere_no - 1
+				where premiere_no > #{no}
+	    ]]>
+	</update>
+	
+	
 </mapper>
