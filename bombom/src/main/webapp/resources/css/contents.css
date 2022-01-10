@@ -109,7 +109,7 @@ h1 {
 }
 
 .cmt_list .cmt_unit {
-  margin-top: 30px;
+  margin-top: 15px;
   padding-left: 20px;
   font-size: 15px;
 }
@@ -172,13 +172,13 @@ h1 {
   color: white;
 }
 
-.cmt_list .cmt_write {
+.cmt_write {
   margin-top: 30px;
   padding-left: 20px;
   height: 180px;
 }
 
-.cmt_list .cmt_write textarea {
+.cmt_write textarea {
   transition: all 0.2s;
   width: 100%;
   border-radius: 10px;
@@ -189,9 +189,10 @@ h1 {
   background-color: #f7f7f7;
   color: #222;
   box-sizing: border-box;
+  resize: none;
 }
 
-.cmt_list .cmt_write textarea:focus {
+.cmt_write textarea:focus {
   outline: none;
   border-style: none;
   background-color: #eee;

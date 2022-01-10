@@ -18,6 +18,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script defer src="${pageContext.request.contextPath}/resources/js/talk_delete.js"></script>
 	<script defer src="${pageContext.request.contextPath}/resources/js/talk_like.js"></script>
+	<script defer src="${pageContext.request.contextPath}/resources/js/talk_comment.js"></script>
 	<script defer src="https://kit.fontawesome.com/2c8a84bfa2.js" crossorigin="anonymous"></script>
 	<script>
 		
@@ -101,104 +102,7 @@
             </div>
 
             <div class="comment_block">
-                <div class="info_block">
-                    <span>댓글</span>
-                    <span class="comment_count">(6)</span>
-                </div>
-
-                <div class="cmt_notice">
-                    <span>❗ 글을 읽고 댓글을 달지않으면, 포인트가 깎여나갑니다 zz </span>
-                </div>
-
-                <div class="cmt_list">
-
-                    <div class="cmt_unit">
-                        <div class="cmt_header">
-                            <strong class="cmt_writer">밍구리</strong>
-                            <div class="modify_remove">
-                                <a href="#modify">수정</a>
-                                <a href="#remove">삭제</a>
-                            </div>
-                        </div>
-                        <div class="cmt_content">
-                            	영화관에서 왜 파는지 모르겠어요 어차피 안에 들어가면 못먹는데 
-                            <div class="cmt_date">
-                                <span class="date_time">13:22</span>
-                            </div>
-
-                            <div class="cmt_btns">
-                                <button type="button">답글</button>
-                                <button type="button">👍 +0</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cmt_unit nested">
-                        <div class="cmt_header">
-                            <strong class="cmt_writer">영화여우</strong>
-                        </div>
-                        <div class="cmt_content">
-                            <div class="parent_cmt">
-                                <span>💬</span>
-                                <strong>밍구리</strong>
-                            </div>
-                            	그러게요 영화 보기전에 먹고 들어가시는 분들도 있더라구요
-                            <div class="cmt_date">
-                                <span class="date_time">14:10</span>
-                            </div>
-
-                            <div class="cmt_btns">
-                                <button type="button">답글</button>
-                                <button type="button">👍 +0</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cmt_unit">
-                        <div class="cmt_header">
-                            <strong class="cmt_writer">소보르</strong>
-                        </div>
-                        <div class="cmt_content">
-                            	음료수는 반입되니까 그거라도 다행이네요 .. ^^
-                            
-                            <div class="cmt_date">
-                                <span class="date_time">13:22</span>
-                            </div>
-
-                            <div class="cmt_btns">
-                                <button type="button">답글</button>
-                                <button type="button">👍 +0</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cmt_unit">
-                        <div class="cmt_header">
-                            <strong class="cmt_writer">Marble</strong>
-                        </div>
-                        <div class="cmt_content">
-                            	그러게요 영화관에서 팝콘 무조건 필수템인데ㅁㄴㅇㄻㄴㅇㄹㄴㅁㅇㄹㄴㅁㅇㄹㄴㅁㅇㄹ
-                            <br>
-                            	ㅁㄴㅇㄻㄴㅇㄹㄴㅁㅇㄻㄴㅇㄹ;ㅁ니ㅓㅇㄹ;미나얼;미나얼;ㅣㅁ나ㅓㅇㄹ;ㅣㄴ마얼;ㅣㅁ나ㅓㅇㄹ;니ㅏㅓㄹ;ㅣ마널
-                            <div class="cmt_date">
-                                <span class="date_time">13:22</span>
-                            </div>
-
-                            <div class="cmt_btns">
-                                <button type="button">답글</button>
-                                <button type="button">👍 +0</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cmt_write">
-                        <textarea cols="50" rows="4" placeholder="댓글을 입력해주세요"></textarea>
-                        <div class="cmt_write_btns">
-                            <button>댓글 등록</button>
-                        </div>
-                    </div>
-                </div>
-
+                <%@include file="../include/talk_comment.jsp" %>
             </div>
         </div>
 		
@@ -255,7 +159,7 @@
 
             <div class="board_footer">
                 <div class="board_bottom">
-                	<form method="post" action="${pageContext.request.contextPath}/user_talk.do" class="search-container">
+                	<form method="post" action="${pageContext.request.contextPath}/user_search.do" class="search-container">
 					  <input id="search-box" type="text" class="search-box" name="keyword" />
 					  <label for="search-box">
 					    <span>🔍</span>
