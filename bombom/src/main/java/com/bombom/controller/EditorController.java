@@ -29,15 +29,26 @@ public class EditorController {
 	 */	
 	@ResponseBody
 	@RequestMapping(value = "/image_upload.do", method = RequestMethod.POST)
-	public String imageUpload(@RequestParam("image")MultipartFile multipartFile, HttpServletRequest request) {
+	public String imageUpload(@RequestParam("image")MultipartFile multipartFile, 
+							  @RequestParam String uri, HttpServletRequest request) {
 		
 		if(multipartFile.isEmpty()) {
 			logger.warn("user_write image upload detected, but there's no file.");
 		}
 		
-		// 이미지 저장 경로
-		String directory = request.getSession().getServletContext().getRealPath("resources/upload/talk/");
-
+		boolean isPremiere = false;
+		if(uri.equals("/bombom/premiere_write.do") || uri.equals("/bombom/premiere_update.do")) {
+			isPremiere = true;
+		}
+		
+		// 시사회에서 작성할 경우 경로 변경
+		String directory = null;
+		if(isPremiere) {
+			directory = request.getSession().getServletContext().getRealPath("resources/upload/premiere/");
+		} else {
+			directory = request.getSession().getServletContext().getRealPath("resources/upload/talk/");
+		}
+		
 		String fileName = multipartFile.getOriginalFilename();
 		int lastIndex = fileName.lastIndexOf(".");
 		String ext = fileName.substring(lastIndex, fileName.length());
@@ -51,7 +62,7 @@ public class EditorController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		} finally {
-			logger.info("EditorController image uploaded");
+			logger.info("uri : {}", uri);
 			logger.info("Image Path : {}", directory);
 			logger.info("File_name : {}", newFileName);
 		}
@@ -62,6 +73,10 @@ public class EditorController {
 		String url = request.getRequestURL().substring(0, index);
 		
 		// https://localhost:8080/bombom/resources/upload/파일이름
+		if(isPremiere) {
+			return url + request.getContextPath() + "/resources/upload/premiere/" + newFileName;
+		}
+		
 		return url + request.getContextPath() + "/resources/upload/talk/" + newFileName;
 	}
 }

@@ -7,6 +7,7 @@ const editor = new toastui.Editor({
     addImageBlobHook: function (blob, callback) {
       const formData = new FormData();
       formData.append("image", blob);
+      formData.append("uri", window.location.pathname);
       const imageURL = imageUpload(formData);
       console.log(imageURL);
       callback(imageURL, "image");
