@@ -16,10 +16,10 @@ public class NavController {
 		return "/user/user_food";
 	}
 	
-	@RequestMapping("user_premiere.do")
-	public String user_premiere() {
-		return "/user/user_premiere";
-	}
+	/*
+	 * @RequestMapping("user_premiere.do") public String user_premiere() { return
+	 * "/user/user_premiere"; }
+	 */
 	
 	
 }

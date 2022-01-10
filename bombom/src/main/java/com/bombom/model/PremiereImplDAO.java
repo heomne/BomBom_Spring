@@ -12,16 +12,10 @@ public class PremiereImplDAO implements PremiereDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	// 글 전체 목록 가져오기
 	@Override
-	public int getListCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<PremiereDTO> getBoardList(PremierePageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PremiereDTO> getBoardList() {
+		return this.sqlSession.selectList("allPremiere");
 	}
 	
 	// 글 작성
@@ -30,36 +24,35 @@ public class PremiereImplDAO implements PremiereDAO{
 		return this.sqlSession.insert("addPremiere", dto);
 	}
 
+	// 글 수정
 	@Override
 	public int updateBoard(PremiereDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("editPremiere", dto);
 	}
 
+	// 글 삭제
 	@Override
 	public int deleteBoard(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.delete("delPremiere", no);
 	}
 
+	// 글 삭제에 따른 글 번호 재정렬
 	@Override
 	public void updateSequence(int no) {
-		// TODO Auto-generated method stub
-		
+		this.sqlSession.update("seqPremiere", no);
 	}
-
+	
+	// 글 검색 
 	@Override
-	public int searchBoardCount(String field, String keyword) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<PremiereDTO> searchBoardList(PremierePageDTO dto) {
+	public List<PremiereDTO> searchBoardCount(String field, String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+	// 글 내용 불러오기
+	@Override
+	public PremiereDTO boardCont(int no) {
+		return this.sqlSession.selectOne("contentPremiere", no);
+	}	
 
 }
