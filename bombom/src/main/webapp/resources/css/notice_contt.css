@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.boardArea{
+	
+	margin-bottom: 100px;
+	
+}
+
+
+
+
+.title{
+	
+	width: 98%;
+	height : 40px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	
+}
+
+th{
+	font-size: 20px;
+}
+
+.write_block{
+	margin-left: 10px;
+}
+
+
+.submit_btn
+.goback_btn{
+	
+	width: 200px;
+	
+}
+
+
+
+

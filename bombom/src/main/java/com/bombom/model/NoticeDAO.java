@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface NoticeDAO {
 	
-	List<NoticeDTO> getNewList(NoticeDTO dto);
+	int getListCount();
+	
+	List<NoticeDTO> getNewsList(NoticePageDTO dto);
 	
 	int insertNews(NoticeDTO dto);
 	
