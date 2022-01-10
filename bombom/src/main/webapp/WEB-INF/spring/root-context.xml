@@ -7,7 +7,7 @@
 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="user" value="web" />
+		<property name="user" value="c##web" />
 		<property name="password" value="1234" />
 		<property name="initialPoolSize" value="10" />	
 	</bean>

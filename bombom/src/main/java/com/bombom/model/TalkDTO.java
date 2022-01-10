@@ -13,4 +13,5 @@ public class TalkDTO {
 	private int talk_comment_avail;
 	private int talk_report;
 	private String talk_date;
+	private int talk_like;
 }

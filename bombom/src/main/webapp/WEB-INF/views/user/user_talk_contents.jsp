@@ -16,7 +16,9 @@
 
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+	<script defer src="${pageContext.request.contextPath}/resources/js/talk_delete.js"></script>
+	<script defer src="${pageContext.request.contextPath}/resources/js/talk_like.js"></script>
+	<script defer src="https://kit.fontawesome.com/2c8a84bfa2.js" crossorigin="anonymous"></script>
 	<script>
 		
 		//문서 로딩 후 선택메뉴 css 변경
@@ -26,8 +28,6 @@
 		);
 		
 	</script>
-	
-	<script defer src="${pageContext.request.contextPath}/resources/js/content_rest.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -41,7 +41,10 @@
     </div>
 
 	<c:set var="dto" value="${content}"/>
+	<c:set var="session" value="${user}"/>
 	<div class="container">
+		<input type="hidden" id="talk_no" value="${dto.getTalk_no()}"/>
+		<input type="hidden" id="user_id" value="${session.user_id}"/>
         <div class="content_area">
             <header>
                 <div class="title">
@@ -55,7 +58,7 @@
 
                     <div class="info_right">
                         <span class="hit">👁${dto.getTalk_hit()}</span>
-                        <span class="like">👍5</span>
+                        <span class="like">👍${dto.getTalk_like()}</span>
                         <span class="comment">💭3</span>
                     </div>
                 </div>
@@ -72,16 +75,30 @@
             </article>
 
             <div class="content_like">
-                <button type="button" class="like">👍 5</button>
+            	<c:choose>
+            		<c:when test="${isLiked}">
+            			<button id="like_btn" type="button" class="like_active">👍 ${dto.getTalk_like()}</button>
+            		</c:when>
+            		<c:otherwise>
+            			<button id="like_btn" type="button" class="like">👍 ${dto.getTalk_like()}</button>
+            		</c:otherwise>
+            	</c:choose>
+                
             </div>
             
             <div class="content_bottom">
             	<input id="talkNo" type="hidden" value="${dto.getTalk_no()}"/>
-            	<button id="put_btn" onClick="putRequest()">수정</button>
-            	<button id="delete_btn" onClick="deleteRequest()">삭제</button>
+            	<c:if test="${session.user_id eq dto.getUser_id()}">
+	            	<button id="put_btn" onClick="location.href='${pageContext.request.contextPath}/user_write.do/${dto.getTalk_no()}'">
+	            		<i class="fas fa-pen-square"></i>
+	            		수정
+	            	</button>
+	            	<button id="delete_btn" onClick="delete_post()">
+	            		<i class="fas fa-trash-alt"></i>
+	            		삭제
+	            	</button>
+	            </c:if>
             </div>
-
-
 
             <div class="comment_block">
                 <div class="info_block">
@@ -184,7 +201,11 @@
 
             </div>
         </div>
-
+		
+	<c:set var="session" value="${user}"/>
+	<c:set var="paging" value="${paging}"/>
+	<c:set var="dto" value="${posts}"/>
+	<c:set var="today" value="${today}"/>
         <div class="list_area">
             <div class="board">
                 <table width="100%">
@@ -200,7 +221,7 @@
                         <td>
                             <span class="hot">HOT</span>
                         </td>
-                        <td>
+                        <td class="title_left">
                             <a href="#">table-layout auto test</a>
                         </td>
                         <td>
@@ -209,120 +230,66 @@
                         <td>2021.12.30</td>
                         <td>5</td>
                     </tr>
+                    
+                    <c:forEach var="post" items="${dto}" varStatus="status">
                     <tr>
-                        <td>2</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
+                        <td>${post.getTalk_no()}</td>
+                        <td class="title_left">
+                            <a href="${pageContext.request.contextPath}/user_talk.do/${post.getTalk_no()}">${post.getTalk_title()}</a>
                         </td>
                         <td>
-                            <a href="#">heo</a>
+                            <a href="#">${post.getUser_nickname()}</a>
                         </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
+                        <c:if test="${fn:substring(post.getTalk_date(), 0, 10) eq today}">
+                        	<td>${fn:substring(post.getTalk_date(), 11, 16)}</td>
+                       	</c:if>
+                       	
+                       	<c:if test="${fn:substring(post.getTalk_date(), 0, 10) ne today}">
+                       		<td>${fn:substring(post.getTalk_date(), 0, 10)}</td>
+                       	</c:if>
+                        <td>${post.getTalk_hit()}</td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나ㅈㄷㄱ러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td>
-                            <a href="#">글이 ㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>6</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>7</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heasasdasdqweo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-                    <tr>
-                        <td>8</td>
-                        <td>
-                            <a href="#">글이 어디까지써지나알아보자얼아러아런ㅇㄹㄴㅇㄹㄴㅇ</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
-
-
+                    </c:forEach>
                 </table>
             </div>
 
             <div class="board_footer">
                 <div class="board_bottom">
-                	<form class="search-container">
-					  <input id="search-box" type="text" class="search-box" name="q" />
+                	<form method="post" action="${pageContext.request.contextPath}/user_talk.do" class="search-container">
+					  <input id="search-box" type="text" class="search-box" name="keyword" />
 					  <label for="search-box">
-					    <span class="glyphicon glyphicon-search search-icon"></span>
+					    <span>🔍</span>
 					  </label>
 					  <input type="submit" id="search-submit" />
 					</form>
-<!--                     <button type="button" class="search_btn">🔎</button> -->
-                    <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+					<c:if test="${session.user_id ne null}">
+                    	<a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+                    </c:if>
                 </div>
-
+                
                 <div class="paging">
-                    <a href="#" class="paging_first"><<</a>
-                    <a href="#" class="paging_prev"><</a>
-                    <a href="#" class="paging_number_active" disabled>1</a>
-                    <a href="#" class="paging_number">2</a>
-                    <a href="#" class="paging_number">3</a>
-                    <a href="#" class="paging_number">4</a>
-                    <a href="#" class="paging_number">5</a>
-                    <a href="#" class="paging_number">6</a>
-                    <a href="#" class="paging_number">7</a>
-                    <a href="#" class="paging_number">8</a>
-                    <a href="#" class="paging_number">9</a>
-                    <a href="#" class="paging_number">10</a>
-                    <a href="#" class="paging_next">></a>
-                    <a href="#" class="paging_last">>></a>
+                	<c:if test="${paging.currRange ne 1}">
+                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.startPage}" class="paging_first"><<</a>
+                	</c:if>
+                	<c:if test="${paging.currPage ne 1}">
+                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.prevPage}" class="paging_prev"><</a>
+                	</c:if>
+                	<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+                		<c:choose>
+                			<c:when test="${pageNum eq paging.currPage}">
+                				<a href="javascript:void(0);" class="paging_number_active">${pageNum}</a>
+                			</c:when>
+                			<c:otherwise>
+                				<a href="${pageContext.request.contextPath}/user_talk.do?page=${pageNum}" class="paging_number">${pageNum}</a>
+                			</c:otherwise>
+                		</c:choose>
+                	</c:forEach>
+                	<c:if test="${paging.currPage ne paging.pageCount && paging.pageCount > 0}">
+                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.nextPage}" class="paging_next">></a>
+                    </c:if>
+                    <c:if test="${paging.currRange ne paging.rangeCount && paging.rangeCount > 0}">
+                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.endPage}" class="paging_last">>></a>
+                    </c:if>
                 </div>
             </div>
         </div>

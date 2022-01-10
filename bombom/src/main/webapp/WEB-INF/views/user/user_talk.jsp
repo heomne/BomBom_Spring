@@ -31,7 +31,10 @@
 	<jsp:include page="../include/header.jsp" flush="false"/>
 	
 	
-
+	<c:set var="session" value="${user}"/>
+	<c:set var="paging" value="${paging}"/>
+	<c:set var="dto" value="${posts}"/>
+	<c:set var="today" value="${today}"/>
 	<div class="containter">
         <div class="jumbotron">
             <div class="textBlock1">
@@ -41,8 +44,6 @@
             </div>
         </div>
 
-		<c:set var="dto" value="${posts}"/>
-		<c:set var="today" value="${today}"/>
         <div class="boardArea">
             <div class="board">
                 <table width="100%">
@@ -89,35 +90,45 @@
                     </c:forEach>
                 </table>
             </div>
-
+            
             <div class="board_footer">
                 <div class="board_bottom">
                 
-	                <form method="post" action="${pageContext.request.contextPath}/user_talk.do" class="search-container">
+	                <form method="post" action="${pageContext.request.contextPath}/user_search.do" class="search-container">
 					  <input id="search-box" type="text" class="search-box" name="keyword" />
 					  <label for="search-box">
 					    <span>🔍</span>
 					  </label>
 					  <input type="submit" id="search-submit" />
 					</form>
-                    <a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+					<c:if test="${session.user_id ne null}">
+                    	<a href="${pageContext.request.contextPath}/user_write.do" class="post_btn">글쓰기</a>
+                    </c:if>
                 </div>
 
                 <div class="paging">
-                    <a href="#" class="paging_first"><<</a>
-                    <a href="#" class="paging_prev"><</a>
-                    <a href="#" class="paging_number_active">1</a>
-                    <a href="#" class="paging_number">2</a>
-                    <a href="#" class="paging_number">3</a>
-                    <a href="#" class="paging_number">4</a>
-                    <a href="#" class="paging_number">5</a>
-                    <a href="#" class="paging_number">6</a>
-                    <a href="#" class="paging_number">7</a>
-                    <a href="#" class="paging_number">8</a>
-                    <a href="#" class="paging_number">9</a>
-                    <a href="#" class="paging_number">10</a>
-                    <a href="#" class="paging_next">></a>
-                    <a href="#" class="paging_last">>></a>
+                	<c:if test="${paging.currRange ne 1}">
+                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.startPage}" class="paging_first"><<</a>
+                	</c:if>
+                	<c:if test="${paging.currPage ne 1}">
+                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.prevPage}" class="paging_prev"><</a>
+                	</c:if>
+                	<c:forEach var="pageNum" begin="${paging.startPage}" end="${paging.endPage}">
+                		<c:choose>
+                			<c:when test="${pageNum eq paging.currPage}">
+                				<a href="javascript:void(0);" class="paging_number_active">${pageNum}</a>
+                			</c:when>
+                			<c:otherwise>
+                				<a href="${pageContext.request.contextPath}/user_talk.do?page=${pageNum}" class="paging_number">${pageNum}</a>
+                			</c:otherwise>
+                		</c:choose>
+                	</c:forEach>
+                	<c:if test="${paging.currPage ne paging.pageCount && paging.pageCount > 0}">
+                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.nextPage}" class="paging_next">></a>
+                    </c:if>
+                    <c:if test="${paging.currRange ne paging.rangeCount && paging.rangeCount > 0}">
+                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.endPage}" class="paging_last">>></a>
+                    </c:if>
                 </div>
             </div>
         </div>
