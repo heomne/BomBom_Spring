@@ -6,8 +6,8 @@ import lombok.Data;
 public class TalkPagination {
 	private int pageSize = 10;
 	private int rangeSize = 5;
-	private int currPage;
-	private int currRange;
+	private int currPage = 1;
+	private int currRange = 1;
 	private int listCount;
 	private int pageCount;
 	private int rangeCount;
@@ -62,6 +62,6 @@ public class TalkPagination {
 	}
 	
 	public void setEndIndex(int currPage) {
-		this.endIndex = startIndex * pageSize;
+		this.endIndex = startIndex + pageSize;
 	}
 }

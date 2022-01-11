@@ -10,8 +10,8 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-			   		over(order by talk_date desc) rnum from bombom_talk b)	
-			   		where rnum >= #{startIndex} and rnum <= #{endIndex}
+			   		over(order by talk_no desc) rnum from bombom_talk b)	
+			   		where rnum >= #{startIndex} and rnum < #{endIndex}
 		]]>
 	</select>
 	
