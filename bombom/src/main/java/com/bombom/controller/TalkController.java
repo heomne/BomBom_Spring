@@ -1,16 +1,21 @@
 package com.bombom.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bombom.model.MemberDTO;
+import com.bombom.model.TalkCommentDAO;
+import com.bombom.model.TalkCommentDTO;
 import com.bombom.model.TalkDAO;
 import com.bombom.model.TalkDTO;
 import com.bombom.model.TalkLikeDAO;
@@ -48,6 +55,9 @@ public class TalkController {
 	
 	@Autowired
 	private TalkLikeDAO talkLikeDao;
+	
+	@Autowired
+	private TalkCommentDAO talkCommentDao;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -234,6 +244,54 @@ public class TalkController {
 		logger.info("cancel_like.do - received likeCount = {}", dto.getLikeCount());
 		
 		return Integer.toString(dto.getLikeCount());
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/get_comments.do", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public String getComments(@RequestParam long talk_no) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		List<TalkCommentDTO> comments = talkCommentDao.getComments(talk_no);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		String commentsJson = objectMapper.writeValueAsString(comments);
+		
+		return commentsJson;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/add_comment.do", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public String addComment(@ModelAttribute TalkCommentDTO dto, HttpSession session) throws JsonGenerationException, JsonMappingException, IOException {
+		
+		if(session.getAttribute("user") == null) {
+			return "";
+		} else {
+			MemberDTO member = (MemberDTO)session.getAttribute("user");
+			
+			dto.setUser_id(member.getUser_id());
+			dto.setUser_nickname(member.getUser_nickname());
+		}
+		
+		int result = talkCommentDao.insertComment(dto);
+		
+		String resultText = null;
+		resultText = result > 0 ? "success" : "error";
+
+		return resultText;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "delete_comment.do", method = RequestMethod.POST)
+	public String deleteComment(@RequestParam long comment_no) {
+		logger.info("deleteComment comment_no : {}", comment_no);
+		
+		int result = talkCommentDao.deleteComment(comment_no);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 	
 }
