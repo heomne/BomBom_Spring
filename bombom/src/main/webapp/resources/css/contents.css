@@ -217,6 +217,10 @@ h1 {
   cursor: pointer;
 }
 
+.updateForm #comment_update {
+	margin-left: 10px;
+}
+
 .cmt_write .cmt_write_btns button:hover {
   background-color: #ff223b;
 }

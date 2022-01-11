@@ -49,10 +49,10 @@ function loadComments() {
 	    	console.log('comments load');
 	    	console.log(data);
 
+    		let html = "";
+	    	
 	    	if(data.length > 0) {
-	    		
-	    		let html = "";
-	    		
+	    	
 	    		for(let i=0; i<data.length; i++) {
 	    			html += '<div class="cmt_unit">';
 		    		html += '<div class="cmt_header">';
@@ -88,10 +88,14 @@ function loadComments() {
 		            html += '</div>';
 	    		}
 	    		
-	    		$cmt_list.innerHTML = html;
-	    		$comment_count.innerHTML = '(' + data.length + ')';
+	    	} else {
+	    		
+	    		html += "";
 	    		
 	    	}
+	    	
+	    	$cmt_list.innerHTML = html;
+    		$comment_count.innerHTML = '(' + data.length + ')';
 	  },
 	  	error: function(request, status, error) {
 		alert(request.status + ", " + request.responseText + ", " + error);
@@ -110,6 +114,44 @@ function updateForm(e) {
 		e.target.className = 'hidden';
 	}
 }
+
+function updateComment(e) {
+	
+	if(e.target.id === 'comment_update') {
+		
+		const parentNode = e.target.parentNode.parentNode.parentNode;
+		const comment_no = parentNode.querySelector('#comment_no').value;
+		const comment_cont = parentNode.querySelector('#comment_cont').value;
+		
+		let form = {
+			"comment_no" : comment_no,
+			"comment_cont" : comment_cont
+		};
+		
+		$.ajax({
+			type: "POST",
+			url: "/bombom/update_comment.do",
+			data: form,
+			dataType: "text",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		    success: function (data) {
+		    	
+		    	if(data === 'success') {
+		    		alert('댓글이 수정되었습니다.');
+		    		loadComments();
+
+		    	} else if (data === 'error') {
+		    		alert('에러가 발생했습니다. 잠시후 다시 시도해주세요.');
+		    	}
+		    	
+		    },
+		    error: function(request, status, error) {
+		    	alert(status + ", " + error);
+		    }
+		});
+	}
+}
+
 
 function deleteComment(e) {
 	
@@ -132,8 +174,9 @@ function deleteComment(e) {
 		    success: function (data) {
 		    	
 		    	if(data === 'success') {
+		    		loadComments();
 		    		alert('댓글이 삭제되었습니다.');
-		    		loadComments();		    		
+
 		    	} else if (data === 'error') {
 		    		alert('에러가 발생했습니다. 잠시후 다시 시도해주세요.');
 		    	}
@@ -150,5 +193,6 @@ function deleteComment(e) {
 
 $cmt_list.addEventListener('click', deleteComment);
 $cmt_list.addEventListener('click', updateForm);
+$cmt_list.addEventListener('click', updateComment);
 $comment_insert.addEventListener('click', addComment);
 window.addEventListener('load', loadComments);

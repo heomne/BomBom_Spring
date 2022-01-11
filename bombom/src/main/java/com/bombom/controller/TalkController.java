@@ -252,9 +252,12 @@ public class TalkController {
 		
 		List<TalkCommentDTO> comments = talkCommentDao.getComments(talk_no);
 		
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		String commentsJson = objectMapper.writeValueAsString(comments);
+		
+		logger.info("getComments {}", commentsJson);
 		
 		return commentsJson;
 	}
@@ -281,7 +284,7 @@ public class TalkController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "delete_comment.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete_comment.do", method = RequestMethod.POST)
 	public String deleteComment(@RequestParam long comment_no) {
 		logger.info("deleteComment comment_no : {}", comment_no);
 		
@@ -293,5 +296,20 @@ public class TalkController {
 			return "error";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/update_comment.do", method = RequestMethod.POST)
+	public String updateComment(TalkCommentDTO dto) {
+		
+		int result = talkCommentDao.updateComment(dto);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "error";
+		}
+	}
+	
+	
 	
 }

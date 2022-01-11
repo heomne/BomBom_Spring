@@ -17,6 +17,8 @@
 	
 	<jsp:include page="./include/header.jsp" flush="false"/>
 	
+	<c:set var="posts" value="${posts}"/>
+	
 	<div id="slideShow"> 
 			
 			<iframe src="./banner" frameborder="0" width="100%"  height=500 scrolling=auto name=banner ></iframe>
@@ -31,10 +33,23 @@
 				onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">
 		</div>
 
-		<div class="article">			
-			<h2>인기 게시글</h2>
-				
-		</div>
+	<div class="article">
+		<h2>인기 게시글</h2>
+			<div class="cont" >
+				<%-- <table class="td">
+					<c:forEach var="postDTO" items="${posts}" varStatus="status">
+						<tr>
+							<td>
+							<span class="rank_${status.count}">&nbsp;&nbsp;${status.count}&nbsp;&nbsp;</span>
+								<a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">
+									${postDTO.getTalk_title()}
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table> --%>
+			</div>
+  </div>
 		
 		<div class="article">	
 			<h2>영화 정보</h2>

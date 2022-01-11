@@ -24,8 +24,16 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-			   		over(order by talk_date desc) rnum from bombom_talk b where b.user_nickname like '%' || #{keyword} || '%' or b.talk_title like '%' || #{keyword} || '%' or b.talk_cont like '%' || #{keyword} || '%')
+			   		over(order by talk_no desc) rnum from bombom_talk b where b.user_nickname like '%' || #{keyword} || '%' or b.talk_title like '%' || #{keyword} || '%' or b.talk_cont like '%' || #{keyword} || '%')
 			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+		]]>
+	</select>
+	
+	<select id="getMainPosts" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+			select * from 
+				(select b.*, row_number() over(order by talk_like desc, talk_hit desc) rnum from bombom_talk b) 
+				where rnum between 1 and 10
 		]]>
 	</select>
 
