@@ -175,12 +175,12 @@ public class PremiereController {
 			this.dao.updateSequence(no);
 			
 			out.println("<script>");
-			out.println("alert('시사회 게시글 삭제 성공!'");
+			out.println("alert('시사회 게시글 삭제 성공!')");
 			out.println("location.href='user_premiere.do'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
-			out.println("alert('시사회 게시글 삭제 실패!'");
+			out.println("alert('시사회 게시글 삭제 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
