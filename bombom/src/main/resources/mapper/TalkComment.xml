@@ -12,4 +12,8 @@
 	<insert id="insertComment" parameterType="com.bombom.model.TalkCommentDTO">
 		insert into bombom_talk_comment values(#{talk_no}, #{user_id}, #{user_nickname}, comment_seq.nextval, #{comment_cont}, 0, SYSDATE)
 	</insert>
+	
+	<delete id="deleteComment" parameterType="long">
+		delete from bombom_talk_comment where comment_no = #{comment_no}
+	</delete>
 </mapper>

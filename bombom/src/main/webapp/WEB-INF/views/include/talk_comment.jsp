@@ -14,7 +14,7 @@
     </div>
 
     <div class="cmt_list">
-<!-- 
+<!-- 답글 샘플
         <div class="cmt_unit nested">
             <div class="cmt_header">
                 <strong class="cmt_writer">영화여우</strong>

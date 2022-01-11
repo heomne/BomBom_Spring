@@ -280,4 +280,18 @@ public class TalkController {
 		return resultText;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "delete_comment.do", method = RequestMethod.POST)
+	public String deleteComment(@RequestParam long comment_no) {
+		logger.info("deleteComment comment_no : {}", comment_no);
+		
+		int result = talkCommentDao.deleteComment(comment_no);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "error";
+		}
+	}
+	
 }

@@ -29,9 +29,8 @@ public class TalkCommentImpl implements TalkCommentDAO {
 	}
 
 	@Override
-	public int deleteComment(TalkCommentDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteComment(long comment_no) {
+		return this.sqlSession.delete("deleteComment", comment_no);
 	}
 
 }

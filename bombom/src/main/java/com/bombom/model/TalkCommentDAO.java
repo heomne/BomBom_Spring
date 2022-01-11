@@ -6,5 +6,5 @@ public interface TalkCommentDAO {
 	List<TalkCommentDTO> getComments(long talk_no);
 	int insertComment(TalkCommentDTO dto);
 	int updateComment(TalkCommentDTO dto);
-	int deleteComment(TalkCommentDTO dto);
+	int deleteComment(long comment_no);
 }

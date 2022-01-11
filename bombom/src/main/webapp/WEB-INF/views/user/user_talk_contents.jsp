@@ -46,6 +46,7 @@
 	<div class="container">
 		<input type="hidden" id="talk_no" value="${dto.getTalk_no()}"/>
 		<input type="hidden" id="user_id" value="${session.user_id}"/>
+		<input type="hidden" id="user_nickname" value="${session.user_nickname}"/>
         <div class="content_area">
             <header>
                 <div class="title">
