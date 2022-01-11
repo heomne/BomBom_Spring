@@ -59,6 +59,50 @@
 	    ]]>
 	    
 	</update>
+	
+	<select id="title" resultType="int">
+		select count(*) from bombom_news
+			where news_title like '%' || #{keyword} || '%'
+	</select>
+
+	
+	<select id="title_cont" resultType="int">
+		select count(*) from bombom_news
+			where news_title like '%' || #{keyword} || '%' or
+				news_cont like '%' || #{keyword} || '%'
+	</select>
+	
+	
+	
+	<select id="titleList" parameterType="com.bombom.model.NoticePageDTO"
+				resultType="com.bombom.model.NoticeDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by news_no desc) rnum from bombom_news b
+			   		where news_title like '%' || #{keyword} || '%')	
+			   		where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+
+	
+	<select id="titleCont" parameterType="com.bombom.model.NoticePageDTO"
+				resultType="com.bombom.model.NoticeDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by news_no desc) rnum from bombom_news b
+			   		where news_title like '%' || #{keyword} || '%' or 
+			   		news_cont like '%' || #{keyword} || '%')	
+			   		where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	
+	
+	
+	
  
  
  </mapper>
