@@ -54,7 +54,7 @@
 			</div>
 		</form>
 		
-		<form method="post" action="user_food_detail.do">
+		<form method="post" action="user_food_detail2.do">
 			<div class="article">
 				<div class="article_image">
 					<img src="resources/image/롯데_월드타워.jpeg" onclick="submit()">
@@ -71,7 +71,7 @@
 			</div>
 		</form>
 		
-		<form method="post" action="user_food_detail.do">
+		<form method="post" action="user_food_detail2.do">
 			<div class="article">
 				
 				<div class="article_image">
