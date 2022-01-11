@@ -35,7 +35,7 @@
 
 .talk_posts ul li {
   list-style: none;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .talk_posts ul li:last-child {
@@ -45,6 +45,7 @@
 .talk_posts .rank {
   padding: 3px 10px;
   background-color: #eee;
+  max-width: 28px;
   color: #222;
   border-radius: 5px;
   font-size: 16px;

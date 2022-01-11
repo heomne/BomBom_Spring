@@ -33,7 +33,7 @@
 		<![CDATA[
 			select * from 
 				(select b.*, row_number() over(order by talk_like desc, talk_hit desc) rnum from bombom_talk b) 
-				where rnum between 1 and 10
+				where rnum between 1 and 8
 		]]>
 	</select>
 
