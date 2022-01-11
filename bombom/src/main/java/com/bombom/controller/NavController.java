@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavController {
 	
-	@RequestMapping("user_info.do")
-	public String user_info() {
-		return "/user/user_info";
-	}
 	
 	@RequestMapping("user_food.do")
 	public String user_food() {

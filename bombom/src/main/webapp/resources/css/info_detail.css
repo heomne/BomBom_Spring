@@ -10,24 +10,34 @@ html {
 }
 
 .bg .bg_img {
-	background:url(../image/car2.jpg) 50% 50% no-repeat;
+	
 	width:100%;
 	height:420px;
 	opacity:0.25;
+	overflow:hidden;
 	position: absolute;
 	z-index: 2;
+	
+	
+	
 }
+
+.bg .bg_img img{
+}
+
 .bg .bg_content{
-	width:1000px;
+	width:1200px;
 	height:420px;
 	position:relative;
 	margin:0 auto;
 	z-index: 2;
+	box-shadow: 0px 0px 50px 20px black inset;
 } 
 
 .bg_content .mov_title{
 	
 	width:600px;
+	padding-left:100px;
 	padding-top: 70px;
 	color:white;
 	font-size: 2.6em;
@@ -37,6 +47,7 @@ html {
 .bg_content .mov_time{
 	
 	width:600px;
+	padding-left:100px;
 	padding-top: 20px;
 	color:white;
 	float: left;
@@ -44,7 +55,8 @@ html {
 
 .bg_content .mov_info{
 	
-	padding-top: 150px;
+	padding-top: 100px;
+	padding-left:100px;
 	color:white;
 	width:600px;
 	float: left;
@@ -64,6 +76,7 @@ html {
 	height:330px;
 	color:white;
 	float: right;
+	padding-right: 100px;
 }
 
 .bg_content .mov_poster img{
@@ -176,6 +189,27 @@ html {
 .info_content .content_text .text_synopsis{
 	padding-top:30px;
 	width:100%;
+}
+
+.info_content .content_text .area_synopsis{
+	width:100%;
+	height: 200px;
+	border: 0;
+	resize: none;
+	font-size: 17px;
+}
+
+.info_content .content_text .area_cast{
+	width:100%;
+	height: 200px;
+	border: 0;
+	resize: none;
+	font-size: 17px;
+}
+
+.info_content .content_text textarea:focus{
+	
+	outline: none;
 }
 
 .info_content .graph{

@@ -15,6 +15,7 @@ public class InfoDTO {
 	private String info_subtitle;
 	private String info_synopsis;
 	private String info_cast;
+	private int info_reviews;
 	
 	
 }
