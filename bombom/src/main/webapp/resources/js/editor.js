@@ -30,8 +30,8 @@ function imageUpload(formData) {
     imageURL = data;
     console.log(imageURL);
   },
-    error: function() {
-    alert('이미지 업로드 중 에러가 발생했습니다.');
+    error: function(request, status, error) {
+    alert(request + ", " + status + ", " + error);
   }
   });
   
