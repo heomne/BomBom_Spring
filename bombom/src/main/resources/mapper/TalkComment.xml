@@ -16,4 +16,8 @@
 	<delete id="deleteComment" parameterType="long">
 		delete from bombom_talk_comment where comment_no = #{comment_no}
 	</delete>
+	
+	<update id="updateComment" parameterType="com.bombom.model.TalkCommentDTO">
+		update bombom_talk_comment set comment_cont = #{comment_cont} where comment_no = #{comment_no}
+	</update>
 </mapper>

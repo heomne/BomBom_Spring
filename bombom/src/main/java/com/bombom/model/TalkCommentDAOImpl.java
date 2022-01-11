@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TalkCommentImpl implements TalkCommentDAO {
+public class TalkCommentDAOImpl implements TalkCommentDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -24,8 +24,7 @@ public class TalkCommentImpl implements TalkCommentDAO {
 
 	@Override
 	public int updateComment(TalkCommentDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("updateComment", dto);
 	}
 
 	@Override

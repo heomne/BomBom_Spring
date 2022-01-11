@@ -18,6 +18,8 @@
 	
 	<jsp:include page="./include/header.jsp" flush="false"/>
 	
+	<c:set var="posts" value="${posts}"/>
+	
 	<div id="slideShow"> 
 			
 			<iframe src="./banner" frameborder="0" width="100%"  height=500 scrolling=auto name=banner ></iframe>
@@ -42,78 +44,18 @@
 					
 		<h1>인기 게시글</h1>
 			<div class="cont" >
-			<table class="td">
-				
-					<tr>
-						<td>
-						<span class="rank_1">&nbsp;&nbsp;1&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank_2">&nbsp;&nbsp;2&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_3">&nbsp;&nbsp;3&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;4&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;5&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank">&nbsp;&nbsp;6&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;8&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;9&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_10">&nbsp;10&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-			</table>
+				<table class="td">
+					<c:forEach var="postDTO" items="${posts}" varStatus="status">
+						<tr>
+							<td>
+							<span class="rank_${status.count}">&nbsp;&nbsp;${status.count}&nbsp;&nbsp;</span>
+								<a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">
+									${postDTO.getTalk_title()}
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		
 		
