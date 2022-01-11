@@ -66,7 +66,7 @@
 			
 		<h2><span>${keyword }</span> 주변 식당 정보</h2>
 		
-		<%-- 카카오 지도 불러오기 
+		<%-- 카카오 지도 불러오기 --%>
 
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -85,9 +85,7 @@
 		        <div id="pagination"></div>
 		    </div>
 		</div>
-		--%>
 		
-		<iframe src="food_map.do" width="100%" height="500px" frameborder="0">
 		
 		</iframe>
 		

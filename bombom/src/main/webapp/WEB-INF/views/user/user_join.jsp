@@ -33,20 +33,23 @@
 					<table class="join_form"> 
 						<tr>
 							<th>아이디<span>*</span></th>
-							<td><input id="user_id" name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
-							<td><button type="button" class="btn_general" onclick="idCheck()">중복확인</button></td>
+							<td><input id="user_id" name="user_id" placeholder="소문자, 숫자, 언더바/하이픈 허용 4~20자리"></td>
+							<td>
+								<button type="button" class="btn_general" onclick="idCheck()">중복확인</button>
+								<input id="id_check" type="hidden" value="false"> 
+							</td>
 						</tr>
 						<tr>
 							<th>비밀번호<span>*</span></th>
-							<td><input type="password" name="user_pwd" placeholder="비밀번호를 입력해주세요"></td>
+							<td><input id="user_pwd" type="password" name="user_pwd" placeholder="문자, 숫자 1개이상 포함, 8자리 이상"></td>
 						</tr>
 						<tr>
 							<th>비밀번호확인<span>*</span></th>
-							<td><input type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
+							<td><input id="user_pwdcheck" type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
 						</tr>
 						<tr>
 							<th>이름<span>*</span></th>
-							<td><input name="user_name" placeholder="이름을 입력해주세요"></td>
+							<td><input id="user_name" name="user_name" placeholder="이름을 입력해주세요"></td>
 						</tr>
 						<tr>
 							<th>닉네임<span>*</span></th>
@@ -55,11 +58,14 @@
 						<tr>
 							<th>이메일<span>*</span></th>
 							<td><input id="user_email" name="user_email" placeholder="예: bom2022@bombom.com"></td>
-							<td><button type="button" class="btn_general" onclick="emailCheck()">중복확인</button></td>
+							<td>
+								<button type="button" class="btn_general" onclick="emailCheck()">중복확인</button>
+								<input id="email_check" type="hidden" value="false"> 
+							</td>
 						</tr>
 						<tr>
 							<th>휴대폰</th>
-							<td><input name="user_phone" placeholder="휴대폰 번호를 입력해주세요"></td>
+							<td><input id="user_phone" name="user_phone" placeholder="휴대폰 번호를 입력해주세요"></td>
 						</tr>
 						<tr>
 							<th rowspan="2">주소</th>
@@ -82,17 +88,17 @@
 						</tr>
 						<tr>
 							<th>성별</th>
-							<td>
+							<td colspan="2">
 								<select name="user_gender">
 									<option value="선택안함">선택안함</option>
 									<option value="남성">남성</option>
 									<option value="여성">여성</option>
-								</select>
+								</select>		
 							</td>
 						</tr>
 					</table>
-				
-					<button type="button" class="btn_register" onclick="addAddr(); submit();">가입하기</button>		
+					<div class="toast_box"><span class="toast"></span></div>
+					<button type="button" class="btn_register" onclick="addAddr(); if(validate()){submit();}">가입하기</button>		
 					<button type="reset" class="btn_reset">다시작성</button>
 				</form>
 				
