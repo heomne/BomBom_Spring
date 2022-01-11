@@ -1,22 +1,90 @@
 @charset "UTF-8";
 
-.notice{
-	
-	width: 1000px;
-	height: 45px;
-	background-color: beige;
-	margin-bottom : -10px;
-	border-radius: 50px;
-	
+.content {
+  width: 1000px;
+  margin: 0 auto;
+  font-family: "Noto Sans KR";
 }
 
+.notice {
+  width: 1000px;
+  height: 45px;
+  background-color: beige;
+  margin-bottom: -10px;
+  border-radius: 50px;
+}
 
-#notice{
-	
-	width : 40px;
-	height: 40px;
-	position: relative;
-	left: 5px;
-	top: 5px;
-	
+#notice {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: 5px;
+  top: 5px;
+}
+
+.talk_section .talk_posts {
+  width: 100%;
+  border-radius: 15px;
+  background-color: #fafafa;
+}
+
+.talk_posts ul {
+  margin: 0;
+  padding: 20px 20px 20px 50px;
+}
+
+.talk_posts ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.talk_posts ul li:last-child {
+  margin-bottom: 0;
+}
+
+.talk_posts .rank {
+  padding: 3px 10px;
+  background-color: #eee;
+  color: #222;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.talk_posts .rank.one {
+  background-color: #fb4357;
+  color: #fff;
+}
+
+.talk_posts .rank.two {
+  background-color: #222;
+  color: #fff;
+}
+
+.talk_posts .rank.three {
+  background-color: #c7af75;
+  color: #fff;
+}
+
+.talk_posts a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #222;
+}
+
+.talk_posts ul li .score_block {
+  min-width: 150px;
+  float: right;
+  margin-right: 50px;
+}
+
+.score_block .talk_score i {
+  padding: 0 5px;
+}
+
+.talk_score:first-child {
+  padding-right: 20px;
+}
+
+.talk_score:last-child {
+  min-width: 30px;
 }
