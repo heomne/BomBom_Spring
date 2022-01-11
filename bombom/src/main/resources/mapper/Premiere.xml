@@ -32,7 +32,7 @@
 	
 	<!-- 시사회 게시판 글 수정 -->
 	<update id="editPremiere" parameterType="com.bombom.model.PremiereDTO">
-		update bombom_premiere set premiere_thumbnail = #{premiere_thumbnail}, 
+		update bombom_premiere set premiere_thumbnail = #{premiere_thumbnail, jdbcType=VARCHAR}, 
 		premiere_title = #{premiere_title}, premiere_summary = #{premiere_summary}, 
 		premiere_cont = #{premiere_cont} where premiere_no = #{premiere_no}
 	</update>

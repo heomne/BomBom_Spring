@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
         
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,9 +69,15 @@
 		
 		<!-- 옆에 따라다니는 바 -->
 			 <div class="list_buttons">
-				<a href="<%=request.getContextPath() %>/premiere_write.do">
-				<img src="resources/image/글 쓰기.png" alt="글쓰기 아이콘" width="35px;" height="auto">
-				</a><br>
+			 <!-- 관리자만 글 쓰기 버튼 보여줌 -->
+			 <c:if test="${!empty user }">
+			  <c:if test="${user.getUser_nickname() eq '관리자'}">
+				  <a href="<%=request.getContextPath() %>/premiere_write.do">
+					<img src="resources/image/글 쓰기.png" alt="글쓰기 아이콘" width="35px;" height="auto">
+				  </a><br>
+			  </c:if>
+			 </c:if>
+			 
 				<a href="">
 				<img src="resources/image/검색.png" alt="검색 아이콘" width="35px;" height="auto">
 				</a><br>
@@ -81,22 +88,56 @@
 				<c:if test="${!empty list }">
 				<c:forEach items="${list }" var="dto">
 				<div class="content_cards" onclick="openModal('${dto.getPremiere_no() }')">
+				
+				<!-- 오늘날짜 -->
+				<jsp:useBean id="now" class="java.util.Date" />
+				<fmt:formatDate var="today" value="${now}" pattern="yyyyMMdd" />
+				
+				<!-- 비교할 날짜 -->
+				<fmt:parseDate var="bdate" value="${dto.getPremiere_date()}" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate var="oldday" value="${bdate}" pattern="yyyyMMdd" />
+				
+				<c:set var="dateCal" value="${today-oldday}"/>
+					
+				<!-- 게시글 작성일이 7일 전이면  N 딱지 보여주기-->	
+				<c:if test="${dateCal<'7' }">
 					<span class="new_atc">N</span>
+				</c:if>
 					<div class="content_img_wrapper">
 						<img src="resources/upload/premiere/${dto.getPremiere_thumbnail() }" 
 							alt="${dto.getPremiere_title() }">
 					</div>
 					<div class="content_body">
-						<!-- 문자열이 길면 자르자 -->
+						<!-- 제목 문자열이 길면 자르자 -->
 						<c:if test="${dto.getPremiere_title().length()>23 }">
 							<p class="content_title">${dto.getPremiere_title().substring(0,22) }...</p>
 						</c:if>
-						<!-- 문자열이 23자 이하면 그대로 보여주자 -->
+						<!-- 제목 문자열이 23자 이하면 그대로 보여주자 -->
 						<c:if test="${dto.getPremiere_title().length()<=23 }">
 							<p class="content_title">${dto.getPremiere_title() }</p>
 						</c:if>
-						<p class="content_summary">${dto.getPremiere_summary() }</p>
-						<p class="content_date">${dto.getPremiere_date().substring(0,10) }</p>
+						
+						<!-- 요약 문자열이 80자 초과하며 자르자  -->
+						<c:if test="${dto.getPremiere_summary().length()>80 }">
+							<p class="content_summary">${dto.getPremiere_summary().substring(0,80) }...</p>
+						</c:if>
+						<!-- 요약 문자열이 80자 이하면 그대로 보여주기  -->
+						<c:if test="${dto.getPremiere_summary().length()<=80 }">
+							<p class="content_summary">${dto.getPremiere_summary() }</p>
+						</c:if>
+						
+						<!-- 오늘날짜와, 작성일자가 7일 미만 차이나면 '00일전'으로 표기되게 하기 -->
+						<c:if test="${dateCal=='0'}">
+							<p class="content_date">오늘</p>		
+						</c:if>
+						
+						<c:if test="${dateCal<'7' && dateCal>'0'}">
+							<p class="content_date">${dateCal}일 전</p>		
+						</c:if>
+						
+						<c:if test="${dateCal>='7'}">
+							<p class="content_date">${dto.getPremiere_date().substring(0,10) }</p>		
+						</c:if>
 					</div>
 				</div>
 				</c:forEach>	
@@ -118,14 +159,18 @@
 		    <div class="writer_date">
 		    	<img src="resources/image/관리자.png" alt="관리자 아이콘" width="30px;" height="auto">
 		    	<span class="writer">관리자</span>
-		    	<span class="date">${dto.getPremiere_date() }</span>
+		    	<span class="date">${dto.getPremiere_date().substring(0,10) }</span>
 		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
-		    	<div class="modify_remove wrap_common">
-                   <a href="premiere_update.do?no=${dto.getPremiere_no() }">수정</a>
-                   <a href="premiere_delete.do?no=${dto.getPremiere_no() }"
-                    onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
-                </div>
-		    	<span class="comment">💭 2</span>
+		    	<c:if test="${!empty user }">
+					<c:if test="${user.getUser_nickname() eq '관리자'}">
+						<div class="modify_remove wrap_common">
+	                    <a href="premiere_update.do?no=${dto.getPremiere_no() }">수정</a>
+	                    <a href="premiere_delete.do?no=${dto.getPremiere_no() }"
+	                    onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+                		</div>
+					</c:if>
+				</c:if>	
+		    	<!-- <span class="comment">💭 2</span> -->
 		    </div>
 		    <div class="con">
 		    	${dto.getPremiere_cont() }
@@ -201,7 +246,7 @@
          <div id="modal" onclick="closeAllModal()"></div>
          <div class="modal-con notice">
 	  		<div class="close">	  		
-	  			<a href="javascript:closeModal('notice');">X</a>
+	  			<a href="javascript:closeAllModal();">X</a>
 	  		</div>
 		    <div class="title">
 		    	<h1>시사회 당첨 확률 올리는 법</h1>
@@ -210,11 +255,17 @@
 		    	<img src="resources/image/관리자.png" alt="관리자 아이콘" width="35px;" height="auto">
 		    	<span class="writer">관리자</span>
 		    	<span class="date">2021.12.30. 20:05</span>
+		    	<span></span>
 		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
-		    	<div class="modify_remove wrap_common">
-                   <a href="">수정</a>
-                   <a href="">삭제</a>
-                </div>
+		    	<c:if test="${!empty user }">
+					<c:if test="${user.getUser_nickname() eq '관리자'}">
+						<div class="modify_remove wrap_common">
+	                    <a href="premiere_update.do?no=${dto.getPremiere_no() }">수정</a>
+	                    <a href="premiere_delete.do?no=${dto.getPremiere_no() }"
+	                    onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+                		</div>
+					</c:if>
+				</c:if>	
 		    </div>
 		    <div class="con">
 <pre>
