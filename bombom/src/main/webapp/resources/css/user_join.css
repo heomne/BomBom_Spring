@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+
+.toast_box{
+	
+	width: 500px;
+	height: 20px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.toast{
+	display: none;
+	color: #fb4357;
+	font-size: 14px;
+	font-weight: 500;	
+}
+
 .join_box{
 	width: 800px;
 	margin: 80px auto;
@@ -10,9 +26,9 @@
 	
 	border-top: 2px solid black;
 	border-bottom: 1px solid black;
-	margin: 30px auto;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	margin: 10px auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 
