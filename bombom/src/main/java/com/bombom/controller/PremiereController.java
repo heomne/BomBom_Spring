@@ -1,6 +1,7 @@
 package com.bombom.controller;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -109,6 +110,34 @@ public class PremiereController {
 			HttpServletResponse response) 
 					throws IllegalStateException, IOException {
 		
+		// 화면단에서 전달되는 파일 받을 객체
+		MultipartFile thumbnail = request.getFile("thumbnail");
+		
+		// 화면단에서 전달된 파일 객체가 없을 시, 원래 파일로 대체
+		if(thumbnail.isEmpty()) {
+			 PremiereDTO original = this.dao.boardCont(dto.getPremiere_no());
+			 
+			 System.out.println("원래 파일 잘 가져오는지 보자 :" + original.getPremiere_thumbnail());
+			 
+			 dto.setPremiere_thumbnail(original.getPremiere_thumbnail());
+			
+		} else {
+			// 파일 저장할 경로 지정
+			String filePath = 
+					request.getSession().getServletContext().getRealPath("resources/upload/premiere/");	
+			
+			System.out.println("시사회 게시판 썸네일 파일경로 > " + filePath);
+			
+			// 파일을 업로드하기 위한 파일 객체 생성
+			File file = new File(filePath, thumbnail.getOriginalFilename());
+			
+			// 파일 업로드
+			// transferTo : 업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
+			thumbnail.transferTo(file);
+			
+			dto.setPremiere_thumbnail(file.getName());
+			
+		}
 		int res = this.dao.updateBoard(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -117,16 +146,17 @@ public class PremiereController {
 		
 		if(res>0) {
 			out.println("<script>");
-			out.println("alert('게시글 수정 성공!'");
+			out.println("alert('시사회 게시글 수정 성공!')");
 			out.println("location.href='user_premiere.do'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
-			out.println("alert('게시글 수정 실패!'");
+			out.println("alert('시사회 게시글 수정 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
 	}
+	
 	
 	// 시사회 게시판 글 삭제 비즈니스 로직
 	@RequestMapping("premiere_delete.do")

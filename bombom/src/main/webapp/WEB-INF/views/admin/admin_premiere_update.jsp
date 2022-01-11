@@ -54,6 +54,7 @@
             <c:set var="dto" value="${modify }" />
             <div class="write_block">
                 <div class="title_wrap">
+                <!-- 글 번호 히든으로 넘겨주기 -->
                 <input type="hidden" name="premiere_no" value="${dto.getPremiere_no() }">
 	                <table width="100%">
 	                	<tr>

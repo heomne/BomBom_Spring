@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 마이페이지 사이드바 */
+#sidebar {
+	float:left;
+	width: 500px;
+	height: 600px;
+	background-color: #fee2e6;
+	line-height: 200%;
+	padding:20px;
+}	
+
+#sidebar ul li{
+	list-style-type: none;
+	color: #494949;
+}
+
+#sidebar ul li:hover{
+	color : #fee2e6;
+	font-weight: bold;
+}
