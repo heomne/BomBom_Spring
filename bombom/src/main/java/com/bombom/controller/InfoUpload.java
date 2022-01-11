@@ -70,6 +70,8 @@ public void fileUpload(MultipartHttpServletRequest mRequest, InfoDTO dto, HttpSe
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				saveFileName = date + "/" + saveFileName;
 			}
 			
 			if(dto.getInfo_thumbnail() == null) {

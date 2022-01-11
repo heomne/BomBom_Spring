@@ -6,11 +6,59 @@
   
 <mapper namespace="com.bombom.model.InfoDAO">
 
+	<select id="countInfo" resultType="int">
+		select count(*) from bombom_movie_info	
+	</select>
+	
+	<select id="listInfo" parameterType="com.bombom.model.InfoPageDTO" 
+			resultType="com.bombom.model.InfoDTO">
+		<![CDATA[
+			select * from 
+				(select i.*, row_number() 
+					over(order by info_no desc) rnum from bombom_movie_info i)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]> 
+	</select>
+	
+	<select id="contInfo" parameterType="int" resultType="com.bombom.model.InfoDTO">
+		select * from bombom_movie_info where info_no = #{no}
+	</select>
+	
+	<select id="getAvg" parameterType="int" resultType="double">
+		select avg(review_rate) from bombom_movie_review where info_no = #{no}
+	</select>
+
 	<insert id="addInfo" parameterType="com.bombom.model.InfoDTO">
 		<selectKey resultType="int" keyProperty="info_no" order="BEFORE">
 			select max(info_no) from bombom_movie_info
 		</selectKey>
 		insert into bombom_movie_info values (#{info_no} + 1, #{info_year}, #{info_runtime},
-			#{info_thumbnail}, #{info_bgimg}, #{info_teaser}, #{info_title}, #{info_subtitle}, #{info_synopsis}, #{info_cast})
+			#{info_thumbnail}, #{info_bgimg}, #{info_teaser}, #{info_title}, #{info_subtitle}, #{info_synopsis}, #{info_cast}, 0)
 	</insert>
+	
+	<insert id="addReview" parameterType="com.bombom.model.InfoReviewDTO">
+		<selectKey resultType="int" keyProperty="review_no" order="BEFORE">
+			select max(review_no) from bombom_movie_review
+		</selectKey>
+		insert into bombom_movie_review values (#{info_no}, #{user_id}, #{user_nickname},
+			#{review_no} + 1, #{review_cont}, #{review_rate}, sysdate)
+	</insert>
+	
+	<update id="addReviewCount" parameterType="int">
+			update bombom_movie_info set info_reviews = info_reviews + 1 where info_no = #{no}
+	</update>
+	
+	<select id="countReview" parameterType="int" resultType="int">
+		select count(*) from bombom_movie_review where info_no = #{no}
+	</select>
+	
+	<select id="listReview" parameterType="com.bombom.model.InfoPageDTO" 
+			resultType="com.bombom.model.InfoReviewDTO">
+		<![CDATA[
+			select * from 
+				(select r.*, row_number() 
+					over(order by info_no desc) rnum from bombom_movie_review r)
+					where rnum >= #{startNo} and rnum <= #{endNo} and info_no = #{info_no}
+		]]> 
+	</select>
 </mapper>

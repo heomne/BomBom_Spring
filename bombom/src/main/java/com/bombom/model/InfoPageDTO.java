@@ -6,7 +6,7 @@ import lombok.Data;
 public class InfoPageDTO {
 	
 	private int page;                // 현재 페이지
-	private int rowsize;             // 한 페이지당 보여질 게시물의 수
+	private int rowsize = 10;             // 한 페이지당 보여질 게시물의 수
 	private int totalRecord;         // DB 상의 테이블의 전체 레코드 수
 	private int startNo;             // 해당 페이지에서 시작 번호
 	private int endNo;               // 해당 페이지에서 마지막 번호
@@ -18,6 +18,9 @@ public class InfoPageDTO {
 	// 검색 관련 멤버 선언
 	private String field;
 	private String keyword;
+	
+	// 리뷰페이지
+	private int info_no;
 	
 	// 기본 생성자
 	public InfoPageDTO() {  }   
@@ -56,5 +59,11 @@ public class InfoPageDTO {
 		this.field = field;
 		this.keyword = keyword;
 	}  
+	
+	public InfoPageDTO(int page, int rowsize, int totalRecord, int info_no) {
+		
+		this(page, rowsize, totalRecord);
+		this.info_no = info_no;
+	}
 	
 }

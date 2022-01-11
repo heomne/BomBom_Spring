@@ -52,6 +52,7 @@
 	width: 480px;
 	float:left;
 	height: 300px;
+	color: black;
 	border : 1px solid lightgray;
 	border-radius: 15px;
 }
