@@ -9,7 +9,7 @@
 
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
-		<link rel="stylesheet" type="text/css" href="resources/css/user_food.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
 	
 	<link rel="stylesheet" type="text/css" href="resources/css/notice_contt.css?after">

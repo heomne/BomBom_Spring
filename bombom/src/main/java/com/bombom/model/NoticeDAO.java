@@ -22,6 +22,6 @@ public interface NoticeDAO {
 	
 	int searchNewsCont(String field, String keyword);
 	
-	List<NoticeDTO> searchNewsList(NoticeDTO dto);
+	List<NoticeDTO> searchNewsList(NoticePageDTO dto);
 
 }

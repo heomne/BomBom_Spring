@@ -60,14 +60,25 @@ public class NoticeImplDAO implements NoticeDAO {
 
 	@Override
 	public int searchNewsCont(String field, String keyword) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.selectOne(field, keyword);
 	}
 
 	@Override
-	public List<NoticeDTO> searchNewsList(NoticeDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<NoticeDTO> searchNewsList(NoticePageDTO dto) {
+
+		if(dto.getField().equals("title")) {
+			
+			return this.sqlSession.selectList("titleList", dto);
+			
+		}else {
+			
+			return this.sqlSession.selectList("titleCont", dto);
+			
+		}
+		
+		//if(dto.getField().equals("title_cont"))
+		
 	}
 
 	@Override

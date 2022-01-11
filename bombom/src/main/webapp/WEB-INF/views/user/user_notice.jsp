@@ -11,9 +11,9 @@
 
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/user_food.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/noticee.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/notice.css?after">
 	
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -66,6 +66,15 @@
 				</c:forEach>
 				</c:if>
 				
+				<c:if test="${empty list }">
+					<tr>
+						<td colspan="5">
+							<h2>검색된 게시물이 없습니다...</h2>
+						</td>
+					</tr>
+				
+				</c:if>
+				
 				
 			
 			</table>
@@ -114,14 +123,16 @@
 		<div class="search">
 				<form method="post"
 					action="<%=request.getContextPath() %>/user_bombom_search.do">
+					
+			<input type="hidden" name="page" value="${dto.getPage() }">
 			
 					<select name="field">
 						<option value="title">제목</option>
-						<option value="kind">말머리</option>
+						<option value="title_cont">제목 + 내용</option>
 			
 					</select>
 		
-				<input size="40px" type="text" name="keyword">&nbsp;&nbsp;&nbsp;
+				<input size="50px" type="text" name="keyword">&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="검색">
 		
 				</form>

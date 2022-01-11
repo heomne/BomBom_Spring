@@ -11,13 +11,13 @@
 
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/user_food.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/notice_cont.css?after">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Tui_Editor.css" />
 
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/talk.css?after"/>
+	
 
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -113,7 +113,7 @@
     	
     	
     	</div>
-    
+    	<br> <br>
     
     
 
