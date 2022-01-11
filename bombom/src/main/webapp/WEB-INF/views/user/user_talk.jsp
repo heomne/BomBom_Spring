@@ -108,7 +108,7 @@
 
                 <div class="paging">
                 	<c:if test="${paging.currRange ne 1}">
-                		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.startPage}" class="paging_first"><<</a>
+                		<a href="${pageContext.request.contextPath}/user_talk.do?page=1" class="paging_first"><<</a>
                 	</c:if>
                 	<c:if test="${paging.currPage ne 1}">
                 		<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.prevPage}" class="paging_prev"><</a>
@@ -127,7 +127,7 @@
                     	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.nextPage}" class="paging_next">></a>
                     </c:if>
                     <c:if test="${paging.currRange ne paging.rangeCount && paging.rangeCount > 0}">
-                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.endPage}" class="paging_last">>></a>
+                    	<a href="${pageContext.request.contextPath}/user_talk.do?page=${paging.lastPage}" class="paging_last">>></a>
                     </c:if>
                 </div>
             </div>
