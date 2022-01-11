@@ -136,7 +136,6 @@ public class PremiereController {
 			thumbnail.transferTo(file);
 			
 			dto.setPremiere_thumbnail(file.getName());
-			
 		}
 		int res = this.dao.updateBoard(dto);
 		
