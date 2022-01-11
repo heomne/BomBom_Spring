@@ -21,6 +21,11 @@ public class TalkDAOImpl implements TalkDAO {
 	public List<TalkDTO> getSearchPosts(TalkPagination pagination) {
 		return this.sqlSession.selectList("searchPosts", pagination);
 	}
+	
+	@Override
+	public List<TalkDTO> getMainPosts() {
+		return this.sqlSession.selectList("getMainPosts");
+	}
 
 
 	@Override
@@ -67,4 +72,6 @@ public class TalkDAOImpl implements TalkDAO {
 	public int decreaseLike(TalkLikeDTO dto) {
 		return this.sqlSession.update("decreaseLike", dto);
 	}
+
+
 }

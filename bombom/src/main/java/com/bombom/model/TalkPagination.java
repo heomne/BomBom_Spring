@@ -17,6 +17,7 @@ public class TalkPagination {
 	private int nextPage;
 	private int startIndex = 0;
 	private int endIndex = 0;
+	private int lastPage = 0;
 	private String keyword = null;
 	
 	public TalkPagination(int listCount, int currPage) {
@@ -27,6 +28,7 @@ public class TalkPagination {
 		rangeSetting(currPage);
 		setStartIndex(currPage);
 		setEndIndex(startIndex);
+		setLastPage(listCount);
 	}
 	
 	public void setPageCount(int listCount) {
@@ -63,5 +65,9 @@ public class TalkPagination {
 	
 	public void setEndIndex(int currPage) {
 		this.endIndex = startIndex + pageSize;
+	}
+	
+	public void setLastPage(int listCount) {
+		this.lastPage = (int) Math.ceil(listCount*1.0 / pageSize);
 	}
 }
