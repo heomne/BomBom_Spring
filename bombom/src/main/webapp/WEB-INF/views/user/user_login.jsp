@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +23,32 @@
 	
 	<div class="content">
 		<div class="article">	
+			
+			<div class="toast_box">
+				<c:if test="${param.login eq 'fail'}">
+					<span class="toast">아이디와 비밀번호를 확인해주시기 바랍니다</span>		
+				</c:if>
+				<c:if test="${param.register eq 'success'}">
+					<span class="toast">회원가입이 완료되었습니다. 로그인해주세요.</span>		
+				</c:if>
+				<c:if test="${param.register eq 'fail'}">
+					<span class="toast">회원가입에 실패했습니다. 고객센터로 문의해주세요.</span>		
+				</c:if>
+			</div>
+			
+			<script>
+				$('.toast').fadeIn(700).delay(2000).fadeOut(700);
+			</script>
+			
 			<div class="login_box" align="center">
-				<h1>로그인</h1>
-				<br>
-				<input name="id" placeholder="아이디를 입력해주세요"><br>
-				<input type="password" name="pwd" placeholder="비밀번호를 입력해주세요"><br><br>
-				<button class="btn_login">로그인</button><br>
-				<button class="btn_join">회원가입</button><br>
+				<form action="user_login_ok.do" method="post">
+					<h1>로그인</h1>
+					<br>
+					<input name="user_id" placeholder="아이디를 입력해주세요"><br>
+					<input type="password" name="user_pwd" placeholder="비밀번호를 입력해주세요"><br><br>
+					<button type="submit" class="btn_login">로그인</button><br>
+				</form>
+					<button onclick="location.href='user_join.do'" class="btn_join">회원가입</button><br>
 				
 			</div>
 		</div>

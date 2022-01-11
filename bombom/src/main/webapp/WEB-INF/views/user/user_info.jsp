@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,12 +51,9 @@
 	    </div>
     </div>
 	
-	<!-- <div class="info_banner">
-		<div class="banner_text">
-			<h1>영화 정보</h1>
-			<h4>상영중인 영화의 정보를 한눈에!</h4>
-		</div>
-	</div> -->
+	<c:set var="list" value="${List }" />
+	<c:set var="dto" value="${Paging }" />
+			
 	
 	<div class="content">
 	
@@ -65,7 +64,7 @@
 				<h2>* 영화정보</h2>
 			</div>
 			<div class="info_array">
-				최신 순 | 인기 순 | 댓글 순
+				개봉 순 | 인기 순 | 리뷰 순
 		
 			</div>
 		</div>
@@ -74,67 +73,78 @@
 		<div class="article">
 			<div class="info_content">
 			
-				<a class="content_cards" href="info_detail.do">
-					<div class="cards_image">
-						<img src="resources/image/kings_man.jpg" >
-					</div>
-					<div class="cards_cont">
-						<div class="cont_title">
-							킹스맨 : 퍼스트 에이전트
+			<c:if test="${!empty list }">
+				<c:forEach items="${list }" var="i">
+					
+						
+					
+					<a class="content_cards" href="${pageContext.request.contextPath}/info_detail.do?no=${i.getInfo_no() }&page=${dto.getPage() }">
+						<div class="cards_image">
+							<img src="resources/upload/info/${i.getInfo_thumbnail() }" >
 						</div>
-						<div class="cont_text">
-							안녕하세요 테스트입니다 안녕하세요 테스트입니다 안녕하세요 테스트입니다 안녕하세요 테스트입니다
+						<div class="cards_cont">
+							<div class="cont_title">
+								${i.getInfo_title() }
+							</div>
+							
+							<c:if test="${i.getInfo_synopsis().length() > 50}">
+								<div class="cont_text">
+									
+									${fn:substring(i.getInfo_synopsis(), 0, 50) }...
+								</div>
+                       		</c:if>
+                       		<c:if test="${i.getInfo_synopsis().length() <= 30}">
+								<div class="cont_text">
+									
+									${i.getInfo_synopsis()}
+								</div>
+                       		</c:if>
+							
 						</div>
-					</div>
-				</a>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
-				
-				<div class="content_cards">
-					<h1>영화정보 본문 내용 들어갈 자리</h1>
-					<p>어쩌고저쩌고</p>
-				</div>
+					</a>
+				</c:forEach>
+			</c:if>
+			
+			<c:if test="${empty list }">
+				<tr>
+					<td colspan="4" align="center">
+						<h3>검색된 게시물이 없습니다..</h3>
+					</td>
+				</tr>
+			</c:if>
+			
 				
 				
+				
+				<div class="info_bottom">
+                    <button type="button" class="search_btn">🔎</button>
+                    <a href="${pageContext.request.contextPath}/user_info_write.do" class="post_btn">글쓰기</a>
+                </div>
+                
                 <div class="paging">
+	                <c:if test="${dto.getPage() > dto.getBlock() }">
+						<a href="${pageContext.request.contextPath}/user_info.do?page=1" class="paging_first"><<</a>
+						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getStartBlock() - 1 }" class="paging_prev"><</a>
+					</c:if>
+					
+					<c:forEach begin="${dto.getStartBlock() }" 
+							end="${dto.getEndBlock() }" var="i">
+						<c:if test="${i == dto.getPage() }">
+							<b> <a href="${pageContext.request.contextPath}/user_info.do?page=${i }" class="paging_number_active">${i }</a></b>
+						</c:if>		
+						
+						<c:if test="${i != dto.getPage() }">
+							<a href="${pageContext.request.contextPath}/user_info.do?page=${i }" class="paging_number">${i }</a>
+						</c:if>		
+					</c:forEach>
+					
+					<c:if test="${dto.getEndBlock() < dto.getAllPage() }">
+						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getEndBlock() + 1 }" class="paging_next">></a>
+						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getAllPage()}" class="paging_last">>></a>
+					</c:if>
+				</div>
+                
+                <!-- <div class="paging">
                     <a href="#" class="paging_first"><<</a>
                     <a href="#" class="paging_prev"><</a>
                     <a href="#" class="paging_number_active">1</a>
@@ -149,7 +159,7 @@
                     <a href="#" class="paging_number">10</a>
                     <a href="#" class="paging_next">></a>
                     <a href="#" class="paging_last">>></a>
-                </div>
+                </div> -->
       
 			</div>
 		</div>

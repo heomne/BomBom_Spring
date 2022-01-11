@@ -18,9 +18,11 @@
 	
 	<jsp:include page="./include/header.jsp" flush="false"/>
 	
+	<c:set var="posts" value="${posts}"/>
+	
 	<div id="slideShow"> 
 			
-			<iframe src="./banner" frameborder="0" width="100%"  height=420 scrolling=auto name=banner ></iframe>
+			<iframe src="./banner" frameborder="0" width="100%"  height=500 scrolling=auto name=banner ></iframe>
 			
 	</div>
 	<div class="content">
@@ -30,81 +32,30 @@
 		
 		
 		<%-- 본문 컨텐츠 자리 --%>
+		
+		<div class="notice">
+		
+			<img id="notice" alt="" src="resources/image/notice.png"
+				onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">
+	
+		</div>
+		<br>
+
 					
 		<h1>인기 게시글</h1>
 			<div class="cont" >
-			<table class="td">
-				
-					<tr>
-						<td>
-						<span class="rank_1">&nbsp;&nbsp;1&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank_2">&nbsp;&nbsp;2&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_3">&nbsp;&nbsp;3&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;4&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;5&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank">&nbsp;&nbsp;6&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;8&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;9&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_10">&nbsp;10&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-			</table>
+				<table class="td">
+					<c:forEach var="postDTO" items="${posts}" varStatus="status">
+						<tr>
+							<td>
+							<span class="rank_${status.count}">&nbsp;&nbsp;${status.count}&nbsp;&nbsp;</span>
+								<a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">
+									${postDTO.getTalk_title()}
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		
 		
@@ -118,9 +69,9 @@
 								<img class="first_img"  alt="" src="">
 							
 								<b>영화제목</b>
-								<p id="explain">설명설명설명</p>
+								
 								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 (실관람평갯수)</p>
+								<p id="grade"> 0.0 </p>
 						</div>
 						
 							<div class="second">
@@ -128,30 +79,12 @@
 								<img class="first_img"  alt="" src="">
 								
 								<b>영화제목</b>
-								<p id="explain">설명설명설명</p>
-								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 (실관람평갯수)</p>
-							</div>
-							
-							<div class="third">
-							
-								<img class="first_img"  alt="" src="">
 								
-								<b>영화제목</b>
-								<p id="explain">설명설명설명</p>
 								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 (실관람평갯수)</p>
+								<p id="grade"> 0.0 </p>
 							</div>
-						
-							<div class="four">
 							
-								<img class="first_img"  alt="" src="">
-								
-								<b>영화제목</b>
-								<p id="explain">설명설명설명</p>
-								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 (실관람평갯수)</p>
-							</div>
+							
 						
 						
 					</div>
@@ -190,7 +123,29 @@
 			<div class="content">
 				<h1>극장 맛집</h1>
 					<div class="all" align="center">전체보기&nbsp;&nbsp;></div>
-				<p>어쩌고저쩌고</p>
+				
+				<div class="back3">
+					<div class="food_first">
+						<img class="f_img" alt="" src="">
+						<b class="cgv">CGV 용산아이파크몰</b>
+					
+					</div>
+					
+					<div class="food_second">
+						<img class="f_img" alt="" src="">
+						<b class="cgv">롯데시네마 월드타워</b>
+					
+					</div>
+					
+					<div class="food_third">
+						<img class="f_img" alt="" src="">
+						<b class="cgv">메가박스 코엑스</b>
+					
+					</div>
+				
+				</div>
+				
+				
 			</div>
 		</div>
 		

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.search{
+	
+	margin-left : 230px;
+	margin-top: 50px;
+	margin-bottom: 70px;
+	
+}
+
+
+.table{
+	
+	
+  table-layout: auto;
+  border-collapse: collapse;
+
+	
+}
+
+
+th{
+	font-size: 20px;
+
+}
+
+td{
+	text-align: center;
+}
+
+
+.write{
+	
+	margin-left: 910px;
+	width : 90px;
+	height: 40px;
+	font-size: 18px;
+	border-radius: 10px;
+	background-color: white;
+
+}
+
+
+.page{
+	
+	text-align: center;
+	
+}
+
+
+
+
+
+
+

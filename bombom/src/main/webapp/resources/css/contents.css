@@ -73,7 +73,8 @@ h1 {
   text-align: center;
 }
 
-.content_like .like {
+.content_like .like,
+.content_like .like_active {
   transition: all 0.2s;
   width: 120px;
   height: 50px;
@@ -84,6 +85,11 @@ h1 {
   font-size: 24px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.content_like .like_active {
+	background-color: #fb4357;
+	color: #fff;
 }
 
 .content_like .like:hover {
@@ -103,7 +109,7 @@ h1 {
 }
 
 .cmt_list .cmt_unit {
-  margin-top: 30px;
+  margin-top: 15px;
   padding-left: 20px;
   font-size: 15px;
 }
@@ -166,15 +172,17 @@ h1 {
   color: white;
 }
 
-.cmt_list .cmt_write {
+.cmt_write {
   margin-top: 30px;
   padding-left: 20px;
   height: 180px;
 }
 
-.cmt_list .cmt_write textarea {
+.cmt_write textarea,
+.cmt_list textarea {
   transition: all 0.2s;
   width: 100%;
+  min-height: 120px;
   border-radius: 10px;
   border-style: none;
   font-family: inherit;
@@ -183,19 +191,22 @@ h1 {
   background-color: #f7f7f7;
   color: #222;
   box-sizing: border-box;
+  resize: none;
 }
 
-.cmt_list .cmt_write textarea:focus {
+.cmt_write textarea:focus {
   outline: none;
   border-style: none;
   background-color: #eee;
 }
 
-.cmt_write .cmt_write_btns {
+.cmt_write .cmt_write_btns,
+.updateForm .cmt_write_btns {
   float: right;
 }
 
-.cmt_write .cmt_write_btns button {
+.cmt_write .cmt_write_btns button,
+.updateForm .cmt_write_btns button {
   transition: all 0.2s;
   background-color: #fb4357;
   color: #fff;
@@ -204,6 +215,10 @@ h1 {
   border-style: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.updateForm #comment_update {
+	margin-left: 10px;
 }
 
 .cmt_write .cmt_write_btns button:hover {
@@ -231,3 +246,33 @@ h1 {
   margin-top: 50px;
   margin-bottom: 100px;
 }
+
+.content_bottom {
+  margin-bottom: 30px;
+  padding-left: 870px;
+}
+
+.content_bottom button{
+  background-color: #fff;
+  color: #222;
+  border-style: none;
+  cursor: pointer;
+}
+
+.modify_remove button {
+	border-style: none;
+	background-color: #fff;
+	cursor: pointer;
+	padding: 0 2px;
+	color: #696A6C;
+}
+
+.hidden {
+	display: none;
+}
+
+.updateForm {
+	margin-bottom: 10px;
+}
+
+

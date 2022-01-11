@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+	font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
 
 html {
 	scroll-behavior: smooth;
@@ -10,24 +15,34 @@ html {
 }
 
 .bg .bg_img {
-	background:url(../image/car2.jpg) 50% 50% no-repeat;
+	
 	width:100%;
 	height:420px;
 	opacity:0.25;
+	overflow:hidden;
 	position: absolute;
 	z-index: 2;
+	
+	
+	
 }
+
+.bg .bg_img img{
+}
+
 .bg .bg_content{
-	width:1000px;
+	width:1200px;
 	height:420px;
 	position:relative;
 	margin:0 auto;
 	z-index: 2;
+	box-shadow: 0px 0px 50px 20px black inset;
 } 
 
 .bg_content .mov_title{
 	
 	width:600px;
+	padding-left:100px;
 	padding-top: 70px;
 	color:white;
 	font-size: 2.6em;
@@ -37,6 +52,7 @@ html {
 .bg_content .mov_time{
 	
 	width:600px;
+	padding-left:100px;
 	padding-top: 20px;
 	color:white;
 	float: left;
@@ -44,7 +60,8 @@ html {
 
 .bg_content .mov_info{
 	
-	padding-top: 150px;
+	padding-top: 100px;
+	padding-left:100px;
 	color:white;
 	width:600px;
 	float: left;
@@ -64,6 +81,7 @@ html {
 	height:330px;
 	color:white;
 	float: right;
+	padding-right: 100px;
 }
 
 .bg_content .mov_poster img{
@@ -104,8 +122,7 @@ html {
 	display: inline-block;
 	width: 320px;
 	line-height: 50px;
-	border: 1px solid #eee;
-	background-color:#fb4357;
+	border: 1px solid #fb4357;
 	border-radius:15px 15px 0 0;
 	margin: 0;
 	
@@ -113,10 +130,23 @@ html {
 	
 }
 
+.on {
+	
+	background-color:#fb4357;
+	border: 1px solid #fb4357;
+    border-bottom: 0;
+    z-index: 2;
+}
+
+.off {
+	
+	background-color: white;
+}
+
 .info_nav a {
 	font-weight: 700;
     font-size: 16px;
-    color: white;
+    color: #fb4357;
     text-decoration: none;
     
 }
@@ -125,16 +155,9 @@ html {
 
 .info_nav a:hover {
 	cursor: pointer;
-	color: #fb4357;
+	color: #white;
 }
 
-.on {
-	
-	background-color:white;
-	border: 1px solid #fb4357;
-    border-bottom: 0;
-    z-index: 2;
-}
 
 .info_nav a#on {
 	color: #fb4357;
@@ -173,6 +196,27 @@ html {
 	width:100%;
 }
 
+.info_content .content_text .area_synopsis{
+	width:100%;
+	height: 200px;
+	border: 0;
+	resize: none;
+	font-size: 17px;
+}
+
+.info_content .content_text .area_cast{
+	width:100%;
+	height: 200px;
+	border: 0;
+	resize: none;
+	font-size: 17px;
+}
+
+.info_content .content_text textarea:focus{
+	
+	outline: none;
+}
+
 .info_content .graph{
 	padding-top:100px;
 	width:100%;
@@ -191,7 +235,7 @@ html {
 	font-weight:bold;
 }
 
-.info_content .teaser span::before{
+/* .info_content .teaser span::before{
 	
 	content:'';
 	width:100%;
@@ -200,9 +244,9 @@ html {
 	background-color: #fb4357;
 	display: block;
     position: absolute;
-}
+} */
 
-.info_content .teaser span::after{
+/* .info_content .teaser span::after{
 	
 	content:'';
 	margin-top:5px;
@@ -211,7 +255,7 @@ html {
 	background-color: #fb4357;
 	display: block;
     position: absolute;
-}
+} */
 
 .info_content .teaser .video{
 	

@@ -50,7 +50,7 @@ body {
 	text-align: center;
 	position: sticky;
 	top: 0;	
-	background-color: white;
+	background-color: #fcfcfc;
 	vertical-align: middle;
 	z-index: 3;
 	
@@ -66,7 +66,7 @@ body {
 	text-decoration: none;
 	list-style: none;
 	display: inline-block;
-	width: 230px;
+	width: 200px;
 	line-height: 50px;
 	
 }
@@ -101,7 +101,8 @@ body {
 	text-decoration: none;
 	list-style: none;
 	display: inline-block;
-	width: 80px;
+	width: 90px;
+	text-align: center;
 }
 
 .login span {

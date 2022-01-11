@@ -21,7 +21,7 @@
 		
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
-			$('.menu3').attr('id', 'on');
+			$('.menu1').attr('id', 'on');
 			}
 		);
 		
@@ -39,25 +39,29 @@
     </div>
 
 	<div class="container">
-        <form>
+        <form name="postForm" action="${pageContext.request.contextPath}/user_write.do" method="post">
             <header class="write_header">
                 <h2>영화수다 : 글쓰기</h2>
             </header>
             
+            <input type="hidden" name="user_id" value="${user.user_id}"/>
+            <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
             <div class="write_block">
                 <div class="title_wrap">
-                    <input type="text" id="title" name="title" placeholder="제목을 입력해주세요"/>
+                    <input type="text" id="title" name="talk_title" placeholder="제목을 입력해주세요"/>
                 </div>
 
                 <div class="editor_wrap">
                     <div id="editor"></div>
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+                    <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
+                    <input id="contValue" type="hidden" name="talk_cont" value=""/>
                 </div>
             </div>
             <div class="write_btns">
                 <button class="submit_btn" type="button">등록</button>
-                <button class="goBack_btn" type="button">뒤로가기</button>
+                <button class="goBack_btn" type="button" onclick="history.back()">뒤로가기</button>
             </div>
         </form>
     </div>

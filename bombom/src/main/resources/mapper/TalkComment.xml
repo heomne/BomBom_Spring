@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bombom.model.TalkCommentDAO">
+	<select id="getComments" parameterType="long" resultType="com.bombom.model.TalkCommentDTO">
+		select * from bombom_talk_comment where talk_no = #{talk_no} order by comment_date
+	</select>
+	
+	<insert id="insertComment" parameterType="com.bombom.model.TalkCommentDTO">
+		insert into bombom_talk_comment values(#{talk_no}, #{user_id}, #{user_nickname}, comment_seq.nextval, #{comment_cont}, 0, SYSDATE)
+	</insert>
+	
+	<delete id="deleteComment" parameterType="long">
+		delete from bombom_talk_comment where comment_no = #{comment_no}
+	</delete>
+	
+	<update id="updateComment" parameterType="com.bombom.model.TalkCommentDTO">
+		update bombom_talk_comment set comment_cont = #{comment_cont} where comment_no = #{comment_no}
+	</update>
+</mapper>

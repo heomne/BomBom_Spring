@@ -30,7 +30,7 @@
 }
 
 .article img:hover {
-	transform: scale(1.1);
+	transform: scale(1.05);
 	transition: 1s;
 }
 
@@ -49,7 +49,7 @@
 	position: relative;
 	width: 100%;
 	height: 250px;
-	background-image: url("../image/suda_img.jpg");
+	background-image: url("../image/banner_food.png");
 	background-size: cover;
 	object-fit: cover;
 	margin-bottom: 30px;

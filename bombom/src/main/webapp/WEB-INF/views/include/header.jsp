@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 	<%-- 헤더 --%>
 	<div class="header">
@@ -8,12 +9,25 @@
 			<div class="content">
 				<div class="login">
 					<ul>
-						<li>
-							<span onclick="location.href='user_login.do'">로그인</span>
-						</li>
-						<li>
-							<span onclick="location.href='user_join.do'">회원가입</span>
-						</li>	
+
+						<c:if test="${empty user }">
+							<li>
+								<span onclick="location.href='${pageContext.request.contextPath}/user_login.do'">로그인</span>
+							</li>
+							<li>
+								<span onclick="location.href='${pageContext.request.contextPath}/user_join.do'">회원가입</span>
+							</li>
+						</c:if>	
+						
+						<c:if test="${!empty user }">
+							<li id="first">
+								<span>${user.getUser_nickname() } 님</span>
+							</li>
+							<li>
+								<span onclick="location.href='${pageContext.request.contextPath}/user_logout.do'">로그아웃</span>
+							</li>
+						</c:if>	
+
 					</ul>
 				</div>
 			</div>
@@ -32,11 +46,11 @@
 	<div class="nav">
 	
 		<ul>
-			<li><span class="menu1" onclick="location.href='${pageContext.request.contextPath}/user_talk.do'">영화수다</span></li>
+			<li><span class="menu0" onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">봄봄소식</span></li>
+			<li><span class="menu1" onclick="location.href='${pageContext.request.contextPath}/user_talk.do?page=1'">영화수다</span></li>
 			<li><span class="menu2" onclick="location.href='${pageContext.request.contextPath}/user_info.do'">영화정보</span></li>
 			<li><span class="menu3" onclick="location.href='${pageContext.request.contextPath}/user_food.do'">극장맛집</span></li>
 			<li><span class="menu4" onclick="location.href='${pageContext.request.contextPath}/user_premiere.do'">시사회</span></li>
-			<!-- <li><span class="menu5" onclick="location.href='user_event.do'">이벤트</span></li> -->
 		</ul>
 			
 	</div>

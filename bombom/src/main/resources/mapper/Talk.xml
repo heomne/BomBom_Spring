@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bombom.model.TalkDAO">
+
+	<select id="getPosts" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by talk_no desc) rnum from bombom_talk b)	
+			   		where rnum >= #{startIndex} and rnum < #{endIndex}
+		]]>
+	</select>
+	
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from bombom_talk 
+		where user_nickname like '%' || #{keyword} || '%' or talk_title like '%' || #{keyword} || '%' or talk_cont like '%' || #{Spring} || '%'
+	</select>
+	
+	<select id="searchPosts" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+			   		over(order by talk_no desc) rnum from bombom_talk b where b.user_nickname like '%' || #{keyword} || '%' or b.talk_title like '%' || #{keyword} || '%' or b.talk_cont like '%' || #{keyword} || '%')
+			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+		]]>
+	</select>
+	
+	<select id="getMainPosts" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+			select * from 
+				(select b.*, row_number() over(order by talk_like desc, talk_hit desc) rnum from bombom_talk b) 
+				where rnum between 1 and 10
+		]]>
+	</select>
+
+	<select id="getPost" parameterType="long" resultType="com.bombom.model.TalkDTO">
+		select * from bombom_talk where talk_no = #{talk_no}
+	</select>
+	
+	<update id="increaseHit" parameterType="long">
+		update bombom_talk set talk_hit = talk_hit + 1 where talk_no = #{talkNo}
+	</update>
+
+	<insert id="insertPost" parameterType="com.bombom.model.TalkDTO">
+		<selectKey keyProperty="talk_no" resultType="long" order="BEFORE">
+			select talk_seq.nextval from dual
+		</selectKey>
+		insert into bombom_talk values(#{talk_no}, #{user_id}, #{user_nickname}, #{talk_title}, #{talk_cont}, 0, 0, 0, SYSDATE, 0)
+	</insert>
+	
+	<update id="updatePost" parameterType="com.bombom.model.TalkDTO">
+		update bombom_talk set talk_title = #{talk_title}, talk_cont = #{talk_cont}	where talk_no = #{talk_no}
+	</update>
+	
+	<delete id="deletePost" parameterType="long">
+		delete from bombom_talk where talk_no = #{talk_no}
+	</delete>
+	
+	<select id="postCount" resultType="int">
+		select count(*) from bombom_talk
+	</select>
+	
+	<update id="increaseLike" parameterType="com.bombom.model.TalkLikeDTO">
+		update bombom_talk set talk_like = talk_like + 1 where talk_no = #{talkNo}
+		<selectKey keyProperty="likeCount" resultType="int" order="AFTER">
+			select talk_like from bombom_talk where talk_no = #{talkNo}
+		</selectKey>
+	</update>
+	
+	<update id="decreaseLike" parameterType="com.bombom.model.TalkLikeDTO">
+		update bombom_talk set talk_like = talk_like - 1 where talk_no = #{talkNo}
+		<selectKey keyProperty="likeCount" resultType="int" order="AFTER">
+			select talk_like from bombom_talk where talk_no = #{talkNo}
+		</selectKey>
+	</update>
+</mapper>
