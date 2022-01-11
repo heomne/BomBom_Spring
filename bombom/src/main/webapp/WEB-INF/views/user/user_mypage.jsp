@@ -21,16 +21,16 @@
 </head>
 <body>
 
-	<jsp:include page="./include/header.jsp" flush="false"/>
+	<jsp:include page="../include/header.jsp" flush="false"/>
 	
 	<div class="content">
-	<jsp:include page="./include/mypage_sidebar.jsp" flush="false"/>
+	<jsp:include page="../include/mypage_sidebar.jsp" flush="false"/>
 	
 	
 	
 	</div>
 	
-	<jsp:include page="./include/footer.jsp" flush="false"/>	
+	<jsp:include page="../include/footer.jsp" flush="false"/>	
 
 </body>
 </html>
