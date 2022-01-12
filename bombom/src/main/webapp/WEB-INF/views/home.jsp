@@ -25,18 +25,36 @@
 	<c:set var="premiere" value="${premiere}"/>
 	
 	<div id="slideShow"> 
-			
-			<iframe src="./banner" frameborder="0" width="100%"  height=500 scrolling=auto name=banner ></iframe>
-			
+		<iframe src="./banner" frameborder="0" width="100%"  height="400px" scrolling=auto name=banner ></iframe>
 	</div>
 	
 	<%-- 본문 컨텐츠 자리 --%>
-	<div class="content">
+	<div class="main_content">
 
         <div class="notice">
-			<img id="notice" alt="" src="resources/image/notice.png"
+ 			<img id="notice" alt="" src="resources/image/notice.png"
 				onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">
+			<div class="notice_content">
+				<div class="content_container">
+					<ul class="content_container_list">
+				      <li class="content_container_list_item">
+				      	<a href="#1">[공지사항] 봄봄수다 게시판 이용 관련 공지사항입니다.</a>
+				      </li>
+				      <li class="content_container_list_item">
+				      	<a href="#2">[공지사항] 신규기능 '극장맛집' 탭 소개 및 이용안내</a>
+				      </li>
+				      <li class="content_container_list_item">
+				      	<a href="#3">[공지사항] 2022년 개봉예정작 시사회 일정 안내</a>
+				      </li>
+				      <li class="content_container_list_item">
+				      	<a href="#4">봄봄 커뮤니티에 오신 것을 환영합니다.</a>
+				      </li>
+				    </ul>
+			    </div>
+		    </div>
 		</div>
+		
+		
 
         <div class="talk_section">
             <h2>인기 게시글</h2>
