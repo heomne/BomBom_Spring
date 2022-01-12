@@ -28,15 +28,18 @@ public class PremiereController {
 	
 	// 시사회 게시판 글 목록 불러오는 비즈니스 로직
 	@RequestMapping("user_premiere.do")
-	public String premiere_list(Model model) {
+	public String premiere_list(@RequestParam(defaultValue = "0") String no, Model model) {
+		
+		model.addAttribute("no", no);
+		
+		System.out.println(no);
 		
 		List<PremiereDTO> list = this.dao.getBoardList();
 		
 		model.addAttribute("List", list);
-				
+		
 		return "/user/user_premiere";
 	}
-	
 	
 	// 시사회 게시판 글 작성 폼 불러오는 비즈니스 로직
 	@RequestMapping(value = "/premiere_write.do", method = RequestMethod.GET)
@@ -136,7 +139,6 @@ public class PremiereController {
 			thumbnail.transferTo(file);
 			
 			dto.setPremiere_thumbnail(file.getName());
-			
 		}
 		int res = this.dao.updateBoard(dto);
 		
@@ -175,12 +177,12 @@ public class PremiereController {
 			this.dao.updateSequence(no);
 			
 			out.println("<script>");
-			out.println("alert('시사회 게시글 삭제 성공!'");
+			out.println("alert('시사회 게시글 삭제 성공!')");
 			out.println("location.href='user_premiere.do'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
-			out.println("alert('시사회 게시글 삭제 실패!'");
+			out.println("alert('시사회 게시글 삭제 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}

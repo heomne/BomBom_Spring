@@ -112,4 +112,11 @@ public class MemberController {
 		return data;
 	}
 	
+	// 마이페이지 이동
+	@RequestMapping("user_mypage.do")
+	public String user_mypage() {
+		
+		return "/user/user_mypage";
+	}
+	
 }

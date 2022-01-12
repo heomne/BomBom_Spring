@@ -6,6 +6,8 @@ public interface PremiereDAO {
 	
 	List<PremiereDTO> getBoardList();	// 전체 글 목록 가져오기
 	
+	List<PremiereDTO> getMainList();	// 홈 화면에 올라갈 글 목록 가져오기
+	
 	PremiereDTO boardCont(int no);	// 글 정보 가져오기
 		
 	int insertBoard(PremiereDTO dto);	// 글 삽입

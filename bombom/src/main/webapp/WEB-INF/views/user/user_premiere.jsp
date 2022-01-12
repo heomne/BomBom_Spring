@@ -26,8 +26,15 @@
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
 			$('.menu4').attr('id', 'on');
+			
+			
+			let no = ${no};
+			
+			if(no != '0'){
+				openModal(no);
 			}
-		);
+			
+		});
 		
 	</script>
 </head>
@@ -50,7 +57,7 @@
 				<h2>진행중인 시사회</h2>
 			</div>
 					    
-			<div class="premiere_notice" onclick="openModal('notice')">
+			<div class="premiere_notice" onclick="openModal('preNotice')">
 				<img src="resources/image/공지사항 아이콘.png" alt="공지사항 아이콘" width="35px;" height="auto">
 				<span class="notice_writer">시사회  당첨 확률 올리는 법</span>
 				<span class="notice_date">21.11.30.</span>
@@ -71,7 +78,7 @@
 			 <div class="list_buttons">
 			 <!-- 관리자만 글 쓰기 버튼 보여줌 -->
 			 <c:if test="${!empty user }">
-			  <c:if test="${user.getUser_nickname() eq '관리자'}">
+			  <c:if test="${user.getUser_status() eq '4'}">
 				  <a href="<%=request.getContextPath() %>/premiere_write.do">
 					<img src="resources/image/글 쓰기.png" alt="글쓰기 아이콘" width="35px;" height="auto">
 				  </a><br>
@@ -162,7 +169,7 @@
 		    	<span class="date">${dto.getPremiere_date().substring(0,10) }</span>
 		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
 		    	<c:if test="${!empty user }">
-					<c:if test="${user.getUser_nickname() eq '관리자'}">
+					<c:if test="${user.getUser_status() eq '4'}">
 						<div class="modify_remove wrap_common">
 	                    <a href="premiere_update.do?no=${dto.getPremiere_no() }">수정</a>
 	                    <a href="premiere_delete.do?no=${dto.getPremiere_no() }"
@@ -244,7 +251,7 @@
          
          <!-- 공지사항 모달 -->
          <div id="modal" onclick="closeAllModal()"></div>
-         <div class="modal-con notice">
+         <div class="modal-con preNotice">
 	  		<div class="close">	  		
 	  			<a href="javascript:closeAllModal();">X</a>
 	  		</div>
@@ -258,7 +265,7 @@
 		    	<span></span>
 		    	<!-- 관리자들만 수정/삭제 버튼이 보일 수 있게끔 -->
 		    	<c:if test="${!empty user }">
-					<c:if test="${user.getUser_nickname() eq '관리자'}">
+					<c:if test="${user.getUser_status() == '4'}">
 						<div class="modify_remove wrap_common">
 	                    <a href="premiere_update.do?no=${dto.getPremiere_no() }">수정</a>
 	                    <a href="premiere_delete.do?no=${dto.getPremiere_no() }"

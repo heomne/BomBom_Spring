@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 	<title>Home</title>
@@ -8,206 +9,131 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/home.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/main.css?after">
+	
 	
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script defer src="https://kit.fontawesome.com/2c8a84bfa2.js" crossorigin="anonymous"></script>
 	
 </head>
 <body>
 	
 	<jsp:include page="./include/header.jsp" flush="false"/>
 	
+	<c:set var="posts" value="${posts}"/>
+	<c:set var="premiere" value="${premiere}"/>
+	
 	<div id="slideShow"> 
 			
 			<iframe src="./banner" frameborder="0" width="100%"  height=500 scrolling=auto name=banner ></iframe>
 			
 	</div>
-	<div class="content">
 	
-		<%-- 메인화면 배너 자리 : iframe 사용 예정 --%>
-		
-		
-		
-		<%-- 본문 컨텐츠 자리 --%>
-		
-		<div class="notice">
-		
+	<%-- 본문 컨텐츠 자리 --%>
+	<div class="content">
+
+        <div class="notice">
 			<img id="notice" alt="" src="resources/image/notice.png"
 				onclick="location.href='${pageContext.request.contextPath}/user_notice.do'">
-	
 		</div>
-		<br>
 
-					
-		<h1>인기 게시글</h1>
-			<div class="cont" >
-			<table class="td">
+        <div class="talk_section">
+            <h2>인기 게시글</h2>
+                <div class="talk_posts">
+                    <ul>
+                    <c:forEach var="postDTO" items="${posts}" varStatus="status">
+                        <li>
+                        <c:choose>
+                        	<c:when test="${status.count == 1}">
+                            	<span class="rank one">${status.count}</span>
+                            </c:when>
+                            <c:when test="${status.count == 2}">
+                            	<span class="rank two">${status.count}</span>
+                            </c:when>
+                            <c:when test="${status.count == 3}">
+                            	<span class="rank three">${status.count}</span>
+                            </c:when>
+                            <c:otherwise>
+                            	<span class="rank">${status.count}</span>
+                            </c:otherwise>
+                        </c:choose>
+                            <a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">
+                            	${postDTO.getTalk_title()}
+                            	<c:if test="${postDTO.getCnt() != 0 }">
+                            		<span class="cmt">(${postDTO.getCnt()})</span>
+                            	</c:if>
+                            </a>
+                            <div class="score_block">
+                                <span class="talk_score">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <span>${postDTO.getTalk_like()}</span>
+                                </span>
+                                <span class="talk_score">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="hit">${postDTO.getTalk_hit()}</span>
+                                </span>                                
+                            </div>
+                        </li>                     
+					          </c:forEach>
+                    </ul>
+                </div>
+        </div>          
+		
+		<div class="article">	
+			<h2>영화 정보</h2>
 				
-					<tr>
-						<td>
-						<span class="rank_1">&nbsp;&nbsp;1&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank_2">&nbsp;&nbsp;2&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_3">&nbsp;&nbsp;3&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;4&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;5&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-						<span class="rank">&nbsp;&nbsp;6&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;7&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;8&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank">&nbsp;&nbsp;9&nbsp;&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-					
-					<tr>						
-						<td>
-						<span class="rank_10">&nbsp;10&nbsp;</span>
-						어쩌구 저쩌구
-						</td>
-					</tr>
-			</table>
-			</div>
+		</div>
 		
-		
-		<div class="article">
-			<div class="content">
-				<h1>영화 정보</h1>
-					<div class="all" align="center">전체보기&nbsp;&nbsp;></div>
-					<div class = "back">
-						<div class="first">
-							
-								<img class="first_img"  alt="" src="">
-							
-								<b>영화제목</b>
-								
-								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 </p>
+		<div class="article">	
+			<h2>시사회 정보</h2>
+				<div class="premiere_content">
+				<!-- 게시물 영역을 누르면 모달창으로 넘어갈 수 있도록 -->
+				<c:if test="${!empty premiere }">
+				<c:forEach items="${premiere }" var="pDto">
+				
+					<div class="content_cards" 
+						onclick="location.href='${pageContext.request.contextPath}/user_premiere.do?no=${pDto.getPremiere_no() }'">
+					
+					<!-- 오늘날짜 -->
+					<jsp:useBean id="now" class="java.util.Date" />
+					<fmt:formatDate var="today" value="${now}" pattern="yyyyMMdd" />
+					
+					<!-- 비교할 날짜 -->
+					<fmt:parseDate var="bdate" value="${pDto.getPremiere_date()}" pattern="yyyy-MM-dd HH:mm:ss" />
+					<fmt:formatDate var="oldday" value="${bdate}" pattern="yyyyMMdd" />
+					
+					<c:set var="dateCal" value="${today-oldday}"/>
+					
+						<div class="content_img_wrapper">
+						<!-- 게시글 작성일이 7일 전이면  N 딱지 보여주기-->
+						<c:if test="${dateCal<'7' }">
+							<span class="new_atc">N</span>
+						</c:if>
+							<img src="resources/upload/premiere/${pDto.getPremiere_thumbnail() }" 
+								alt="${pDto.getPremiere_title() }">
 						</div>
 						
-							<div class="second">
-							
-								<img class="first_img"  alt="" src="">
-								
-								<b>영화제목</b>
-								
-								<img id="star" src="resources/image/star.jpg">
-								<p id="grade"> 0.0 </p>
-							</div>
-							
-							
-						
-						
+						<div class="content_title">
+							<!-- 제목 문자열이 길면 자르자 -->
+							<c:if test="${pDto.getPremiere_title().length()>20 }">
+								<p>${pDto.getPremiere_title().substring(0,19) }...</p>
+							</c:if>
+							<!-- 제목 문자열이 20자 이하면 그대로 보여주자 -->
+							<c:if test="${pDto.getPremiere_title().length()<=20 }">
+								<p>${pDto.getPremiere_title() }</p>
+							</c:if>
+						</div>
 					</div>
-				
-			</div>
+				</c:forEach>	
+				</c:if>
+         	</div>
 		</div>
-		
-		<div class="article">
-			<div class="content">
-				<h1>시사회 정보</h1>
-					<div class="all" align="center">전체보기&nbsp;&nbsp;></div>
-				<div class="back2">
-					<div class="pri_first">
-						<img class="pri_img" alt="" src="">
-						<b id="p_title">시사회 제목</b>
-						<p id="p_date">- 2022.02.02 -</p>
-					</div>
-					
-					<div class="pri_second">
-						<img class="pri_img" alt="" src="">
-						<b id="p_title">시사회 제목</b>
-						<p id="p_date">시사회 날짜</p>
-					</div>
-					
-					<div class="pri_third">
-						<img class="pri_img" alt="" src="">
-						<b id="p_title">시사회 제목</b>
-						<p id="p_date">시사회 날짜</p>
-					</div>
-				
-				</div>
-			</div>
-		</div>
-		
-		<div class="article">
-			<div class="content">
-				<h1>극장 맛집</h1>
-					<div class="all" align="center">전체보기&nbsp;&nbsp;></div>
-				
-				<div class="back3">
-					<div class="food_first">
-						<img class="f_img" alt="" src="">
-						<b class="cgv">CGV 용산아이파크몰</b>
-					
-					</div>
-					
-					<div class="food_second">
-						<img class="f_img" alt="" src="">
-						<b class="cgv">롯데시네마 월드타워</b>
-					
-					</div>
-					
-					<div class="food_third">
-						<img class="f_img" alt="" src="">
-						<b class="cgv">메가박스 코엑스</b>
-					
-					</div>
-				
-				</div>
-				
-				
-			</div>
-		</div>
-		
-	</div>
+    <%--
+        <div class="article">	
+            <h2>영화 정보</h2>
+        </div>
+    --%>
+  </div>
 	
 	<jsp:include page="./include/footer.jsp" flush="false"/>
 	

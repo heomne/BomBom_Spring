@@ -47,12 +47,14 @@ function loadComments() {
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 	    success: function (data) {
 	    	console.log('comments load');
-	    	console.log(data);
+	    	
+    		const $comment = document.querySelector('.comment');
+    		$comment.innerHTML = '💬' + data.length;
 
+    		let html = "";
+	    	
 	    	if(data.length > 0) {
-	    		
-	    		let html = "";
-	    		
+	    	
 	    		for(let i=0; i<data.length; i++) {
 	    			html += '<div class="cmt_unit">';
 		    		html += '<div class="cmt_header">';
@@ -78,7 +80,11 @@ function loadComments() {
 		            html += data[i].comment_cont;
 		            html += '</span>'
 		            html += '<div class="cmt_date">';
-		            html += '<span class="date_time">' + data[i].comment_date.substring(5, 16) + '</span>';
+		            html += '<span class="date">' + dateResolver(data[i].comment_date);
+		            if(new Date().getDate() !== parseInt(data[i].comment_date.substring(8, 10))) {
+		            	html += '<span class="date_time">' + data[i].comment_date.substring(11, 16) + '</span>';
+		            }
+		            html += '</span>';
 		            html += '</div>';
 		            html += '<div class="cmt_btns">';
 //		            html += '<button type="button">답글</button>';
@@ -87,11 +93,15 @@ function loadComments() {
 		            html += '</div>';
 		            html += '</div>';
 	    		}
+
+	    	} else {
 	    		
-	    		$cmt_list.innerHTML = html;
-	    		$comment_count.innerHTML = '(' + data.length + ')';
+	    		html += "";
 	    		
 	    	}
+	    	
+	    	$cmt_list.innerHTML = html;
+    		$comment_count.innerHTML = '(' + data.length + ')';
 	  },
 	  	error: function(request, status, error) {
 		alert(request.status + ", " + request.responseText + ", " + error);
@@ -110,6 +120,44 @@ function updateForm(e) {
 		e.target.className = 'hidden';
 	}
 }
+
+function updateComment(e) {
+	
+	if(e.target.id === 'comment_update') {
+		
+		const parentNode = e.target.parentNode.parentNode.parentNode;
+		const comment_no = parentNode.querySelector('#comment_no').value;
+		const comment_cont = parentNode.querySelector('#comment_cont').value;
+		
+		let form = {
+			"comment_no" : comment_no,
+			"comment_cont" : comment_cont
+		};
+		
+		$.ajax({
+			type: "POST",
+			url: "/bombom/update_comment.do",
+			data: form,
+			dataType: "text",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		    success: function (data) {
+		    	
+		    	if(data === 'success') {
+		    		alert('댓글이 수정되었습니다.');
+		    		loadComments();
+
+		    	} else if (data === 'error') {
+		    		alert('에러가 발생했습니다. 잠시후 다시 시도해주세요.');
+		    	}
+		    	
+		    },
+		    error: function(request, status, error) {
+		    	alert(status + ", " + error);
+		    }
+		});
+	}
+}
+
 
 function deleteComment(e) {
 	
@@ -132,8 +180,9 @@ function deleteComment(e) {
 		    success: function (data) {
 		    	
 		    	if(data === 'success') {
+		    		loadComments();
 		    		alert('댓글이 삭제되었습니다.');
-		    		loadComments();		    		
+
 		    	} else if (data === 'error') {
 		    		alert('에러가 발생했습니다. 잠시후 다시 시도해주세요.');
 		    	}
@@ -147,8 +196,36 @@ function deleteComment(e) {
 	}
 }
 
+function dateResolver(dateData) {
+	
+	const year = parseInt(dateData.substring(0, 4));
+	const month = parseInt(dateData.substring(5, 7)) - 1;
+	const date = parseInt(dateData.substring(8, 10));
+	
+	const inputDate = new Date(year, month, date);
+	const today = new Date();
+	
+	if(today.getYear() + 1900 !== year) {
+		return dateData.substring(0, 10);
+	}
+	
+	if(today.getMonth() !== month) {
+		return dateData.substring(5, 10);
+	}
+	
+	if(today.getDate() - date > 7) {
+		return dateData.substring(5, 10);
+	} else if(today.getDate() - date === 0){
+		return dateData.substring(11, 16);
+	} else {
+		return today.getDate() - date + '일 전';
+	}
+	
+}
+
 
 $cmt_list.addEventListener('click', deleteComment);
 $cmt_list.addEventListener('click', updateForm);
+$cmt_list.addEventListener('click', updateComment);
 $comment_insert.addEventListener('click', addComment);
 window.addEventListener('load', loadComments);
