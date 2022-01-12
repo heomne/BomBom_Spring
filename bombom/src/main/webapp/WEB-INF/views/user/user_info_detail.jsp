@@ -82,6 +82,7 @@
 	
 	<c:set var="dto" value="${Cont }" />
 	<c:set var="Avg" value="${Avg }" />
+	<c:set var="page" value="${page }" />
 			<c:if test="${!empty dto }">
 				
 			</c:if>
@@ -106,6 +107,12 @@
 			
 			<div class="mov_poster">
 				<img src="resources/upload/info/${dto.getInfo_thumbnail() }" width="260" height="330">
+				<c:if test="${user.getUser_status() == 4 }">
+						<button onclick="location.href='${pageContext.request.contextPath}/user_info_update.do?no=${dto.getInfo_no()}&page=${page }'" class="post_btn">수정</button>
+						<button onclick="if(confirm('정말로 게시글을 삭제하시겠습니까?')) {
+							location.href='${pageContext.request.contextPath}/user_info_delete.do?no=${dto.getInfo_no() }&page=${page }'
+							} else { return; }" class="post_btn">삭제</button>
+				</c:if>	
 			</div>
 			
 			<div class="mov_time">

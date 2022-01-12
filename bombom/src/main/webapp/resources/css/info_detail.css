@@ -82,6 +82,13 @@ html {
 	color:white;
 	float: right;
 	padding-right: 100px;
+	text-align: right;
+}
+
+.bg_content .mov_poster a{
+	
+	color: white;
+	text-decoration: none;
 }
 
 .bg_content .mov_poster img{

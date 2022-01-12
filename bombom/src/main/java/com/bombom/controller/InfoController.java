@@ -1,7 +1,9 @@
 package com.bombom.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bombom.model.InfoDAO;
@@ -60,19 +63,20 @@ public class InfoController {
 	
 	@RequestMapping("info_detail.do") 
 	public String info_detail(@RequestParam("no") int info_no, 
-			@RequestParam("page") int nowPage, Model model) {
+			@RequestParam("page") int nowPage, Model model) throws IOException {
 		
 		// 게시글 상세 내역 조회하는 메서드 호출
 		InfoDTO dto = this.dao.infoCont(info_no);
 		
-		double avg = this.dao.getAvg(dto.getInfo_no());
+		double getAvg = this.dao.getAvg(dto.getInfo_no());
+		
 		
 		model.addAttribute("Cont", dto);
 		
 		model.addAttribute("page", nowPage);
 		
-		model.addAttribute("Avg", avg);
-
+		model.addAttribute("Avg", getAvg);
+		
 		return "/user/user_info_detail";
 	}
 	
@@ -164,4 +168,152 @@ public class InfoController {
 		}
 
 	}
+	
+	@RequestMapping(value="user_info_update.do", method = RequestMethod.GET)
+	public String modify(@RequestParam("no") int info_no,
+			@RequestParam("page") int nowPage, Model model) {
+		
+		// 게시글 상세 내역 조회하는 메서드 호출
+		InfoDTO dto = this.dao.infoCont(info_no);
+		
+		model.addAttribute("modify", dto);
+		
+		model.addAttribute("page", nowPage);
+		
+		return "/user/user_info_update";
+	}
+	
+	
+	@RequestMapping(value="user_info_update.do", method = RequestMethod.POST)
+	public void modifyOk(InfoDTO dto, @RequestParam("page") int nowPage,
+			MultipartHttpServletRequest mRequest, 
+			HttpServletResponse response, HttpServletRequest request) 
+					throws IllegalStateException, IOException {
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int day = cal.get(Calendar.DATE);
+		
+		String date = year + "-" + month + "-" + day;
+		
+		// 화면단에서 전달되는 파일 받을 객체
+		MultipartFile thumbnail = mRequest.getFile("thumbnail");
+		MultipartFile bgimg = mRequest.getFile("bgimg");
+		
+		// 화면단에서 전달된 파일 객체가 없을 시, 원래 파일로 대체
+		if(thumbnail.isEmpty()) {
+			InfoDTO original = this.dao.infoCont(dto.getInfo_no());
+			 
+			System.out.println("원래 파일 잘 가져오는지 보자 :" + original.getInfo_thumbnail());
+			
+			dto.setInfo_thumbnail(original.getInfo_thumbnail());
+			
+		} else {
+			
+			// 파일 저장할 경로 지정
+			String filePath = 
+					request.getSession().getServletContext().getRealPath("resources/upload/info/"+date+"/");	
+			
+			System.out.println("영화 정보 이미지 파일경로 > " + filePath);
+			
+			File path1 = new File(filePath);
+			
+			if(!path1.exists()) {
+				path1.mkdirs();
+			}
+			
+			// 파일을 업로드하기 위한 파일 객체 생성
+			File file = new File(filePath, System.currentTimeMillis() + "_" + thumbnail.getOriginalFilename());
+			
+			// 파일 업로드
+			// transferTo : 업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
+			thumbnail.transferTo(file);
+			
+			String fileName = date + "/" +file.getName();
+			
+			dto.setInfo_thumbnail(fileName);
+		}
+		
+		if(bgimg.isEmpty()) {
+			 InfoDTO original = this.dao.infoCont(dto.getInfo_no());
+			 
+			 System.out.println("원래 파일 잘 가져오는지 보자 :" + original.getInfo_bgimg());
+			
+			 dto.setInfo_bgimg(original.getInfo_bgimg());
+			
+		} else {
+			
+			// 파일 저장할 경로 지정
+			String filePath = 
+					request.getSession().getServletContext().getRealPath("resources/upload/info/"+date+"/");	
+			
+			System.out.println("영화 정보 이미지 파일경로 > " + filePath);
+			
+			File path1 = new File(filePath);
+			
+			if(!path1.exists()) {
+				path1.mkdirs();
+			}
+			
+			// 파일을 업로드하기 위한 파일 객체 생성
+			File file = new File(filePath, System.currentTimeMillis() + "_" + bgimg.getOriginalFilename());
+			
+			// 파일 업로드
+			// transferTo : 업로드요청으로 전달받은 파일을 위에서 설정한 특정 경로에 특정 파일명으로 저장
+			bgimg.transferTo(file);
+			
+			String fileName = date + "/" +file.getName();
+			
+			dto.setInfo_bgimg(fileName);
+		}
+		
+		int res = this.dao.updateInfo(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(res>0) {
+			out.println("<script>");
+			out.println("alert('영화 정보 수정 성공!')");
+			out.println("location.href='info_detail.do?no="+dto.getInfo_no()+"&page="+nowPage+"'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('영화 정보 수정 실패!')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+	}
+	
+	@RequestMapping("user_info_delete.do")
+	public void deleteOk(@RequestParam("no") int info_no,
+			@RequestParam("page") int nowPage,
+			HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8"); 
+		
+		PrintWriter out = response.getWriter();
+		
+		this.dao.deleteReview(info_no);
+		
+		int check = this.dao.deleteInfo(info_no);
+			
+		if(check > 0) {
+			
+			out.println("<script>");
+			out.println("alert('게시물 삭제를 성공했습니다.')");
+			out.println("location.href='user_info.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('게시물 삭제를 실패했습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+	}
+	
 }

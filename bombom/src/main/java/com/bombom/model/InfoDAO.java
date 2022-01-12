@@ -15,10 +15,10 @@ InfoDTO infoCont(int no);	// 글 내용 가져오기
 int updateInfo(InfoDTO dto);	// 글 수정
 
 int deleteInfo(int no);	// 글 삭제
-	
-void updateSequence(int no);	// 글 삭제에 따른 글 번호 수정
 
-int searchInfoCount(String field, String keyword);	// 글 검색에 따른 게시글 수 반환
+int deleteReview(int no);	// 리뷰 삭제
+
+int searchInfoCount(String keyword);	// 글 검색에 따른 게시글 수 반환
 	
 List<InfoDTO> searchInfoList(InfoPageDTO dto);	// 글 검색
 
@@ -30,5 +30,5 @@ int getReviewCount(int no);	// 전체 리뷰 수 가져오기
 
 void updateReviews(int no);
 
-double getAvg(int no);	// 평점 평균 가져오기
+Double getAvg(int no);	// 평점 평균 가져오기
 }
