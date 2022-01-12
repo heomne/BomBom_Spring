@@ -28,21 +28,29 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-1
 
-.join_form th {
+.table_header {
 	text-align: left;
 	font-weight: 500;
 	width: 150px;
 }
 
-.join_form th span{
+.table_header span{
 	color: #fb4357;
 }
 
 .join_form td {
 	text-align: left;
 	vertical-align: middle;
+}
+
+.join_form tr#address {
+	height: 15px;
+}
+
+.join_form tr#address td{
+	font-size: 12px;
+	color: gray;
 }
 
 .join_form tr {
@@ -105,7 +113,7 @@
 	border: 1px solid #fb4357;
 	color: #fb4357;
     background-color: white;
-    width: 100%;
+    width: 100px;
 }
 	
 
@@ -126,4 +134,5 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
 

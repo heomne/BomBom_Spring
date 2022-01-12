@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,38 +32,48 @@
 			<div class="join_box" align="center">
 				<h1>회원정보 수정</h1>
 				
-				<form method="post" action="user_join_ok.do">
+				<form method="post" action="user_join_update_ok.do">
 					<table class="join_form"> 
 						<tr>
-							<th>아이디<span>*</span></th>
+							<td class="table_header">아이디</td>
 							<td><input id="user_id" name="user_id" value="${user.getUser_id() }" readonly></td>
 						</tr>
 						<tr>
-							<th>비밀번호<span>*</span></th>
-							<td><input id="user_pwd" type="password" name="user_pwd" placeholder="문자, 숫자 1개이상 포함, 8자리 이상"></td>
+							<td class="table_header">이름</td>
+							<td><input id="user_name" name="user_name" value="${user.getUser_name() }" readonly></td>
 						</tr>
 						<tr>
-							<th>비밀번호확인<span>*</span></th>
-							<td><input id="user_pwdcheck" type="password"></td>
+							<td class="table_header">이메일</td>
+							<td><input id="user_email" name="user_email" value="${user.getUser_email() }" readonly></td>
 						</tr>
 						<tr>
-							<th>이름<span>*</span></th>
-							<td><input id="user_name" name="user_name" value="${user.getUser_name() }"></td>
+							<td class="table_header">나이</td>
+							<td><input name="user_age" value="${user.getUser_age() }"></td>
 						</tr>
 						<tr>
-							<th>닉네임<span>*</span></th>
-							<td><input name="user_nickname" value="${user.getUser_nickname() }"></td>
+							<td class="table_header">성별</td>
+							<td colspan="2">
+							
+							<c:set var="gender" value="${user.getUser_gender() }"/>
+							<c:if test="${gender == '선택안함'}">
+								<select name="user_gender">
+									<option value="선택안함" selected>선택안함</option>
+								</select>		
+							</c:if>
+							<c:if test="${gender == '남성'}">
+								<select name="user_gender">
+									<option value="남성" selected>남성</option>
+								</select>		
+							</c:if>
+							<c:if test="${gender == '여성'}">
+								<select name="user_gender">
+									<option value="여성" selected>여성</option>
+								</select>		
+							</c:if>
+							</td>
 						</tr>
 						<tr>
-							<th>이메일<span>*</span></th>
-							<td><input id="user_email" name="user_email" value="${user.getUser_email() }"></td>
-						</tr>
-						<tr>
-							<th>휴대폰</th>
-							<td><input id="user_phone" name="user_phone" placeholder="휴대폰 번호를 입력해주세요"></td>
-						</tr>
-						<tr>
-							<th rowspan="2">주소</th>
+							<td class="table_header" rowspan="2">주소<span>*</span></td>
 							<td>
 								<input id="addr_general" placeholder="주소찾기 버튼을 클릭해주세요" readonly>
 							</td>
@@ -75,23 +87,31 @@
 								<input type="hidden" id="user_addr" name="user_addr">		<%-- 최종 주소 --%>
 							</td>
 						</tr>
-						<tr>
-							<th>나이</th>
-							<td><input name="user_age" placeholder="나이를 입력해주세요"></td>
+						<tr id="address">
+							<td></td>
+							<td>
+								${user.getUser_addr() }
+								<input id="addr_original" type="hidden" value="${user.getUser_addr() }">
+							</td>
 						</tr>
 						<tr>
-							<th>성별</th>
-							<td colspan="2">
-								<select name="user_gender">
-									<option value="선택안함">선택안함</option>
-									<option value="남성">남성</option>
-									<option value="여성">여성</option>
-								</select>		
+							<td class="table_header">닉네임<span>*</span></td>
+							<td><input name="user_nickname" value="${user.getUser_nickname() }"></td>
+						</tr>
+						<tr>
+							<td class="table_header">휴대폰<span>*</span></td>
+							<td><input id="user_phone" name="user_phone" value="${user.getUser_phone() }"></td>
+						</tr>
+						<tr>
+							<td class="table_header">비밀번호 확인<span>*</span></td>
+							<td>
+								<input id="user_pwd" type="password" placeholder="현재 비밀번호를 입력해주세요" name="user_pwd">
+								<input type="hidden" id="pwd_original" value="${user.getUser_pwd() }">
 							</td>
 						</tr>
 					</table>
 					<div class="toast_box"><span class="toast"></span></div>
-					<button type="button" class="btn_register" onclick="addAddr(); if(validate()){submit();}">가입하기</button>		
+					<button type="button" class="btn_register" onclick="addAddr(); if(validate()){submit();}">수정하기</button>		
 					<button type="reset" class="btn_reset">다시작성</button>
 				</form>
 				

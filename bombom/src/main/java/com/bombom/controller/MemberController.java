@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,7 @@ public class MemberController {
 		return url;
 	}
 	
+	//id 중복 확인 기능 (ajax 사용, json 형식으로 리턴)
 	@ResponseBody
 	@RequestMapping(value= "/user_join_idcheck.do", produces = "application/json; charset=utf8")
 	public Map<String, Object> user_join_idcheck(@RequestParam("user_id") String user_id) {
@@ -99,6 +101,7 @@ public class MemberController {
 		return data;
 	}
 	
+	//email 중복 확인 기능 (ajax 사용, json 형식으로 리턴)
 	@ResponseBody
 	@RequestMapping(value= "/user_join_emailcheck.do", produces = "application/json; charset=utf8")
 	public Map<String, Object> user_join_emailcheck(@RequestParam("user_email") String user_email) {
@@ -112,7 +115,7 @@ public class MemberController {
 		return data;
 	}
 	
-	// 마이페이지 이동
+	//마이페이지 이동
 	@RequestMapping("user_mypage.do")
 	public String user_mypage() {
 		
@@ -123,6 +126,34 @@ public class MemberController {
 	@RequestMapping("user_join_update.do")
 	public String user_join_update() {
 		return "/user/user_join_update";
+	}
+	
+	//회원정보 수정 기능
+	@RequestMapping("user_join_update_ok.do")
+	public String user_join_update_ok(MemberDTO dto, HttpServletRequest request) {
+		
+		int result = dao.updateMember(dto);
+		
+		System.out.println(result);
+		
+		
+		//업데이트 쿼리 성공시 세션정보 변경
+		if(result > 0) {
+			HttpSession session = request.getSession();
+		
+			System.out.println(session.getAttribute("user_nickname"));
+			
+			session.setAttribute("user_nickname", dto.getUser_nickname());
+			session.setAttribute("user_age", dto.getUser_age());
+			session.setAttribute("user_addr", dto.getUser_addr());
+			session.setAttribute("user_phone", dto.getUser_phone());
+			
+			//숫자는 실시간 반영 되는데 문자는 안 됨
+			
+		}
+		
+		//임시로 업데이트 페이지로 다시 이동하도록 함
+		return "redirect:user_join_update.do";
 	}
 	
 }
