@@ -117,8 +117,18 @@
 				
 				
 				<div class="info_bottom">
-                    <button type="button" class="search_btn">🔎</button>
-                    <a href="${pageContext.request.contextPath}/user_info_write.do" class="post_btn">글쓰기</a>
+                    <form method="post" action="${pageContext.request.contextPath}/user_info_search.do" class="search-container">
+					  <input id="search-box" type="text" class="search-box" name="keyword" />
+					  <label for="search-box">
+					    <span>🔍</span>
+					  </label>
+					  <input type="submit" id="search-submit" />
+					</form>
+                    
+                    <c:if test="${user.getUser_status() == 4 }">
+						<a href="${pageContext.request.contextPath}/user_info_write.do" class="post_btn">글쓰기</a>
+					</c:if>	
+
                 </div>
                 
                 <div class="paging">
@@ -144,22 +154,7 @@
 					</c:if>
 				</div>
                 
-                <!-- <div class="paging">
-                    <a href="#" class="paging_first"><<</a>
-                    <a href="#" class="paging_prev"><</a>
-                    <a href="#" class="paging_number_active">1</a>
-                    <a href="#" class="paging_number">2</a>
-                    <a href="#" class="paging_number">3</a>
-                    <a href="#" class="paging_number">4</a>
-                    <a href="#" class="paging_number">5</a>
-                    <a href="#" class="paging_number">6</a>
-                    <a href="#" class="paging_number">7</a>
-                    <a href="#" class="paging_number">8</a>
-                    <a href="#" class="paging_number">9</a>
-                    <a href="#" class="paging_number">10</a>
-                    <a href="#" class="paging_next">></a>
-                    <a href="#" class="paging_last">>></a>
-                </div> -->
+     
       
 			</div>
 		</div>

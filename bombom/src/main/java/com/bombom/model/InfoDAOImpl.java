@@ -38,32 +38,32 @@ public class InfoDAOImpl implements InfoDAO{
 
 	@Override
 	public int updateInfo(InfoDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return this.sqlSession.update("modifyInfo", dto);
 	}
 
 	@Override
 	public int deleteInfo(int no) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void updateSequence(int no) {
-		// TODO Auto-generated method stub
 		
+		return this.sqlSession.delete("dropInfo", no);
+	}
+	
+	@Override
+	public int deleteReview(int no) {
+		
+		return this.sqlSession.delete("dropReview", no);
 	}
 
 	@Override
-	public int searchInfoCount(String field, String keyword) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int searchInfoCount(String keyword) {
+
+		return this.sqlSession.selectOne("searchInfoCount", keyword);
 	}
 
 	@Override
 	public List<InfoDTO> searchInfoList(InfoPageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.sqlSession.selectList("searchInfoList", dto);
 	}
 
 	@Override
@@ -91,9 +91,15 @@ public class InfoDAOImpl implements InfoDAO{
 	}
 
 	@Override
-	public double getAvg(int no) {
+	public Double getAvg(int no) {
 		
-		return this.sqlSession.selectOne("getAvg", no);
+		Double Avg =  this.sqlSession.selectOne("getAvg", no) ;
+		
+		if (Avg == null) {
+			return 0.0;
+		} else {
+			return Avg;
+		}
 	}
 
 }

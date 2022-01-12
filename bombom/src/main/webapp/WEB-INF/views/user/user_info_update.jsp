@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,19 +40,22 @@
 
 	<div class="container">
         <form method="post" enctype="multipart/form-data" name="postForm"
-			action="<%=request.getContextPath() %>/user_info_write.do">>
+			action="<%=request.getContextPath() %>/user_info_update.do">>
             <header class="write_header">
-                <h2>영화정보 : 글쓰기</h2>
+                <h2>영화정보 : 수정하기</h2>
             </header>
-            
+            <c:set var="dto" value="${modify }" />
+            <c:set var="page" value="${page }" />
             <div class="write_block">
             	
+            	<input type="hidden" name="page" value="${page }">
+            	<input type="hidden" name="info_no" value="${dto.getInfo_no() }">
             	
                 <table class="title_wrap" align="center">
                 	<tr>
                 		<th> 영화 제목 </th>
                     	<td> 
-                    		<input type="text" id="info_title" name="info_title" placeholder="제목을 입력해주세요." required="required"/>
+                    		<input type="text" id="info_title" name="info_title" value="${dto.getInfo_title() }" required="required"/>
                			</td>
                		</tr>
                 
@@ -72,42 +76,42 @@
 	                <tr>
                 		<th> 개봉 연도</th>
                     	<td> 
-                    		<input type="date" id="info_year" name="info_year" placeholder="개봉연도를 입력해주세요." required="required"/>
+                    		<input type="date" id="info_year" name="info_year" value="${dto.getInfo_year() }" required="required"/>
                			</td>
                		</tr>
                		
                		<tr>
                 		<th> 러닝타임 </th>
                     	<td> 
-                    		<input type="number" min="0" max="300" id="info_runtime" name="info_runtime" placeholder="러닝타임을 입력해주세요." required="required"/>
+                    		<input type="number" min="0" max="300" id="info_runtime" name="info_runtime" value="${dto.getInfo_runtime() }" required="required"/>
                			</td>
                		</tr>
                 
 	                <tr>
                 		<th> 티저 </th>
                     	<td> 
-                    		<input type="text" id="info_teaser" name="info_teaser" placeholder="티저 url을 입력해주세요." required="required"/>
+                    		<input type="text" id="info_teaser" name="info_teaser" value="${dto.getInfo_teaser() }" required="required"/>
                			</td>
                		</tr>
                 
 	                <tr>
                 		<th> 게시글 소제목</th>
                     	<td> 
-                    		<input type="text" id="info_subtitle" name="info_subtitle" placeholder="게시글 소제목을 입력해주세요."/ required="required">
+                    		<input type="text" id="info_subtitle" name="info_subtitle" value="${dto.getInfo_subtitle() }"/ required="required">
                			</td>
                		</tr>
                		
                		<tr>
                 		<th> 캐스트 </th>
                     	<td> 
-                    		<textarea id="info_cast" name="info_cast" placeholder="캐스팅 내용을 입력해주세요." required="required"></textarea>
+                    		<textarea id="info_cast" name="info_cast" required="required">${dto.getInfo_cast() }</textarea>
                			</td>
                		</tr>
                		
                		<tr>
                 		<th> 내용 </th>
                     	<td> 
-                    		<textarea id="info_synopsis" name="info_synopsis" placeholder="내용을 입력해주세요." required="required"></textarea>
+                    		<textarea id="info_synopsis" name="info_synopsis" required="required">${dto.getInfo_synopsis() }</textarea>
                			</td>
                		</tr>
                		

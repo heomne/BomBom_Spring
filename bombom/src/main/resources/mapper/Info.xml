@@ -3,7 +3,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
+ 
 <mapper namespace="com.bombom.model.InfoDAO">
 
 	<select id="countInfo" resultType="int">
@@ -20,11 +21,25 @@
 		]]> 
 	</select>
 	
+	<select id="searchInfoCount" parameterType="String" resultType="int">
+		select count(*) from bombom_movie_info 
+			where info_title like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="searchInfoList" resultType="com.bombom.model.InfoDTO">
+		<![CDATA[
+			select * from
+				(select i.*, row_number() 
+			   		over(order by talk_date desc) rnum from bombom_movie_info i where i.info_title like '%' || #{keyword} || '%')
+			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+		]]>
+	</select>
+	
 	<select id="contInfo" parameterType="int" resultType="com.bombom.model.InfoDTO">
 		select * from bombom_movie_info where info_no = #{no}
 	</select>
 	
-	<select id="getAvg" parameterType="int" resultType="double">
+	<select id="getAvg" parameterType="int" resultType="Double">
 		select avg(review_rate) from bombom_movie_review where info_no = #{no}
 	</select>
 
@@ -35,6 +50,14 @@
 		insert into bombom_movie_info values (#{info_no} + 1, #{info_year}, #{info_runtime},
 			#{info_thumbnail}, #{info_bgimg}, #{info_teaser}, #{info_title}, #{info_subtitle}, #{info_synopsis}, #{info_cast}, 0)
 	</insert>
+	
+	<update id="modifyInfo" parameterType="com.bombom.model.InfoDTO">
+		update bombom_movie_info set info_year = #{info_year}, 
+			info_runtime = #{info_runtime}, info_thumbnail = #{info_thumbnail}, 
+			info_bgimg = #{info_bgimg}, info_teaser = #{info_teaser},
+			info_title = #{info_title}, info_subtitle = #{info_subtitle},
+			info_synopsis = #{info_synopsis}, info_cast = #{info_cast} where info_no = #{info_no}
+	</update>
 	
 	<insert id="addReview" parameterType="com.bombom.model.InfoReviewDTO">
 		<selectKey resultType="int" keyProperty="review_no" order="BEFORE">
@@ -61,4 +84,12 @@
 					where rnum >= #{startNo} and rnum <= #{endNo} and info_no = #{info_no}
 		]]> 
 	</select>
+	
+	<delete id="dropInfo" parameterType="int">
+		delete from bombom_movie_info where info_no = #{no}
+	</delete>
+	
+	<delete id="dropReview" parameterType="int">
+		delete from bombom_movie_review where info_no = #{no}
+	</delete>
 </mapper>
