@@ -119,4 +119,10 @@ public class MemberController {
 		return "/user/user_mypage";
 	}
 	
+	//회원가입 페이지 이동
+	@RequestMapping("user_join_update.do")
+	public String user_join_update() {
+		return "/user/user_join_update";
+	}
+	
 }
