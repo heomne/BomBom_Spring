@@ -2,18 +2,22 @@ package com.bombom.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bombom.model.MemberDAO;
 import com.bombom.model.MemberDTO;
+import com.bombom.model.PremiereDTO;
 
 @Controller
 public class MemberController {
@@ -114,9 +118,22 @@ public class MemberController {
 	
 	// 마이페이지 이동
 	@RequestMapping("user_mypage.do")
-	public String user_mypage() {
+	public String user_mypage(@RequestParam("id") String id, HttpSession session) {
 		
-		return "/user/user_mypage";
+		String url = "";
+		
+		 // uri 바꿔서 남의 정보 열람하는 거 방지용으로
+		 // 세션에서 넘어온 아이디랑, get으로 넘어온 아이디가 일치할 때만 마이페이지 보여주기
+		MemberDTO sessionDto = (MemberDTO)session.getAttribute("user");
+		
+		// 일치할 경우
+		if(sessionDto.getUser_id().equals(id)) {
+			url = "/user/user_mypage";
+		} else {
+			url = "/user/user_mypage";
+		}
+		
+		return url;
 	}
 	
 }

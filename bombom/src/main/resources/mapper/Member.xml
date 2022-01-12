@@ -21,4 +21,9 @@
 	<select id="checkEmail" parameterType="String" resultType="integer">
 		select count(*) from bombom_member where user_email = #{user_email}
 	</select>
+	
+	<!-- 회원불러오기 (마이페이지 - 회원정보보기 기능에서 사용) -->
+	<select id="contentMember" parameterType="String" resultType="com.bombom.model.MemberDTO">
+		select * from bombom_member where user_id = #{user_id}
+	</select>
 </mapper>

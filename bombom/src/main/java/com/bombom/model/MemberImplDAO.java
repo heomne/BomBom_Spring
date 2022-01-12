@@ -21,7 +21,7 @@ public class MemberImplDAO implements MemberDAO{
 	@Override
 	public MemberDTO getMember(String user_id) {
 		// 회원불러오기 (마이페이지 - 회원정보보기 기능에서 사용)
-		return null;
+		return this.sqlSession.selectOne("contentMember", user_id);
 	}
 
 	@Override

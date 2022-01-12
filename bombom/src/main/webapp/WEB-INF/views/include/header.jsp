@@ -21,7 +21,7 @@
 						
 						<c:if test="${!empty user }">
 							<li id="first">
-								<span onclick="location.href='${pageContext.request.contextPath}/user_mypage.do">${user.getUser_nickname() } 님</span>
+								<span onclick="location.href='${pageContext.request.contextPath}/user_mypage.do?id=${user.getUser_id() }'">${user.getUser_nickname() } 님</span>
 							</li>
 														
 							<li>

@@ -1,66 +1,294 @@
 @charset "UTF-8";
 
-/* 마이페이지 사이드바 */
-.sidebar {
-	float:left;
-	width: 500px;
-	height: 600px;
-	background-color: #fee2e6;
-	line-height: 200%;
-	padding:20px;
-}	
+/* 상단 배경 */
+.mypage_top {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-image: url("../image/마이페이지 배경.png");
+  background-size: cover;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
 
-.sidebar ul li{
-	list-style-type: none;
-	color: #494949;
+.mypage_content{
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+	top: 10px; left: 0;
+	color: #3a3a3a;
+} 
+
+/* 공지사항 */
+.notice {
+  width: 980px;
+  margin: 0 auto 10px auto;
+  height: 45px;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+#notice {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 3px;
+  margin-left: 10px;
+}
+
+/* notice animation */
+.notice_content {
+  display: inline-block;
+  width: 800px;
+  height: inherit;
+  color: #fff;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.content_container {
+  overflow: hidden;
+  width: 800px;
+  margin: 0;
+}
+
+.content_container_text {
+  display: inline;
+  float: left;
+  margin: 0;
+}
+
+.content_container_list {
+  margin-top: 0;
+  padding-left: 20px;
+  text-align: left;
+  list-style: none;
+  -webkit-animation-name: change;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: change;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+}
+
+.content_container_list_item {
+  line-height: 45px;
+  margin: 0;
+}
+
+.content_container_list_item a {
+  text-decoration: none;
+  color: #fff;
+}
+
+@-webkit-keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes change {
+  0%, 12.66%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%, 45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%, 62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%, 79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%, 95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+@keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes change {
+  0%, 12.66%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%, 29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%, 45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%, 62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%, 79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%, 95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
 }
 
 .myInfo_wrap {
 	width: 100%;
 	height: 1000px;
-	background-color: #f8f8f8;
-	padding: 50px;
+	background-color: #ffffff;
+	padding: 50px 20px;
+	letter-spacing: -0.5px;
+	border-radius: 15px;
 }
 
-.myInfo_wrap .profile {
-	width: 30%;
+.myInfo_wrap .myInfo_1 {
+	width: 200px;
+	/* border-right: 1px solid #ababab; */
+	float: left;
+	text-align: center;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 15px;
+}
+
+.myInfo_wrap .myInfo_1 img{
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.myInfo_wrap .myInfo_1 .name{
+	clear: both;
+	font-weight: bold;
+}
+
+.myInfo_wrap .myInfo_2 {
+	width: 755px;
 	height: 100%;
-	border-right: 1px solid #333333;
+	border-left: 1px solid #e3e3e3;
+	float: right;
+	color: #494949;
+	padding-left: 35px;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 25px;
 }
 
-.myInfo_wrap .myInfo_write {
-	width: 70%;
-	height: 210px;	
+.myInfo_wrap .myInfo_2 .box{
+	width: 740px;
+	height: 150px;
+	border-radius: 15px;
+	border: 1px solid #d9d6d6;
+	box-shadow: 0 0 5px #e9e7e7;
 	text-align: center;
 	color: #494949;
+	margin-top: 20px;
 }
 
-
-.myInfo_wrap .myInfo_write .write_post{
-	width: 170px;
-	height: 170px;
-	border-radius: 170px;
-	background-color: #fb4357;	
-	text-align: center;
-	color: #494949;
+.myInfo_wrap .myInfo_2 .box .box1,
+.myInfo_wrap .myInfo_2 .box .box2,
+.myInfo_wrap .myInfo_2 .box .box3,
+.myInfo_wrap .myInfo_2 .box .box4 {
+	float: left;
+	width: 24.9%;
+	height: 100px;
+	margin: 25px 0px;
+	line-height: 58px;
 }
 
-.myInfo_wrap .myInfo_write .write_comment {
-	width: 170px;
-	height: 170px;
-	border-radius: 170px;
-	background-color: #45c8fa;
-	text-align: center;
-	color: #ffffff;	
+.myInfo_wrap .myInfo_2 .box .box1,
+.myInfo_wrap .myInfo_2 .box .box2,
+.myInfo_wrap .myInfo_2 .box .box3 {
+	border-right: 1px solid #d9d6d6;
 }
 
-.myInfo_wrap .myInfo_write .write_post .write_title, 
-.myInfo_wrap .myInfo_write .write_comment .write_title {
+.myInfo_wrap .myInfo_2 .box .box1 .count,
+.myInfo_wrap .myInfo_2 .box .box2 .count,
+.myInfo_wrap .myInfo_2 .box .box3 .count,
+.myInfo_wrap .myInfo_2 .box .box4 .count {
+	margin: 0px;
+	font-size: 48px;
+}
+
+.myInfo_wrap .myInfo_2 .box .box1 .title,
+.myInfo_wrap .myInfo_2 .box .box2 .title,
+.myInfo_wrap .myInfo_2 .box .box3 .title,
+.myInfo_wrap .myInfo_2 .box .box4 .title {
+	margin: 0px;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.myInfo_board, .myInfo_comment,
+.myInfo_like, .myInfo_review {
+	margin-top: 30px;
+}
+
+.myInfo_board table,
+.myInfo_like table {
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.myInfo_board th,
+.myInfo_board td,
+.myInfo_like th,
+.myInfo_like td {
+  padding: 10px 5px;
+  border-bottom: 1px solid #d9d6d6;
+  font-size: 15px;
+}
+
+.myInfo_board td,
+.myInfo_like td {
+  text-align: center;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.myInfo_board tr:first-child,
+.myInfo_like tr:first-child {
+  background-color: #f9f9f9;
+}
+
+.myInfo_board tr:hover, 
+.myInfo_like tr:hover {
+  background-color: #f9f9f9;
+}
+
+.myInfo_comment_content {
+	border-bottom: 1px solid #d9d6d6;
+	border-top: 1px solid #d9d6d6;
+	background-color: #f4f2f2;
+	font-weight: normal;
+	padding: 10px;
+	line-height: 28px;
+}
+
+.myInfo_comment_content .comment {
+	margin: 0;
 	font-size: 15px;
 }
 
-.myInfo_wrap .myInfo_write .write_post .write_sub, 
-.myInfo_wrap .myInfo_write .write_comment .write_sub {
-	font-size: 25px;
-	font-weight: 600;
+.myInfo_comment_content .title {
+	margin: 0;
+	font-size: 13px;
+}
+
+.myInfo_comment_content .title_com_count {
+	font-size: 11px;
+	color: #fb4357;
 }
