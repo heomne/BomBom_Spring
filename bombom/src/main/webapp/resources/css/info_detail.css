@@ -68,6 +68,30 @@ html {
 	
 }
 
+.bg_content .mov_info .stars {
+	position:relative;
+	font-size: 22px;
+}
+
+.bg_content .mov_info .stars span.jum{
+	font-size:30px;
+	color:#fb4357;
+	font-weight: bold;
+}
+
+.bg_content .mov_info .stars span.detail{
+	font-size:14px;
+}
+
+.bg_content .mov_info .stars .stars-background {
+	position:absolute; 
+	width:100%; 
+	overflow:hidden; 
+	letter-spacing: -10px;	
+	width: 210px; 
+	height: 42px;
+}
+
 .bg_content .mov_info:after {
 	
 	clear: both;
