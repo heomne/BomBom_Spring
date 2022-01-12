@@ -149,6 +149,16 @@ h1 {
   color: #777;
 }
 
+.cmt_date .date .date_time {
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding-left: 5px;
+}
+
+.date:hover > .date_time {
+  opacity: 1;
+}
+
 .cmt_content .cmt_btns {
   margin-top: 10px;
 }
@@ -274,5 +284,7 @@ h1 {
 .updateForm {
 	margin-bottom: 10px;
 }
+
+
 
 

@@ -70,6 +70,11 @@
   padding-left: 80px;
 }
 
+.board .title_left .cmt {
+  font-size: 14px;
+  color: #fb4357;
+}
+
 .board td a {
   width: 400px;
   color: black;
