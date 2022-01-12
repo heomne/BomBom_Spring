@@ -3,12 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-	<title>Home</title>
-
+	<title>봄봄 :: 이 영화 봄?봄!</title>
+	<link rel="icon" type="image/png" sizes="192x192" href="resources/image/favicon.png" />
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/home.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
+	
 	
 	
 	<%-- jQuery --%>
@@ -78,12 +79,7 @@
                     </ul>
                 </div>
         </div>          
-		
-		<div class="article">	
-			<h2>영화 정보</h2>
-				
-		</div>
-		
+        
 		<div class="article">	
 			<h2>시사회 정보</h2>
 				<div class="premiere_content">

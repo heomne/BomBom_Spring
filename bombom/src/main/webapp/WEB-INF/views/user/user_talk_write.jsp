@@ -4,7 +4,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>영화커뮤니티 : 봄봄</title>
+	<title>봄봄 :: 이 영화 봄?봄!</title>
+	<link rel="icon" type="image/png" sizes="192x192" href="resources/image/favicon.png" />
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css?after"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/write.css?after"/>
