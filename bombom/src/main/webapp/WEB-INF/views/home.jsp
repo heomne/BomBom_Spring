@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 	<title>Home</title>
@@ -18,6 +19,7 @@
 	<jsp:include page="./include/header.jsp" flush="false"/>
 	
 	<c:set var="posts" value="${posts}"/>
+	<c:set var="premiere" value="${premiere}"/>
 	
 	<div id="slideShow"> 
 			
@@ -58,7 +60,47 @@
 		
 		<div class="article">	
 			<h2>시사회 정보</h2>
+				<div class="premiere_content">
+				<!-- 게시물 영역을 누르면 모달창으로 넘어갈 수 있도록 -->
+				<c:if test="${!empty premiere }">
+				<c:forEach items="${premiere }" var="pDto">
 				
+					<div class="content_cards" 
+						onclick="location.href='${pageContext.request.contextPath}/user_premiere.do?no=${pDto.getPremiere_no() }'">
+					
+					<!-- 오늘날짜 -->
+					<jsp:useBean id="now" class="java.util.Date" />
+					<fmt:formatDate var="today" value="${now}" pattern="yyyyMMdd" />
+					
+					<!-- 비교할 날짜 -->
+					<fmt:parseDate var="bdate" value="${pDto.getPremiere_date()}" pattern="yyyy-MM-dd HH:mm:ss" />
+					<fmt:formatDate var="oldday" value="${bdate}" pattern="yyyyMMdd" />
+					
+					<c:set var="dateCal" value="${today-oldday}"/>
+					
+						<div class="content_img_wrapper">
+						<!-- 게시글 작성일이 7일 전이면  N 딱지 보여주기-->
+						<c:if test="${dateCal<'7' }">
+							<span class="new_atc">N</span>
+						</c:if>
+							<img src="resources/upload/premiere/${pDto.getPremiere_thumbnail() }" 
+								alt="${pDto.getPremiere_title() }">
+						</div>
+						
+						<div class="content_title">
+							<!-- 제목 문자열이 길면 자르자 -->
+							<c:if test="${pDto.getPremiere_title().length()>20 }">
+								<p>${pDto.getPremiere_title().substring(0,19) }...</p>
+							</c:if>
+							<!-- 제목 문자열이 20자 이하면 그대로 보여주자 -->
+							<c:if test="${pDto.getPremiere_title().length()<=20 }">
+								<p>${pDto.getPremiere_title() }</p>
+							</c:if>
+						</div>
+					</div>
+				</c:forEach>	
+				</c:if>
+         	</div>
 		</div>
 		
 		<div class="article">	

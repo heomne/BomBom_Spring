@@ -18,6 +18,12 @@ public class PremiereImplDAO implements PremiereDAO{
 		return this.sqlSession.selectList("allPremiere");
 	}
 	
+	// 홈 화면에 올라갈 글 목록 가져오기
+	@Override
+	public List<PremiereDTO> getMainList() {
+		return this.sqlSession.selectList("mainPremiere");
+	}	
+	
 	// 글 작성
 	@Override
 	public int insertBoard(PremiereDTO dto) {
@@ -53,6 +59,8 @@ public class PremiereImplDAO implements PremiereDAO{
 	@Override
 	public PremiereDTO boardCont(int no) {
 		return this.sqlSession.selectOne("contentPremiere", no);
-	}	
+	}
+
+	
 
 }

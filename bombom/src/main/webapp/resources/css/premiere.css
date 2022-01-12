@@ -58,7 +58,7 @@
 	position: relative;
 }
 
-.content_cards img{
+.content_img_wrapper img{
     display: block;
     /* width : 290px; */
     width: 100%;
@@ -173,7 +173,7 @@
   
 }
 
-.modal-con{
+.modal-con {
 	display:none;
 	position:fixed;
 	top:50%; left:50%;

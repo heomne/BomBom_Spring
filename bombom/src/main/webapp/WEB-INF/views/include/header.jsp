@@ -21,8 +21,9 @@
 						
 						<c:if test="${!empty user }">
 							<li id="first">
-								<span>${user.getUser_nickname() } 님</span>
+								<span onclick="location.href='${pageContext.request.contextPath}/user_mypage.do">${user.getUser_nickname() } 님</span>
 							</li>
+														
 							<li>
 								<span onclick="location.href='${pageContext.request.contextPath}/user_logout.do'">로그아웃</span>
 							</li>

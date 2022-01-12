@@ -20,3 +20,68 @@
 	top: 5px;
 	
 }
+
+/* 시사회 */
+.article .premiere_content {
+	display : inline-block;
+}
+
+.article .content_cards {
+	width : 210px;
+	height : 310px;
+	margin : 20px 20px;	
+	float:left;
+	position: relative;
+	cursor: pointer;
+}
+
+.article .content_img_wrapper {
+	width: 210px;
+	height: 295px;
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;	
+}
+
+.article .content_img_wrapper img {
+	display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left:0;
+    transfom: translate(50,50);
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* 새로 올린 글에는 N 딱지 붙게 */
+.article .content_cards .new_atc {
+    position: absolute;
+    top: 0; left: 0;
+    width: 20px;
+    color: #FFF;
+    text-align: center;
+    z-index: 2;
+    padding-left: 3px;
+    padding-top: 3px;
+    font-size: 14px;
+}
+
+/* after: 선택한 요소의 맨 마지막 자식으로 의사 요소를 하나 생성 */
+.article .content_cards .new_atc::after{
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    border: 20px solid transparent;
+    border-top: 20px solid #ec5e5e;
+    border-left: 20px solid #ec5e5e;
+    z-index: -1;
+}
+
+.article .content_title {
+	font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: #3c3c3c;
+}

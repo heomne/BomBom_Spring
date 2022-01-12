@@ -28,15 +28,18 @@ public class PremiereController {
 	
 	// 시사회 게시판 글 목록 불러오는 비즈니스 로직
 	@RequestMapping("user_premiere.do")
-	public String premiere_list(Model model) {
+	public String premiere_list(@RequestParam(defaultValue = "0") String no, Model model) {
+		
+		model.addAttribute("no", no);
+		
+		System.out.println(no);
 		
 		List<PremiereDTO> list = this.dao.getBoardList();
 		
 		model.addAttribute("List", list);
-				
+		
 		return "/user/user_premiere";
 	}
-	
 	
 	// 시사회 게시판 글 작성 폼 불러오는 비즈니스 로직
 	@RequestMapping(value = "/premiere_write.do", method = RequestMethod.GET)

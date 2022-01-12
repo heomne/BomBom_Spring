@@ -23,12 +23,65 @@
 
 	<jsp:include page="../include/header.jsp" flush="false"/>
 	
-	<div class="content">
 	<jsp:include page="../include/mypage_sidebar.jsp" flush="false"/>
 	
+	<div class="content">
+	
+	<h2>마이페이지</h2>
+	
+	<div class="myInfo_wrap">
+		
+		<div class="profile">
+			<img src="resources/image/사람픽토그램2.png" alt="사람 아이콘" width="150px;" height="150px;">
+			<p>00님</p>
+			<p>일반회원</p>
+		</div>
+		
+		<div class="myInfo_write">
+			<div class="write_post">
+				<p class="write_title">작성한 글</p>
+				<p class="write_sub">3개</p>
+			</div>
+			
+			<div class="write_comment">
+				<p class="write_title">작성한 댓글</p>
+				<p class="write_sub">3개</p>
+			</div>
+		</div>
+		
+		<div>
+		<table>
+			<tr>
+	            <th>아이디</th>
+	            <td></td>
+	         </tr>
+	         
+	         <tr>
+	            <th>이름</th>
+	            <td></td>
+	         </tr>
+	         
+	         <tr>
+	            <th>닉네임</th>
+	            <td></td>
+	         </tr>	  
+	         
+	         <tr>
+	            <th>가입일</th>
+	            <td></td>
+	         </tr>	       
+		</table>
+		</div>
+		
+
+	</div>
+	
+	
+				
 	
 	
 	</div>
+	
 	
 	<jsp:include page="../include/footer.jsp" flush="false"/>	
 
