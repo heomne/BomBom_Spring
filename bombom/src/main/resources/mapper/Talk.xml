@@ -8,10 +8,10 @@
 
 	<select id="getPosts" resultType="com.bombom.model.TalkDTO">
 		<![CDATA[
-			select * from
-				(select b.*, row_number() 
-			   		over(order by talk_no desc) rnum from bombom_talk b)	
-			   		where rnum >= #{startIndex} and rnum < #{endIndex}
+		   select 
+		   (select count(*) from bombom_talk_comment where talk_no = a.talk_no) as cnt, 
+		   a.* from (select rownum as rnum, b.* from (select * from bombom_talk order by talk_no desc) b ) a 
+		   where a.rnum >= #{startIndex} and a.rnum < #{endIndex}
 		]]>
 	</select>
 	
@@ -22,18 +22,24 @@
 	
 	<select id="searchPosts" resultType="com.bombom.model.TalkDTO">
 		<![CDATA[
-			select * from
-				(select b.*, row_number() 
-			   		over(order by talk_no desc) rnum from bombom_talk b where b.user_nickname like '%' || #{keyword} || '%' or b.talk_title like '%' || #{keyword} || '%' or b.talk_cont like '%' || #{keyword} || '%')
-			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+		   select 
+		   (select count(*) from bombom_talk_comment where talk_no = a.talk_no) as cnt, 
+		   a.* from (select rownum as rnum, b.* 
+		   from (select * from bombom_talk 
+		   where user_nickname like '%' || #{keyword} || '%' 
+		   or talk_title like '%' || #{keyword} || '%' 
+		   or talk_cont like '%' || #{keyword} || '%' 
+		   order by talk_no desc) b ) a 
+		   where a.rnum >= #{startIndex} and a.rnum < #{endIndex}
 		]]>
 	</select>
 	
 	<select id="getMainPosts" resultType="com.bombom.model.TalkDTO">
 		<![CDATA[
-			select * from 
-				(select b.*, row_number() over(order by talk_like desc, talk_hit desc) rnum from bombom_talk b) 
-				where rnum between 1 and 8
+		   select 
+		   (select count(*) from bombom_talk_comment where talk_no = a.talk_no) as cnt, 
+		   a.* from (select rownum as rnum, b.* from (select * from bombom_talk order by talk_like desc, talk_hit desc) b ) a 
+		   where a.rnum between 1 and 8
 		]]>
 	</select>
 

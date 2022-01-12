@@ -69,7 +69,7 @@
 .talk_posts a {
   margin-left: 20px;
   text-decoration: none;
-  color: #222;
+  color: darkslategray;
 }
 
 .talk_posts ul li .score_block {
@@ -82,10 +82,16 @@
   padding: 0 5px;
 }
 
-.talk_score:first-child {
+.score_block .talk_score {
+  color: darkslategray;
   padding-right: 20px;
 }
 
-.talk_score:last-child {
+.score_block .talk_score:last-child {
   min-width: 30px;
+}
+
+.talk_posts ul li .cmt {
+  font-size: 14px;
+  color: #fb4357;
 }

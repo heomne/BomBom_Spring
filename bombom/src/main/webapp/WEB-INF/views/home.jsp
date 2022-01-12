@@ -55,7 +55,12 @@
                             	<span class="rank">${status.count}</span>
                             </c:otherwise>
                         </c:choose>
-                            <a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">${postDTO.getTalk_title()}</a>
+                            <a href="${pageContext.request.contextPath}/user_talk.do/${postDTO.getTalk_no()}">
+                            	${postDTO.getTalk_title()}
+                            	<c:if test="${postDTO.getCnt() != 0 }">
+                            		<span class="cmt">(${postDTO.getCnt()})</span>
+                            	</c:if>
+                            </a>
                             <div class="score_block">
                                 <span class="talk_score">
                                     <i class="fas fa-thumbs-up"></i>
@@ -63,8 +68,8 @@
                                 </span>
                                 <span class="talk_score">
                                     <i class="fas fa-eye"></i>
-                                    <span>${postDTO.getTalk_hit()}</span>
-                                </span>
+                                    <span class="hit">${postDTO.getTalk_hit()}</span>
+                                </span>                                
                             </div>
                         </li>
 					</c:forEach>

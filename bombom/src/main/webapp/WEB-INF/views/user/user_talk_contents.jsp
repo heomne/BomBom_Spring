@@ -61,7 +61,7 @@
                     <div class="info_right">
                         <span class="hit">👁${dto.getTalk_hit()}</span>
                         <span class="like">👍${dto.getTalk_like()}</span>
-                        <span class="comment">💭3</span>
+                        <span class="comment"></span>
                     </div>
                 </div>
             </header>
@@ -140,7 +140,11 @@
                     <tr>
                         <td>${post.getTalk_no()}</td>
                         <td class="title_left">
-                            <a href="${pageContext.request.contextPath}/user_talk.do/${post.getTalk_no()}">${post.getTalk_title()}</a>
+                            <a href="${pageContext.request.contextPath}/user_talk.do/${post.getTalk_no()}">${post.getTalk_title()}
+                            	<c:if test="${post.getCnt() != 0 }">
+                            		<span class="cmt">(${post.getCnt()})</span>
+                            	</c:if>
+                            </a>
                         </td>
                         <td>
                             <a href="#">${post.getUser_nickname()}</a>

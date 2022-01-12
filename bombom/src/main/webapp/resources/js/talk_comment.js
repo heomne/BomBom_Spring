@@ -47,7 +47,9 @@ function loadComments() {
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 	    success: function (data) {
 	    	console.log('comments load');
-	    	console.log(data);
+	    	
+    		const $comment = document.querySelector('.comment');
+    		$comment.innerHTML = '💬' + data.length;
 
     		let html = "";
 	    	
@@ -78,7 +80,9 @@ function loadComments() {
 		            html += data[i].comment_cont;
 		            html += '</span>'
 		            html += '<div class="cmt_date">';
-		            html += '<span class="date_time">' + data[i].comment_date.substring(5, 16) + '</span>';
+		            html += '<span class="date">' + dateResolver(data[i].comment_date);
+		            html += '<span class="date_time">' + data[i].comment_date.substring(11, 16) + '</span>';
+		            html += '</span>';
 		            html += '</div>';
 		            html += '<div class="cmt_btns">';
 //		            html += '<button type="button">답글</button>';
@@ -87,7 +91,7 @@ function loadComments() {
 		            html += '</div>';
 		            html += '</div>';
 	    		}
-	    		
+
 	    	} else {
 	    		
 	    		html += "";
@@ -188,6 +192,37 @@ function deleteComment(e) {
 		});
 		
 	}
+}
+
+function dateResolver(dateData) {
+	
+	const year = parseInt(dateData.substring(0, 4));
+	const month = parseInt(dateData.substring(5, 7)) - 1;
+	const date = parseInt(dateData.substring(8, 10));
+	
+	const inputDate = new Date(year, month, date);
+	const today = new Date();
+	
+	console.log(date);
+	console.log(today.getDate());
+	console.log(today.getDate() - date);
+	
+	if(today.getYear() + 1900 !== year) {
+		return dateData.substring(0, 10);
+	}
+	
+	if(today.getMonth() !== month) {
+		return dateData.substring(5, 10);
+	}
+	
+	if(today.getDate() - date > 7) {
+		return dateData.substring(5, 10);
+	} else if(today.getDate() - date === 0){
+		return dateData.substring(11, 16);
+	} else {
+		return today.getDate() - date + '일 전';
+	}
+	
 }
 
 
