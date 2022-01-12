@@ -81,7 +81,9 @@ function loadComments() {
 		            html += '</span>'
 		            html += '<div class="cmt_date">';
 		            html += '<span class="date">' + dateResolver(data[i].comment_date);
-		            html += '<span class="date_time">' + data[i].comment_date.substring(11, 16) + '</span>';
+		            if(new Date().getDate() !== parseInt(data[i].comment_date.substring(8, 10))) {
+		            	html += '<span class="date_time">' + data[i].comment_date.substring(11, 16) + '</span>';
+		            }
 		            html += '</span>';
 		            html += '</div>';
 		            html += '<div class="cmt_btns">';
@@ -202,10 +204,6 @@ function dateResolver(dateData) {
 	
 	const inputDate = new Date(year, month, date);
 	const today = new Date();
-	
-	console.log(date);
-	console.log(today.getDate());
-	console.log(today.getDate() - date);
 	
 	if(today.getYear() + 1900 !== year) {
 		return dateData.substring(0, 10);
