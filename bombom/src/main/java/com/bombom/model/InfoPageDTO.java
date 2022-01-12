@@ -54,9 +54,8 @@ public class InfoPageDTO {
 	
 	// 인자생성자 _ 검색
 	public InfoPageDTO(int page, int rowsize, int totalRecord,
-			String field, String keyword) {
+			 String keyword) {
 		this(page, rowsize, totalRecord);
-		this.field = field;
 		this.keyword = keyword;
 	}  
 	

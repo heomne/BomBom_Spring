@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +49,7 @@
 				$('a#info_menu3').css('color', '#fb4357');
 			} 
 			
-			if($(this).scrollTop() >= bgtop && $(this).scrollTop() >= teasertop) {
+			if($(this).scrollTop() >= bgtop && $(this).scrollTop() >= teasertop - 5) {
 				$('li#info_menu1').removeClass('on');
 				$('li#info_menu1').addClass('off');
 				$('li#info_menu2').removeClass('off');
@@ -59,7 +61,7 @@
 				$('a#info_menu3').css('color', '#fb4357');
 			}
 			
-			if($(this).scrollTop() >= bgtop && $(this).scrollTop() >= teasertop && $(this).scrollTop() >= reviewtop) {
+			if($(this).scrollTop() >= bgtop && $(this).scrollTop() >= teasertop && $(this).scrollTop() >= reviewtop - 5) {
 				$('li#info_menu1').removeClass('on');
 				$('li#info_menu1').addClass('off');
 				$('li#info_menu3').removeClass('off');
@@ -117,11 +119,24 @@
 			</div>
 			
 			<div class="mov_time">
-				개봉일자 : ${dto.getInfo_year() } 런타임 : ${dto.getInfo_runtime() }분
+				개봉일자 : ${dto.getInfo_year().substring(0, 10) } <br> 런타임 : ${dto.getInfo_runtime() }분 <br>
 			</div>
 			
 			<div class="mov_info">
-				${Avg }
+				<div class="stars">
+					평점 : <span class="jum"><fmt:formatNumber value="${Avg }" pattern=".0" /></span> <span class="detail">(사용자 리뷰 평균)</span>
+	             	
+	         		<br>
+	         		
+	         		<div class="stars-background">
+		               	<img src="<%=request.getContextPath() %>/resources/image/star_1.png" alt="별 사진">
+	         		 </div>
+	                <div class="stars-real" style="position:absolute; width:calc(42px * <fmt:formatNumber value="${Avg / 2}" pattern=".0" />); overflow:hidden; white-space:nowrap; letter-spacing: -10px;
+	                			height: 42px;">                 
+	                    <img src="<%=request.getContextPath() %>/resources/image/star_2.png" alt="별 사진">
+	         		</div>
+		        </div>
+				
 			</div>
 			
 			

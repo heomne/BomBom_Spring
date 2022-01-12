@@ -30,8 +30,8 @@
 		<![CDATA[
 			select * from
 				(select i.*, row_number() 
-			   		over(order by talk_date desc) rnum from bombom_movie_info i where i.info_title like '%' || #{keyword} || '%')
-			   		where rnum >= #{startIndex} and rnum <= #{endIndex} 
+			   		over(order by info_no desc) rnum from bombom_movie_info i where i.info_title like '%' || #{keyword} || '%')
+			   		where rnum >= #{startNo} and rnum <= #{endNo} 
 		]]>
 	</select>
 	
@@ -80,7 +80,7 @@
 		<![CDATA[
 			select * from 
 				(select r.*, row_number() 
-					over(order by info_no desc) rnum from bombom_movie_review r)
+					over(order by review_no desc) rnum from bombom_movie_review r)
 					where rnum >= #{startNo} and rnum <= #{endNo} and info_no = #{info_no}
 		]]> 
 	</select>
