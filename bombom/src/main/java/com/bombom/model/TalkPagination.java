@@ -6,8 +6,8 @@ import lombok.Data;
 public class TalkPagination {
 	private int pageSize = 10;
 	private int rangeSize = 5;
-	private int currPage = 1;
 	private int currRange = 1;
+	private int currPage;
 	private int listCount;
 	private int pageCount;
 	private int rangeCount;
@@ -21,6 +21,7 @@ public class TalkPagination {
 	private String keyword = null;
 	
 	public TalkPagination(int listCount, int currPage) {
+		
 		setCurrPage(currPage);
 		setListCount(listCount);
 		setPageCount(listCount);
@@ -40,7 +41,7 @@ public class TalkPagination {
 	}
 	
 	public void rangeSetting(int currPage) {
-		setCurrRange(currPage);
+		setCurrRange(this.currPage);
 		
 		this.startPage = (currRange - 1) * rangeSize + 1;
 		this.endPage = startPage + rangeSize - 1;
@@ -49,22 +50,22 @@ public class TalkPagination {
 			this.endPage = pageCount;
 		}
 		
-		this.prevPage = currPage - 1;
-		this.nextPage = currPage + 1;
+		this.prevPage = this.currPage - 1;
+		this.nextPage = this.currPage + 1;
 	}
 	
 	public void setCurrRange(int currPage) {
-		this.currRange = (int)((currPage - 1) / rangeSize) + 1;
+		this.currRange = (int)((this.currPage - 1) / rangeSize) + 1;
 	}
 	
 	public void setStartIndex(int currPage) {
-		this.startIndex = (currPage - 1) * pageSize;
+		this.startIndex = (this.currPage - 1) * pageSize + 1;
 		
-		if(startIndex == 0) startIndex = 1;
+		if(startIndex == 0) this.startIndex = 1;
 	}
 	
 	public void setEndIndex(int currPage) {
-		this.endIndex = startIndex + pageSize;
+		this.endIndex = this.currPage * pageSize;
 	}
 	
 	public void setLastPage(int listCount) {

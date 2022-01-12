@@ -11,7 +11,7 @@
 		   select 
 		   (select count(*) from bombom_talk_comment where talk_no = a.talk_no) as cnt, 
 		   a.* from (select rownum as rnum, b.* from (select * from bombom_talk order by talk_no desc) b ) a 
-		   where a.rnum >= #{startIndex} and a.rnum < #{endIndex}
+		   where a.rnum >= #{startIndex} and a.rnum <= #{endIndex}
 		]]>
 	</select>
 	
@@ -30,7 +30,7 @@
 		   or talk_title like '%' || #{keyword} || '%' 
 		   or talk_cont like '%' || #{keyword} || '%' 
 		   order by talk_no desc) b ) a 
-		   where a.rnum >= #{startIndex} and a.rnum < #{endIndex}
+		   where a.rnum >= #{startIndex} and a.rnum <= #{endIndex}
 		]]>
 	</select>
 	
