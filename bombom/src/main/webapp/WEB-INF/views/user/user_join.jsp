@@ -33,7 +33,7 @@
 				<form method="post" action="user_join_ok.do">
 					<table class="join_form"> 
 						<tr>
-							<th>아이디<span>*</span></th>
+							<td class="table_header">아이디<span>*</span></td>
 							<td><input id="user_id" name="user_id" placeholder="소문자, 숫자, 언더바/하이픈 허용 4~20자리"></td>
 							<td>
 								<button type="button" class="btn_general" onclick="idCheck()">중복확인</button>
@@ -41,23 +41,23 @@
 							</td>
 						</tr>
 						<tr>
-							<th>비밀번호<span>*</span></th>
+							<td class="table_header">비밀번호<span>*</span></td>
 							<td><input id="user_pwd" type="password" name="user_pwd" placeholder="문자, 숫자 1개이상 포함, 8자리 이상"></td>
 						</tr>
 						<tr>
-							<th>비밀번호확인<span>*</span></th>
+							<td class="table_header">비밀번호 재입력<span>*</span></td>
 							<td><input id="user_pwdcheck" type="password" placeholder="비밀번호를 한 번 더 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>이름<span>*</span></th>
+							<td class="table_header">이름<span>*</span></td>
 							<td><input id="user_name" name="user_name" placeholder="이름을 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>닉네임<span>*</span></th>
+							<td class="table_header">닉네임<span>*</span></td>
 							<td><input name="user_nickname" placeholder="닉네임을 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>이메일<span>*</span></th>
+							<td class="table_header">이메일<span>*</span></td>
 							<td><input id="user_email" name="user_email" placeholder="예: bom2022@bombom.com"></td>
 							<td>
 								<button type="button" class="btn_general" onclick="emailCheck()">중복확인</button>
@@ -65,11 +65,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th>휴대폰</th>
+							<td class="table_header">휴대폰</td>
 							<td><input id="user_phone" name="user_phone" placeholder="휴대폰 번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th rowspan="2">주소</th>
+							<td class="table_header" rowspan="2">주소</td>
 							<td>
 								<input id="addr_general" placeholder="주소찾기 버튼을 클릭해주세요" readonly>
 							</td>
@@ -84,11 +84,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th>나이</th>
+							<td class="table_header">나이</td>
 							<td><input name="user_age" placeholder="나이를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>성별</th>
+							<td class="table_header">성별</td>
 							<td colspan="2">
 								<select name="user_gender">
 									<option value="선택안함">선택안함</option>
