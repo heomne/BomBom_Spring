@@ -22,8 +22,14 @@
 		select count(*) from bombom_member where user_email = #{user_email}
 	</select>
 	
+	<!-- 회원불러오기 (마이페이지 - 회원정보보기 기능에서 사용) -->
+	<select id="contentMember" parameterType="String" resultType="com.bombom.model.MemberDTO">
+		select * from bombom_member where user_id = #{user_id}
+	</select>
+
 	<update id="updateMember" parameterType="com.bombom.model.MemberDTO">
 		update bombom_member set user_nickname = #{user_nickname}, user_age = #{user_age, jdbcType=NUMERIC}, 
 			user_addr = #{user_addr, jdbcType=VARCHAR}, user_phone = #{user_phone} where user_id = #{user_id}
 	</update>
+
 </mapper>
