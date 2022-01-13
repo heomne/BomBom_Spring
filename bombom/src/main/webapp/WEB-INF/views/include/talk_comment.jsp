@@ -10,7 +10,7 @@
     </div>
 
     <div class="cmt_notice">
-        <span>❗ 글을 읽고 댓글을 달지않으면, 포인트가 깎여나갑니다 zz </span>
+        <span>❗ 상대방을 비하하는 등 부적절한 댓글은 삭제될 수 있습니다.</span>
     </div>
 
     <div class="cmt_list">
