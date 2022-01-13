@@ -83,10 +83,12 @@
 			<br>
 			
 			<!-- 관리자만 글쓰기 버튼 보여야함** -->
-			 <input class="write" type="button" value="✐"
-	                 onclick="location.href='admin_notice_write.do'">
-		
-			
+			<c:if test="${!empty user}">
+				<c:if test="${user.user_status == 4}">
+					 <input class="write" type="button" value="✐"
+			                 onclick="location.href='admin_notice_write.do'">
+				</c:if>
+			</c:if>
 		</div>
 		<!-- 옮길것 끝 -->	
 		
