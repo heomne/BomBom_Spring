@@ -1,27 +1,23 @@
 @charset "UTF-8";
 
 .search{
-	
 	margin-left : 230px;
 	margin-top: 50px;
 	margin-bottom: 70px;
-	
 }
 
 
 .table{
-	
-	
   table-layout: auto;
   border-collapse: collapse;
-
-	
 }
 
+a {
+	text-decoration: none;
+}
 
 th{
-	font-size: 20px;
-
+	font-size: 16px;
 }
 
 td{

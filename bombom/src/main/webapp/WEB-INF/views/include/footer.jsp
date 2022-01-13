@@ -16,10 +16,10 @@
 			
 			<div>
 				<p>
-					<span>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</span><br>
-					<span>대표이사 : 허민회 · 사업자등록번호 104-81-45690 · 통신판매업신고번호 2017-서울용산-0662 · 사업자정보확인</span><br>
-					<span>호스팅사업자 : CJ올리브네트웍스 · 개인정보보호 책임자 : 심준범 · 대표이메일 : cjcgvmaster@cj.net · 고객센터 : 1544-1122</span><br>
-					<span>© CJ CGV. All Rights Reserved</span>
+					<span>서울특별시 마포구 홍대로 풍산빌딩 2층</span><br>
+					<span>대표이사 : 허민회 · 사업자등록번호 123-45-46879 · 통신판매업신고번호 1999-5555-4444 · 사업자정보확인</span><br>
+					<span>호스팅사업자 : BomBom · 개인정보보호 책임자 : 최진경 · 대표이메일 : abcd@1234.net · 고객센터 : 3333-3333</span><br>
+					<span>© Bombom. All Rights Reserved</span>
 				</p>
 			</div>	
 		</div>
