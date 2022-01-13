@@ -6,6 +6,10 @@
   font-family: "Noto Sans KR";
 }
 
+.main_content.first {
+  margin-bottom: 30px;
+}
+
 .notice {
   width: 980px;
   margin: 0 auto 25px auto;
