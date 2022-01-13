@@ -8,10 +8,10 @@
 
 	<%-- header, home, footer.css --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/notice_cont.css?after">
-	
+	<link rel="stylesheet" type="text/css" href="resources/css/write.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 	
 	<%-- jQuery --%>

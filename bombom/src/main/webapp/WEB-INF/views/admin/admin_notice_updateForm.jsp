@@ -11,8 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/write.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/notice_cont.css?after">
 	
-	<link rel="stylesheet" type="text/css" href="resources/css/notice_contt.css?after">
 	
 	<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 	
@@ -66,7 +67,7 @@
     
     <div align="center">
     	
-    	<form method="post"
+    	<form method="post" name="postForm"
     	action="<%=request.getContextPath() %>/admin_notice_update_ok.do">
     		<c:set value="${modify }" var="dto" />
     		<c:if test="${!empty dto }">
@@ -113,7 +114,7 @@
     		<div class="write_btns">
     			<input type="button" class="submit_btn" type="submit" value="등록">&nbsp;&nbsp;
                 
-                <button class="back" type="button" onclick="history.back()">뒤로가기</button>
+                <button class="goBack_btn" type="button" onclick="history.back()">뒤로가기</button>
             </div>
     		
     	
