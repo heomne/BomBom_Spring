@@ -168,6 +168,32 @@
          	</div>
 		</div>
   </div>
+  
+  <div class="food_content">
+        <div class="food_section">	
+        	<h2>극장 맛집</h2>
+			<div class="food_container">	
+				<div class="food_image">
+					<img src="resources/image/cgv_용산.jpg" onclick="alert('클릭')">
+				</div>
+				
+				<div class="food_list">
+					<ul>
+						<li id="food_first" onclick="location.href='${pageContext.request.contextPath}/user_food.do'"><span>전체보기</span></li>
+					</ul>
+					<ul>
+						<li><span>CGV 용산</span></li>
+					</ul>
+					<ul>
+						<li><span>롯데시네마 월드타워</span></li>
+					</ul>
+					<ul>
+						<li><span>메가박스 코엑스</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>  
 	
 	<jsp:include page="./include/footer.jsp" flush="false"/>
 	
