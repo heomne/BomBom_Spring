@@ -25,7 +25,7 @@
 	<c:set var="premiere" value="${premiere}"/>
 	
 	<div id="slideShow"> 
-		<iframe src="./banner" frameborder="0" width="100%"  height="400px" scrolling=auto name=banner ></iframe>
+		<iframe src="./banner" frameborder="0" width="100%"  height="420px" scrolling=auto name=banner ></iframe>
 	</div>
 	
 	<%-- 본문 컨텐츠 자리 --%>
