@@ -30,7 +30,7 @@
 	</div>
 	
 	<%-- 본문 컨텐츠 자리 --%>
-	<div class="main_content">
+	<div class="main_content first">
 
         <div class="notice">
  			<img id="notice" alt="" src="resources/image/notice.png"

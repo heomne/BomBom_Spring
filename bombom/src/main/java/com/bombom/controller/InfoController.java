@@ -338,13 +338,13 @@ public class InfoController {
 	@RequestMapping("user_info_search.do")
 	public String search(
 			@RequestParam("keyword") String keyword, 
-			@RequestParam("page") int nowPage, Model model) {
+			Model model) {
 		
 		// 검색분류와 검색어에 해당하는 게시글의 수를 DB에서 확인하는 작업
 		totalRecord = this.dao.searchInfoCount(keyword);
 		
 		InfoPageDTO dto = 
-				new InfoPageDTO(nowPage, rowsize, totalRecord, keyword);
+				new InfoPageDTO(1, rowsize, totalRecord, keyword);
 		
 		// 검색한 게시물을 List로 가져오는 메서드. == 한 페이지당 보여질 게시물의 수만큼.
 		List<InfoDTO> searchList = this.dao.searchInfoList(dto);
