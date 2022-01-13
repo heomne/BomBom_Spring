@@ -101,5 +101,11 @@ public class InfoDAOImpl implements InfoDAO{
 			return Avg;
 		}
 	}
+	
+	@Override
+	public List<InfoDTO> getMainList() {
+
+		return this.sqlSession.selectList("mainInfo");
+	}
 
 }

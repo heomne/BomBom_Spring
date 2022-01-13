@@ -23,6 +23,7 @@
 	
 	<c:set var="posts" value="${posts}"/>
 	<c:set var="premiere" value="${premiere}"/>
+	<c:set var="info" value="${info}"/>
 	
 	<div id="slideShow"> 
 		<iframe src="./banner" frameborder="0" width="100%"  height="420px" scrolling=auto name=banner ></iframe>
@@ -96,8 +97,32 @@
 					          </c:forEach>
                     </ul>
                 </div>
-        </div>          
-        
+        </div>
+   </div>
+   <div class="info_content">
+        <div class="info_section">	
+			<h2>영화 정보</h2>
+			<div class="info_cards">
+			<c:forEach var="idto" items="${info}">
+		    	<figure>
+					<a href="${pageContext.request.contextPath}/main_info_detail.do?no=${idto.getInfo_no() }">
+				    	<div class="gallery-img"><img src="resources/upload/info/${idto.getInfo_thumbnail() }" ></div>
+				
+				      	<figcaption>
+							
+				          	<h3>${idto.getInfo_subtitle() }</h3>
+							<br>
+				          	<p>${idto.getInfo_synopsis().substring(0, 50) }...</p>
+				
+				      	</figcaption>
+					</a>
+			  	</figure>     
+			  </c:forEach>
+			 </div>
+		</div>
+	</div>     
+    
+    <div class="main_content">
 		<div class="article">	
 			<h2>시사회 정보</h2>
 				<div class="premiere_content">
@@ -142,11 +167,6 @@
 				</c:if>
          	</div>
 		</div>
-    <%--
-        <div class="article">	
-            <h2>영화 정보</h2>
-        </div>
-    --%>
   </div>
 	
 	<jsp:include page="./include/footer.jsp" flush="false"/>

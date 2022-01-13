@@ -284,3 +284,72 @@ h2 {
     letter-spacing: -0.5px;
     color: #3c3c3c;
 }
+
+/* 영화 정보 */
+
+.info_content {
+	width: 100%;
+	margin:0 auto;
+	background-color: #f7f7f7;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.info_section {
+  margin: 0 auto;
+  width:1000px;
+  height: 300px;
+  padding-bottom: 40px;
+}
+
+figure {
+	transition: opacity 0.2s; 
+	position: relative; 
+	margin: 0; 
+	max-width: 20%;
+	float: left;
+}
+
+figure img {
+	width: 100%;
+	height: 285px;
+}
+
+figure figcaption {
+	color: #fff;
+	bottom: 20px; 
+	opacity: 0;
+	position: absolute; 
+	text-align: center; 
+	width: 100%;
+	transition: all .3s ease;
+}
+
+figure .gallery-img {
+	opacity: 1;
+	transition: all 0.3s ease 0s;
+	overflow: hidden
+}
+
+figure:hover .gallery-img {
+	background-color: #000
+}
+
+figure:hover img {
+	transform: scale(1.1, 1.1);
+	transition: all .3s ease;
+	opacity: 0.3;
+	cursor: pointer;
+}
+
+figure:hover figcaption {
+	opacity: 1;
+	transition: all .3s ease; 
+	cursor: pointer;
+}
+
+.content figure:last-child::after {
+  	content: '';
+  	clear: both;
+  	left: 0;
+  	top: 0;
+}
