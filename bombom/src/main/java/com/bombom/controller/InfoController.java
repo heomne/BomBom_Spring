@@ -26,7 +26,7 @@ import com.bombom.model.InfoReviewDTO;
 @Controller
 public class InfoController {
 	
-	private final int rowsize = 10;		// 한 페이지당 보여질 게시물의 수
+	private int rowsize = 0;		// 한 페이지당 보여질 게시물의 수
 	private int totalRecord = 0;	// DB 상의 게시물 전체 수
 
 	@Autowired
@@ -39,6 +39,7 @@ public class InfoController {
 	public String user_info(HttpServletRequest request, Model model) {
 		
 		int page;	// 현재 페이지 변수
+		rowsize = 6;
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));	
@@ -117,6 +118,7 @@ public class InfoController {
 			HttpServletRequest request, Model model) {
 		
 		int page;	// 현재 페이지 변수
+		rowsize = 10;
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));	

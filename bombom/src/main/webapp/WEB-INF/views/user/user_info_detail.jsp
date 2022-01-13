@@ -28,6 +28,7 @@
 			$('li#info_menu1').removeClass('off');
 			$('li#info_menu1').addClass('on');
 			$('a#info_menu1').css('color', 'white');
+			
 		});
 		
 		
@@ -74,6 +75,21 @@
 			}
 		});
 		
+		$(function(){
+			$('.extension').click(function(){
+				$('.area_synopsis').height(1).height( $('.area_synopsis').prop('scrollHeight')+12 );
+				$('.extension').css('visibility', 'collapse');
+				$('.reduction').css('visibility', 'visible');
+			});
+			
+			$('.reduction').click(function(){
+				$('.area_synopsis').height(1).height( 70 );
+				$('.reduction').css('visibility', 'collapse');
+				$('.extension').css('visibility', 'visible');
+			});
+			
+			
+		});
 		
 		
 		
@@ -168,6 +184,10 @@
 				<br>
 				<br>
 				
+				<button class="extension"> 더 보기 &nbsp;&nbsp;<img src="resources/image/ico-btn-more-arr.png"> </button>
+				<button class="reduction">
+					닫기 &nbsp;&nbsp;<img src="resources/image/ico-btn-more-arr.png" style="transform: rotate(180deg);">
+				</button>
 				<textarea class="area_cast" readonly>${dto.getInfo_cast() }</textarea> 
 			</div>
 			
