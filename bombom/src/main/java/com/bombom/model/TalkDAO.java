@@ -15,4 +15,14 @@ public interface TalkDAO {
 	int updatePost(TalkDTO dto);
 	int increaseLike(TalkLikeDTO dto);
 	int decreaseLike(TalkLikeDTO dto);
+	
+	//사용자가 작성한 글 가져오는 메서드
+	List<TalkDTO> getUserPosts(String id);
+	List<TalkDTO> getUserPostsAll(String id);
+	
+	// 사용자가 댓글 단 게시글 목록 가져오기
+	List<TalkDTO> getUserComment(String id);
+	
+	//사용자가 좋아요 한 글 가져오는 메서드
+	List<TalkDTO> getUserLikes(String id);
 }

@@ -83,4 +83,40 @@
 			select talk_like from bombom_talk where talk_no = #{talkNo}
 		</selectKey>
 	</update>
+	
+	<!-- 사용자가 작성한 글 목록(일부)보여주기 -->
+	<select id="getUserPosts" parameterType="String" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+		select * from 
+		   (select b.*, row_number() over(order by talk_no desc) rnum from bombom_talk b where user_id = #{id} ) 
+				where rnum between 1 and 5
+		]]>
+	</select>
+	
+	<!-- 사용자가 작성한 글 목록(전체)보여주기 -->
+	<select id="getUserPostsAll" parameterType="String" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+		select * from bombom_talk where user_id = #{id}
+		]]>
+	</select>
+	
+	<!-- 사용자가 댓글 단 게시글 목록 가져오기 -->
+	<!-- <select id="getUserComment" parameterType="int" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+		
+		]]>
+	</select> -->
+	
+	<!-- 사용자가 좋아요한 글(일부)보여주기 -->
+	<select id="getUserLikes" parameterType="String" resultType="com.bombom.model.TalkDTO">
+		<![CDATA[
+		select *
+		from bombom_talk t
+		join bombom_talk_like l
+		on l.talk_no = t.talk_no
+		where l.user_id = #{id}
+		order by t.talk_date desc
+		]]>
+	</select>
+	
 </mapper>

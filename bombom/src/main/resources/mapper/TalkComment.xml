@@ -20,4 +20,8 @@
 	<update id="updateComment" parameterType="com.bombom.model.TalkCommentDTO">
 		update bombom_talk_comment set comment_cont = #{comment_cont} where comment_no = #{comment_no}
 	</update>
+	
+	<select id="getCommentsById" parameterType="String" resultType="com.bombom.model.TalkCommentDTO">
+		select * from bombom_talk_comment where user_id = #{id} order by comment_date desc
+	</select>
 </mapper>

@@ -16,6 +16,10 @@ public class TalkCommentDAOImpl implements TalkCommentDAO {
 	public List<TalkCommentDTO> getComments(long talk_no) {
 		return this.sqlSession.selectList("getComments", talk_no);
 	}
+	
+	public List<TalkCommentDTO> getComments(String id) {
+		return this.sqlSession.selectList("getCommentsById", id);
+	}
 
 	@Override
 	public int insertComment(TalkCommentDTO dto) {
@@ -30,6 +34,12 @@ public class TalkCommentDAOImpl implements TalkCommentDAO {
 	@Override
 	public int deleteComment(long comment_no) {
 		return this.sqlSession.delete("deleteComment", comment_no);
+	}
+
+	@Override
+	public List<TalkCommentDTO> getComments(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
