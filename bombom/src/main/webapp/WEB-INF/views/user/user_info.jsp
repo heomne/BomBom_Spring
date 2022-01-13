@@ -85,19 +85,21 @@
 						</div>
 						<div class="cards_cont">
 							<div class="cont_title">
-								${i.getInfo_title() }
+								<strong>${i.getInfo_title() }</strong>
 							</div>
 							
-							<c:if test="${i.getInfo_synopsis().length() > 50}">
+							<c:if test="${i.getInfo_synopsis().length() > 70}">
 								<div class="cont_text">
-									
-									${fn:substring(i.getInfo_synopsis(), 0, 50) }...
+									${fn:substring(i.getInfo_synopsis(), 0, 70) }...
+									<br><br><br>
+									${i.getInfo_cast().substring(0, 45) }...
 								</div>
                        		</c:if>
-                       		<c:if test="${i.getInfo_synopsis().length() <= 30}">
+                       		<c:if test="${i.getInfo_synopsis().length() <= 70}">
 								<div class="cont_text">
-									
-									${i.getInfo_synopsis()}
+									${i.getInfo_synopsis() }
+									<br><br><br>
+									${i.getInfo_cast().substring(0, 45) }...
 								</div>
                        		</c:if>
 							
