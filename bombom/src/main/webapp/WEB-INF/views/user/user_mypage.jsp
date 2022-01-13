@@ -38,16 +38,16 @@
 				<div class="content_container">
 					<ul class="content_container_list">
 				      <li class="content_container_list_item">
-				      	<a href="#1">[공지사항] 봄봄수다 게시판 이용 관련 공지사항입니다.</a>
+				      	<a href="<%= request.getContextPath() %>/user_notice_cont.do?no=3&page=1">[공지사항] 영화수다 게시판 이용 관련 공지사항입니다.</a>
 				      </li>
 				      <li class="content_container_list_item">
-				      	<a href="#2">[공지사항] 신규기능 '극장맛집' 탭 소개 및 이용안내</a>
+				      	<a href="<%= request.getContextPath() %>/user_notice_cont.do?no=4&page=1">[공지사항] 신규기능 '극장맛집' 탭 소개 및 이용안내</a>
 				      </li>
 				      <li class="content_container_list_item">
-				      	<a href="#3">[공지사항] 2022년 개봉예정작 시사회 일정 안내</a>
+				      	<a href="<%= request.getContextPath() %>/user_notice_cont.do?no=5&page=1">[공지사항] 2022년 개봉예정작 시사회 일정 안내</a>
 				      </li>
 				      <li class="content_container_list_item">
-				      	<a href="#4">봄봄 커뮤니티에 오신 것을 환영합니다.</a>
+				      	<a href="<%= request.getContextPath() %>/user_notice_cont.do?no=6&page=1">봄봄 커뮤니티에 오신 것을 환영합니다.</a>
 				      </li>
 				    </ul>
 			    </div>
