@@ -38,7 +38,7 @@
 				<div class="content_container">
 					<ul class="content_container_list">
 				      <li class="content_container_list_item">
-				      	<a href="#1">[공지사항] 봄봄수다 게시판 이용 관련 공지사항입니다.</a>
+				      	<a href="<%= request.getContextPath() %>/user_notice_cont.do?no=3&page=1">[공지사항] 봄봄수다 게시판 이용 관련 공지사항입니다.</a>
 				      </li>
 				      <li class="content_container_list_item">
 				      	<a href="#2">[공지사항] 신규기능 '극장맛집' 탭 소개 및 이용안내</a>
