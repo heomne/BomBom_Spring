@@ -13,7 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/notice.css?after">
+	
+	<link rel="stylesheet" type="text/css" href="resources/css/talk.css?after">
 	
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -45,8 +46,11 @@
 	<c:set value="${page }" var="dto"/>
 	
 	<%-- 옮길것 --%>
-		<div class="boardArea" >
-			<table border="1" cellspacing="0" width="1000" align="center" class="table">
+
+		 <div class="boardArea">
+            <div class="board">
+	
+			<table border="1" cellspacing="0" width="100%" align="center" class="table">
 				<tr>
 					<th>글번호</th> <th>글제목</th>
 					<th>작성자</th> <th>작성날짜</th> <th>조회수</th>
@@ -77,13 +81,16 @@
 				
 			
 			</table>
+			</div>
+			
 			
 			<br>
-			
+			 <div class="board_footer">
+                <div class="board_bottom">
 			<!-- 관리자만 글쓰기 버튼 보여야함** -->
 			 <input class="write" type="button" value="✐"
 	                 onclick="location.href='admin_notice_write.do'">
-		
+				</div>
 			
 		</div>
 		<!-- 옮길것 끝 -->	
@@ -93,7 +100,7 @@
 	
 	<%-- 페이징처리 부분 --%>
 	
-	<div class="page" align="center">
+	  <div class="paging" align="center">
 		
 		<c:if test="${!empty dto }">
 	   <c:if test="${dto.getPage() > dto.getBlock() }">
