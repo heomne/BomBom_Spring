@@ -29,8 +29,7 @@
 		);
 		
 	</script>
-
-
+  
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -69,8 +68,6 @@
 	                        <td>${i.getNews_date().substring(0,10) }</td>
 	                        <td>${i.getNews_hit() }</td>
 	                    </tr>
-					
-					
 					</c:forEach>
 					</c:if>
 					
@@ -89,15 +86,11 @@
 				<c:if test="${user.user_status == 4 }">
 				<input class="write" type="button" value="✐"
 		                 onclick="location.href='admin_notice_write.do'">
-				
 				</c:if>
 			</div>
 		</div>
 		<!-- 옮길것 끝 -->	
-		
-	
-	      
-	
+    
 	<%-- 페이징처리 부분 --%>
 	<div class="board_footer">
 	<div class="paging">
@@ -124,33 +117,7 @@
 		</c:if>
 		</c:if>
 	</div>
-	
-	<%-- <div class="page" align="center">
-		
-	   <c:if test="${!empty dto }">
-	   <c:if test="${dto.getPage() > dto.getBlock() }">
-	      <a href="user_notice.do?page=1">◀◀</a>
-	      <a href="user_notice.do?page=${dto.getStartBlock() - 1 }">◀</a>
-	   </c:if>
-	   
-	   <c:forEach begin="${dto.getStartBlock() }"
-	                   end="${dto.getEndBlock() }" var="i">
-	      <c:if test="${i == dto.getPage() }">
-	         <b> <a href="user_notice.do?page=${i }">[${i }]</a></b>
-	      </c:if>
-	      
-	      <c:if test="${i != dto.getPage() }">
-	         <a href="user_notice.do?page=${i }">[${i }]</a>
-	      </c:if>
-	   </c:forEach>
-	   
-	   <c:if test="${dto.getEndBlock() < dto.getAllPage() }">
-	       <a href="user_notice.do?page=${dto.getEndBlock() + 1}">▶</a>
-	      <a href="user_notice.do?page=${dto.getAllPage() }">▶▶</a>
-	   </c:if>
-		</c:if>
-	</div> --%>
-		
+    
 		<div class="search">
 				<form method="post"
 					action="<%=request.getContextPath() %>/user_bombom_search.do">

@@ -101,6 +101,12 @@
 	            		삭제
 	            	</button>
 	            </c:if>
+	            <c:if test="${session.user_status == 4 }">
+	            	<button id="delete_btn" onClick="delete_post()">
+	            		<i class="fas fa-trash-alt"></i>
+	            		삭제
+	            	</button>
+	            </c:if>
             </div>
 
             <div class="comment_block">

@@ -16,7 +16,7 @@
 		<![CDATA[
 			select * from 
 				(select i.*, row_number() 
-					over(order by info_no desc) rnum from bombom_movie_info i)
+					over(order by info_year desc) rnum from bombom_movie_info i)
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]> 
 	</select>
@@ -30,7 +30,7 @@
 		<![CDATA[
 			select * from
 				(select i.*, row_number() 
-			   		over(order by info_no desc) rnum from bombom_movie_info i where i.info_title like '%' || #{keyword} || '%')
+			   		over(order by info_year desc) rnum from bombom_movie_info i where i.info_title like '%' || #{keyword} || '%')
 			   		where rnum >= #{startNo} and rnum <= #{endNo} 
 		]]>
 	</select>
