@@ -65,6 +65,7 @@ public class TalkController {
 	public String getPosts(@RequestParam(defaultValue = "1")int page, Model model) {
 		
 		int listCount = talkDao.getPostCount();
+		logger.info("page value {}", page);
 		TalkPagination pagination = new TalkPagination(listCount, page);
 		List<TalkDTO> posts = talkDao.getPosts(pagination);
 		
