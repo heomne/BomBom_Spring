@@ -31,4 +31,6 @@ int getReviewCount(int no);	// 전체 리뷰 수 가져오기
 void updateReviews(int no);
 
 Double getAvg(int no);	// 평점 평균 가져오기
+
+List<InfoDTO> getMainList();
 }

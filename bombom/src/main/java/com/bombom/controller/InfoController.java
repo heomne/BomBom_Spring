@@ -81,6 +81,23 @@ public class InfoController {
 		return "/user/user_info_detail";
 	}
 	
+	@RequestMapping("main_info_detail.do") 
+	public String main_info_detail(@RequestParam("no") int info_no, 
+			Model model) throws IOException {
+		
+		// 게시글 상세 내역 조회하는 메서드 호출
+		InfoDTO dto = this.dao.infoCont(info_no);
+		
+		double getAvg = this.dao.getAvg(dto.getInfo_no());
+		
+		
+		model.addAttribute("Cont", dto);
+
+		model.addAttribute("Avg", getAvg);
+		
+		return "/user/user_info_detail";
+	}
+	
 	
 	@RequestMapping(value = "/user_info_write.do", method = RequestMethod.GET)
 	public String content(Model model) {

@@ -129,4 +129,5 @@ body {
 .article {
 	margin-top: 25px;
 	margin-bottom: 25px;
+	clear: both;
 }
