@@ -21,4 +21,9 @@
 	<select id="checkEmail" parameterType="String" resultType="integer">
 		select count(*) from bombom_member where user_email = #{user_email}
 	</select>
+	
+	<update id="updateMember" parameterType="com.bombom.model.MemberDTO">
+		update bombom_member set user_nickname = #{user_nickname}, user_age = #{user_age, jdbcType=NUMERIC}, 
+			user_addr = #{user_addr, jdbcType=VARCHAR}, user_phone = #{user_phone} where user_id = #{user_id}
+	</update>
 </mapper>
