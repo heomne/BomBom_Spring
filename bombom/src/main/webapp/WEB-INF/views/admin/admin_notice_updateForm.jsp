@@ -18,8 +18,6 @@
 	
 	<%-- jQuery --%>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	
-	<script defer src="${pageContext.request.contextPath}/resources/js/write.js"></script>
 	 
 	<script>
 	
@@ -32,6 +30,27 @@
 		);
 		
 	</script>
+	<style>
+	
+		.write_btns {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+		
+		.submit_btn,
+		.back{
+			margin-top:20px;
+			padding : 10px 30px;
+			color: #fff;
+			background-color: #fb4357;
+			border-style: none;
+			cursor: pointer;
+			font-size : 15px;
+		}
+	
+	
+	</style>
+	
 </head>
 <body>
 
@@ -57,7 +76,7 @@
     		
     		<table>	
     			<tr>
-    				<th>글제목</th>
+    				
     				<td>
 		    			<div class="title_wrap">
 		                    <input type="text" class="title" name="news_title" value="${dto.getNews_title() }"/>
@@ -66,7 +85,7 @@
     			</tr>
     			
     			<tr>
-    				<th>글내용</th>
+    				
     				<td>
     				
     		<div class="write_block">
@@ -77,6 +96,7 @@
                     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
                     <script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
                     <script src="${pageContext.request.contextPath}/resources/js/editor.js"></script>
+                    <script defer src="${pageContext.request.contextPath}/resources/js/write.js"></script>
                     <input id="contValue" type="hidden" name="news_cont" value="${dto.getNews_cont() }"/>
                     
                     
@@ -91,9 +111,9 @@
     		<br>
     		
     		<div class="write_btns">
-    			<input class="submit_btn" type="submit" value="등록">&nbsp;&nbsp;
+    			<input type="button" class="submit_btn" type="submit" value="등록">&nbsp;&nbsp;
                 
-                <button class="goback_btn" type="button" onclick="history.back()">뒤로가기</button>
+                <button class="back" type="button" onclick="history.back()">뒤로가기</button>
             </div>
     		
     	

@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/header.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/user_news.css?after">
 	<link rel="stylesheet" type="text/css" href="resources/css/footer.css?after">
-	<link rel="stylesheet" type="text/css" href="resources/css/notice_contt.css?after">
+	<link rel="stylesheet" type="text/css" href="resources/css/notice_cont.css?after">
 	
 	<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.css" />
 	
@@ -30,6 +30,26 @@
 		);
 		
 	</script>
+	
+	<style>
+	
+		.write_btns {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+		
+		.submit_btn{
+			margin-top:20px;
+			padding : 10px 30px;
+			color: #fff;
+			background-color: #fb4357;
+			border-style: none;
+			cursor: pointer;
+			font-size : 15px;
+		}
+	
+	
+	</style>
 
 
 </head>
@@ -49,7 +69,7 @@
     
     <div align="center">
     	
-    	<form method="post"
+    	<form method="post" name="postForm"
     	action="<%=request.getContextPath() %>/admin_notice_write_ok.do">
     		<input type="hidden" name="news_writer" value="관리자" >
     	
@@ -58,7 +78,7 @@
     		
     		<table>	
     			<tr>
-    				<th>글제목</th>
+    				
     				<td>
 		    			<div class="title_wrap">
 		                    <input type="text" class="title" name="news_title" placeholder="제목을 입력해주세요"/>
@@ -67,7 +87,7 @@
     			</tr>
     			
     			<tr>
-    				<th>글내용</th>
+    				
     				<td>
     				
     		<div class="write_block">
@@ -89,9 +109,9 @@
     		<br>
     		
     		<div class="write_btns">
-    			<input class="submit_btn" type="submit" value="등록">&nbsp;&nbsp;
+    			<input type="button" class="submit_btn" value="등록">&nbsp;&nbsp;
                 
-                <button class="goback_btn" type="button" onclick="history.back()">뒤로가기</button>
+                <button class="submit_btn" type="button" onclick="history.back()">뒤로가기</button>
             </div>
     		
     	
