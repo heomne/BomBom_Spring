@@ -210,7 +210,7 @@
 	                            	</c:if>
 	                            </a>
 	                        </td>
-	                        <td>${like.getUser_id() }</td>	                        
+	                        <td>${like.getUser_nickname() }</td>	                        
 	                        <td>${like.getTalk_date().substring(0,10) }</td>
 	                    </tr>
 	                    </c:forEach>
