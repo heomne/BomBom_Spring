@@ -23,6 +23,18 @@ public class InfoDAOImpl implements InfoDAO{
 		
 		return this.sqlSession.selectList("listInfo", dto);
 	}
+	
+	@Override
+	public List<InfoDTO> getInfoListReviews(InfoPageDTO dto) {
+
+		return this.sqlSession.selectList("listInfoReviews", dto);
+	}
+	
+	@Override
+	public List<InfoDTO> getInfoListTime(InfoPageDTO dto) {
+
+		return this.sqlSession.selectList("listInfoTime", dto);
+	}
 
 	@Override
 	public int insertInfo(InfoDTO dto) {

@@ -138,24 +138,24 @@
                 
                 <div class="paging">
 	                <c:if test="${dto.getPage() > dto.getBlock() }">
-						<a href="${pageContext.request.contextPath}/user_info.do?page=1" class="paging_first"><<</a>
-						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getStartBlock() - 1 }" class="paging_prev"><</a>
+						<a href="${pageContext.request.contextPath}/user_info_reviews.do?page=1" class="paging_first"><<</a>
+						<a href="${pageContext.request.contextPath}/user_info_reviews.do?page=${dto.getStartBlock() - 1 }" class="paging_prev"><</a>
 					</c:if>
 					
 					<c:forEach begin="${dto.getStartBlock() }" 
 							end="${dto.getEndBlock() }" var="i">
 						<c:if test="${i == dto.getPage() }">
-							<b> <a href="${pageContext.request.contextPath}/user_info.do?page=${i }" class="paging_number_active">${i }</a></b>
+							<b> <a href="${pageContext.request.contextPath}/user_info_reviews.do?page=${i }" class="paging_number_active">${i }</a></b>
 						</c:if>		
 						
 						<c:if test="${i != dto.getPage() }">
-							<a href="${pageContext.request.contextPath}/user_info.do?page=${i }" class="paging_number">${i }</a>
+							<a href="${pageContext.request.contextPath}/user_info_reviews.do?page=${i }" class="paging_number">${i }</a>
 						</c:if>		
 					</c:forEach>
 					
 					<c:if test="${dto.getEndBlock() < dto.getAllPage() }">
-						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getEndBlock() + 1 }" class="paging_next">></a>
-						<a href="${pageContext.request.contextPath}/user_info.do?page=${dto.getAllPage()}" class="paging_last">>></a>
+						<a href="${pageContext.request.contextPath}/user_info_reviews.do?page=${dto.getEndBlock() + 1 }" class="paging_next">></a>
+						<a href="${pageContext.request.contextPath}/user_info_reviews.do?page=${dto.getAllPage()}" class="paging_last">>></a>
 					</c:if>
 				</div>
                 
