@@ -34,6 +34,17 @@
 	float:right;
 }
 
+.info_title .info_array a{
+	
+	text-decoration: none;
+	color:black;
+}
+
+.info_title .info_array a:hover{
+	
+	color:#fb4357;
+}
+
 .info_title::after {
 	clear: both;
 }

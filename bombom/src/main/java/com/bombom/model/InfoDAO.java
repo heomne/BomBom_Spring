@@ -7,6 +7,10 @@ public interface InfoDAO {
 int getInfoCount();	// 전체 게시글 수 가져오기
 	
 List<InfoDTO> getInfoList(InfoPageDTO dto);	// 페이징 처리
+
+List<InfoDTO> getInfoListReviews(InfoPageDTO dto);
+
+List<InfoDTO> getInfoListTime(InfoPageDTO dto);
 	
 int insertInfo(InfoDTO dto);	// 글 삽입
 	

@@ -30,6 +30,26 @@
 		]]> 
 	</select>
 	
+	<select id="listInfoReviews" parameterType="com.bombom.model.InfoPageDTO" 
+			resultType="com.bombom.model.InfoDTO">
+		<![CDATA[
+			select * from 
+				(select i.*, row_number() 
+					over(order by info_reviews desc, info_year desc) rnum from bombom_movie_info i)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]> 
+	</select>
+	
+	<select id="listInfoTime" parameterType="com.bombom.model.InfoPageDTO" 
+			resultType="com.bombom.model.InfoDTO">
+		<![CDATA[
+			select * from 
+				(select i.*, row_number() 
+					over(order by info_runtime desc, info_year desc) rnum from bombom_movie_info i)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]> 
+	</select>
+	
 	<select id="searchInfoCount" parameterType="String" resultType="int">
 		select count(*) from bombom_movie_info 
 			where info_title like '%' || #{keyword} || '%'

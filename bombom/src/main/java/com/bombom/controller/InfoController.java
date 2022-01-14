@@ -62,6 +62,60 @@ public class InfoController {
 		return "/user/user_info";
 	}
 	
+	@RequestMapping(value="user_info_reviews.do", method = RequestMethod.GET)
+	public String user_info_review(HttpServletRequest request, Model model) {
+		
+		int page;	// 현재 페이지 변수
+		rowsize = 6;
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));	
+		} else {	
+			page = 1;	// 처음으로 게시물목록 태그를 클릭한 경우
+		}
+		
+		// DB 상의 전체 게시물의 수를 확인하는 작업
+		totalRecord = this.dao.getInfoCount();
+		
+		InfoPageDTO dto = new InfoPageDTO(page, rowsize, totalRecord);
+		
+		// 페이지에 해당하는 게시물을 가져오는 메서드 호출
+		List<InfoDTO> InfoList = this.dao.getInfoListReviews(dto);
+		
+		
+		model.addAttribute("List", InfoList);
+		model.addAttribute("Paging", dto);
+		
+		return "/user/user_info2";
+	}
+	
+	@RequestMapping(value="user_info_time.do", method = RequestMethod.GET)
+	public String user_info_score(HttpServletRequest request, Model model) {
+		
+		int page;	// 현재 페이지 변수
+		rowsize = 6;
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));	
+		} else {	
+			page = 1;	// 처음으로 게시물목록 태그를 클릭한 경우
+		}
+		
+		// DB 상의 전체 게시물의 수를 확인하는 작업
+		totalRecord = this.dao.getInfoCount();
+		
+		InfoPageDTO dto = new InfoPageDTO(page, rowsize, totalRecord);
+		
+		// 페이지에 해당하는 게시물을 가져오는 메서드 호출
+		List<InfoDTO> InfoList = this.dao.getInfoListTime(dto);
+		
+		
+		model.addAttribute("List", InfoList);
+		model.addAttribute("Paging", dto);
+		
+		return "/user/user_info3";
+	}
+	
 	@RequestMapping("info_detail.do") 
 	public String info_detail(@RequestParam("no") int info_no, 
 			@RequestParam("page") int nowPage, Model model) throws IOException {
