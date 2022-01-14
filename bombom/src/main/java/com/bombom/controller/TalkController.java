@@ -43,6 +43,10 @@ import com.bombom.model.TalkPagination;
  *	/user_delete.do(POST) : 글 삭제 (ajax)
  *	/add_like.do : 좋아요 버튼 눌렀을 때 (ajax)
  *	/cancel_like.do : 좋아요 버튼 취소 했을 때 (ajax)
+ *	/get_comment.do
+ *	/add_comment.do
+ *	/update_comment.do
+ *	/delete_comment.do
  * 
  * @author HEO
  */
@@ -65,7 +69,6 @@ public class TalkController {
 	public String getPosts(@RequestParam(defaultValue = "1")int page, Model model) {
 		
 		int listCount = talkDao.getPostCount();
-		logger.info("page value {}", page);
 		TalkPagination pagination = new TalkPagination(listCount, page);
 		List<TalkDTO> posts = talkDao.getPosts(pagination);
 		

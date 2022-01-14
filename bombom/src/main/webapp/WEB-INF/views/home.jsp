@@ -94,7 +94,7 @@
                                 </span>                                
                             </div>
                         </li>                     
-					          </c:forEach>
+					</c:forEach>
                     </ul>
                 </div>
         </div>

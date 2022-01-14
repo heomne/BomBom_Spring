@@ -128,20 +128,6 @@
                         <th>날짜</th>
                         <th>조회</th>
                     </tr>
-
-                    <tr class="hot">
-                        <td>
-                            <span class="hot">HOT</span>
-                        </td>
-                        <td class="title_left">
-                            <a href="#">table-layout auto test</a>
-                        </td>
-                        <td>
-                            <a href="#">heo</a>
-                        </td>
-                        <td>2021.12.30</td>
-                        <td>5</td>
-                    </tr>
                     
                     <c:forEach var="post" items="${dto}" varStatus="status">
                     <tr>
