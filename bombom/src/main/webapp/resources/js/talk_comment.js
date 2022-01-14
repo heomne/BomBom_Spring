@@ -65,6 +65,10 @@ function loadComments() {
 			            html += '<button id="update_btn" type="button">수정</a>';
 			            html += '<button id="remove_btn" type="button">삭제</a>';
 			            html += '</div>';
+		            } else if ($user_id.value === 'admin' && $user_nickname.value === '관리자') {
+		            	html += '<div class="modify_remove">';
+			            html += '<button id="remove_btn" type="button">삭제</a>';
+			            html += '</div>';
 		            }
 		            html += '</div>';	            
 		            html += '<div class="hidden">';
