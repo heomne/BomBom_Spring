@@ -73,5 +73,29 @@ public class TalkDAOImpl implements TalkDAO {
 		return this.sqlSession.update("decreaseLike", dto);
 	}
 
+	//사용자가 작성한 글(일부) 가져오는 메서드
+	@Override
+	public List<TalkDTO> getUserPosts(String id) {
+		return this.sqlSession.selectList("getUserPosts", id);
+	}
+	
+	//사용자가 작성한 글(전부) 가져오는 메서드
+	@Override
+	public List<TalkDTO> getUserPostsAll(String id) {
+		return this.sqlSession.selectList("getUserPostsAll", id);
+	}
+
+	//사용자가 좋아요 한 글 가져오는 메서드
+	@Override
+	public List<TalkDTO> getUserLikes(String id) {
+		return this.sqlSession.selectList("getUserLikes", id);
+	}
+
+	// 사용자가 댓글 단 게시글 목록 가져오기
+	@Override
+	public List<TalkDTO> getUserComment(String id) {
+		return this.sqlSession.selectList("getUserComment", id);
+	}
+
 
 }

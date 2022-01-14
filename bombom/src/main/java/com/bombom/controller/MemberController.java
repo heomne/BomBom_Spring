@@ -19,12 +19,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bombom.model.MemberDAO;
 import com.bombom.model.MemberDTO;
 import com.bombom.model.PremiereDTO;
+import com.bombom.model.TalkCommentDAO;
+import com.bombom.model.TalkCommentDTO;
+import com.bombom.model.TalkDAO;
+import com.bombom.model.TalkDTO;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberDAO dao;
+	
+	@Autowired
+	private TalkDAO talkDao;	
+	
+	@Autowired
+	private TalkCommentDAO commentDao;	
 	
 	//로그인 페이지 이동
 	@RequestMapping("user_login.do")
@@ -121,8 +131,36 @@ public class MemberController {
 	
 	//마이페이지 이동
 	@RequestMapping("user_mypage.do")
-	public String user_mypage() {		
-		return "/user/user_mypage";
+	public String user_mypage(Model model, HttpSession session) {	
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("user");
+		
+		// 해당 유저가 작성한 게시글 목록
+		List<TalkDTO> userWriteBoard = talkDao.getUserPosts(dto.getUser_id());
+		List<TalkDTO> userWriteBoardAll = talkDao.getUserPostsAll(dto.getUser_id());
+		
+		int totalBoard=0;
+		
+		if(userWriteBoardAll!=null) {
+			totalBoard = userWriteBoardAll.size();
+		}
+		
+		// 해당 유저가 좋아요 한 게시글 목록
+		List<TalkDTO> userLikeBoard = talkDao.getUserLikes(dto.getUser_id());
+		
+		// 해당 유저가 댓글 단 게시글 목록
+		/*
+		 * List<TalkDTO> userCommentBoard = talkDao.getUserComment(dto.getUser_id());
+		 * List<TalkCommentDTO> userWriteComment =
+		 * commentDao.getComments(dto.getUser_id());
+		 */
+		
+		model.addAttribute("userWriteBoard", userWriteBoard);
+		model.addAttribute("totalBoard", totalBoard);
+		model.addAttribute("userLikeBoard", userLikeBoard);	
+		/* model.addAttribute("userWriteComment", userWriteComment); */
+		
+		return "/user/user_mypage";		
 	}
 	
 	//회원가입 페이지 이동
@@ -148,5 +186,7 @@ public class MemberController {
 		//임시로 업데이트 페이지로 다시 이동하도록 함
 		return "redirect:user_join_update.do";
 	}
+	
+	
 	
 }

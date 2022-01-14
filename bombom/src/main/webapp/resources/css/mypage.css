@@ -147,15 +147,15 @@ h2 {
 
 .myInfo_wrap {
 	width: 100%;
-	height: 1000px;
+	height: 1300px;
 	background-color: #ffffff;
-	padding: 50px 20px;
+	padding: 35px 35px 0px 20px;
 	letter-spacing: -0.5px;
-	border-radius: 15px;
+	border-radius: 5px;
 }
 
 .myInfo_wrap .myInfo_1 {
-	width: 200px;
+	width: 170px;
 	/* border-right: 1px solid #ababab; */
 	float: left;
 	text-align: center;
@@ -174,20 +174,36 @@ h2 {
 	font-weight: bold;
 }
 
+.myInfo_wrap .myInfo_1 .myInfo_sideMenu{
+	margin-top: 50px;
+	border-top: 1px solid #e3e3e3;
+	padding-top: 30px;
+}
+
+.myInfo_wrap .myInfo_1 .myInfo_sideMenu p{
+	font-size :18px;
+	cursor: pointer;
+	line-height: 200%;
+	margin: 0;
+}
+
+.myInfo_wrap .myInfo_1 .myInfo_sideMenu p:hover{
+	color: #fb4357;
+}
+
 .myInfo_wrap .myInfo_2 {
-	width: 755px;
+	width: 770px;
 	height: 100%;
 	border-left: 1px solid #e3e3e3;
 	float: right;
-	color: #494949;
 	padding-left: 35px;
 	font-size: 18px;
 	font-weight: bold;
-	line-height: 25px;
+	line-height: 30px;
 }
 
 .myInfo_wrap .myInfo_2 .box{
-	width: 740px;
+	width: 100%;
 	height: 150px;
 	border-radius: 15px;
 	border: 1px solid #d9d6d6;
@@ -206,6 +222,14 @@ h2 {
 	height: 100px;
 	margin: 25px 0px;
 	line-height: 58px;
+	cursor: pointer;
+}
+
+.myInfo_wrap .myInfo_2 .box .box1:hover,
+.myInfo_wrap .myInfo_2 .box .box2:hover,
+.myInfo_wrap .myInfo_2 .box .box3:hover,
+.myInfo_wrap .myInfo_2 .box .box4:hover {
+	color: #fb4357;
 }
 
 .myInfo_wrap .myInfo_2 .box .box1,
@@ -236,10 +260,20 @@ h2 {
 	margin-top: 30px;
 }
 
+.myInfo_board_title {
+	height: 30px;
+	margin-bottom: 18px;
+}
+
 .myInfo_board table,
 .myInfo_like table {
   table-layout: auto;
   border-collapse: collapse;
+}
+
+.myInfo_board tr,
+.myInfo_like tr {
+	height: 45px;
 }
 
 .myInfo_board th,
@@ -269,6 +303,37 @@ h2 {
   background-color: #f9f9f9;
 }
 
+.myInfo_board .title_left,
+.myInfo_like .title_left {
+  text-align: left;
+  padding-left: 80px;
+}
+
+.myInfo_board .title_left .cmt, 
+.myInfo_like .title_left .cmt {
+  font-size: 14px;
+  color: #fb4357;
+}
+
+.myInfo_board td a,
+.myInfo_like td a {
+  width: 400px;
+  color: black;
+  text-decoration: none;
+}
+
+.myInfo_board tr:first-child,
+.myInfo_like tr:first-child {
+  background-color: #f9f9f9;
+}
+
+.myInfo_board tr:hover,
+.myInfo_like tr:hover {
+  background-color: #f9f9f9;
+}
+
+
+/* 작성한 댓글 */
 .myInfo_comment_content {
 	border-bottom: 1px solid #d9d6d6;
 	border-top: 1px solid #d9d6d6;
@@ -281,6 +346,7 @@ h2 {
 .myInfo_comment_content .comment {
 	margin: 0;
 	font-size: 15px;
+	cursor: pointer;
 }
 
 .myInfo_comment_content .title {
