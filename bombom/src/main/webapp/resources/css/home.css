@@ -368,6 +368,14 @@ li#food_first{
 	transition: 0.5s;
 }
 
+.food_section li#on {
+	background-color: #fc5868;
+	transition: 0.5s;
+}
+
+.food_section li#on span {
+	color: white;
+}
 
 .food_image{
 	position: absolute;

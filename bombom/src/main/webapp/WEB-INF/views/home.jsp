@@ -182,7 +182,7 @@
 						<li id="food_first" onclick="location.href='${pageContext.request.contextPath}/user_food.do'"><span>전체보기</span></li>
 					</ul>
 					<ul>
-						<li><span>CGV 용산</span></li>
+						<li id="on"><span>CGV 용산</span></li>
 					</ul>
 					<ul>
 						<li><span>롯데시네마 월드타워</span></li>
