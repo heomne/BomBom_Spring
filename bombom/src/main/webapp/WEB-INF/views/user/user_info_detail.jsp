@@ -203,7 +203,7 @@
 		
 		<div id="review" class="review">
 		
-			<iframe src="./info_review.do?no=${dto.getInfo_no() }" frameborder="0" width="100%" height="1700" scrolling="no" name=banner ></iframe>
+			<iframe src="./info_review.do?info_no=${dto.getInfo_no() }" frameborder="0" width="100%" height="1700" scrolling="no" name=banner ></iframe>
 			
 		</div>
 	

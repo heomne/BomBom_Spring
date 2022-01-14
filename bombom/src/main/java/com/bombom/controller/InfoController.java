@@ -185,7 +185,7 @@ public class InfoController {
 	}
 	
 	@RequestMapping(value="info_review.do", method = RequestMethod.GET) 
-	public String info_review(@RequestParam("no") int info_no, 
+	public String info_review(@RequestParam("info_no") int info_no, 
 			HttpServletRequest request, Model model) {
 		
 		int page;	// 현재 페이지 변수
