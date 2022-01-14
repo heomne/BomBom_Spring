@@ -107,10 +107,9 @@
 	<select id="listReview" parameterType="com.bombom.model.InfoPageDTO" 
 			resultType="com.bombom.model.InfoReviewDTO">
 		<![CDATA[
-			select * from 
-				(select r.*, row_number() 
-					over(order by review_no desc) rnum from bombom_movie_review r)
-					where rnum >= #{startNo} and rnum <= #{endNo} and info_no = #{info_no}
+			select * from (select r.*, row_number() 
+					over(order by review_no desc) rnum from bombom_movie_review r where info_no = #{info_no})
+					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]> 
 	</select>
 	

@@ -19,14 +19,19 @@
     <script defer src="${pageContext.request.contextPath}/resources/js/info_write.js"></script>
 
 	<script>
+			
+		let teaser ='${modify.getInfo_teaser()}';
 		
 		//문서 로딩 후 선택메뉴 css 변경
 		$(document).ready(function(){
 			$('.menu2').attr('id', 'on');
-			}
-		);
+			
+			$('#info_teaser').val(teaser);
+		
+		});
 		
 	</script>
+	
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false"/>
@@ -91,7 +96,7 @@
 	                <tr>
                 		<th> 티저 </th>
                     	<td> 
-                    		<input type="text" id="info_teaser" name="info_teaser" value="${dto.getInfo_teaser() }" required="required"/>
+                    		<input type="text" id="info_teaser" name="info_teaser" value="" required="required"/>
                			</td>
                		</tr>
                 
