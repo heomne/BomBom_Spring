@@ -2,12 +2,8 @@
 
 .main_content {
   width: 1000px;
-  margin: 30px auto 70px auto;
+  margin: 30px auto 30px auto;
   font-family: "Noto Sans KR";
-}
-
-.main_content.first {
-  margin-bottom: 30px;
 }
 
 .notice {
@@ -396,6 +392,7 @@ li#food_first{
 
 .food_list {
 	position: relative;
+	width: 250px;
 	top: 0px;
 	left: 700px;
 }

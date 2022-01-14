@@ -43,7 +43,7 @@ public class TalkPagination {
 	public void rangeSetting(int currPage) {
 		setCurrRange(this.currPage);
 		
-		this.startPage = (currRange - 1) * rangeSize + 1;
+		this.startPage = (this.currRange - 1) * rangeSize + 1;
 		this.endPage = startPage + rangeSize - 1;
 		
 		if(endPage > pageCount) {
