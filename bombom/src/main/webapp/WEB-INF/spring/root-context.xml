@@ -6,8 +6,8 @@
 	<!-- c3p0 : connection pool 설정 -->
 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@59.16.32.131:1521:xe" /> -->
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@59.16.32.131:1521:xe" />
 		<property name="user" value="web" />
 		<property name="password" value="1234" />
 		<property name="initialPoolSize" value="10" />	
