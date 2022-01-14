@@ -184,7 +184,7 @@ public class MemberController {
 		}
 		
 		//임시로 업데이트 페이지로 다시 이동하도록 함
-		return "redirect:user_join_update.do";
+		return "redirect:user_mypage.do";
 	}
 	
 	

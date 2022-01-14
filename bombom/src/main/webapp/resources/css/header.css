@@ -100,7 +100,7 @@ body {
 	text-decoration: none;
 	list-style: none;
 	display: inline-block;
-	width: 90px;
+	min-width: 80px;
 	text-align: center;
 }
 

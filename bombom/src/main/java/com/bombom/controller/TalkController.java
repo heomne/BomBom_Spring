@@ -255,13 +255,11 @@ public class TalkController {
 	public String getComments(@RequestParam long talk_no) throws JsonGenerationException, JsonMappingException, IOException {
 		
 		List<TalkCommentDTO> comments = talkCommentDao.getComments(talk_no);
-		
+		logger.info("get comments : {}", comments.size());
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		String commentsJson = objectMapper.writeValueAsString(comments);
-		
-		logger.info("getComments {}", commentsJson);
 		
 		return commentsJson;
 	}

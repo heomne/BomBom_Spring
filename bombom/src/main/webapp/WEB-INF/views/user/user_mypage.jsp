@@ -62,7 +62,7 @@
 	<div class="myInfo_wrap">		
 		<div class="myInfo_1">
 		<!-- 일반 회원 중에, 성별이 여자면 여자프로필, 남자면 남자프로필 보여줌 -->
-		<c:if test="${user.getUser_gender() == '남성' || empty user.getUser_gender()}">
+		<c:if test="${user.getUser_gender() == '남성' || user.getUser_gender() eq '선택안함'}">
 			<img src="resources/image/남자 프로필.png" 
 			onclick="location.href='${pageContext.request.contextPath}/user_join_update.do'" alt="프로필" width="100px;" height="100px;">
 			<br>
