@@ -26,7 +26,7 @@
 
     - Database : Oracle 18c
 
-    - Library : **Spring Framework**, JSP
+    - Library : **Spring Framework**, MyBatis, JSP
 
     - Server : Apache Tomcat 9.0
 
