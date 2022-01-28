@@ -34,6 +34,7 @@ public class EditorController {
 		
 		if(multipartFile.isEmpty()) {
 			logger.warn("user_write image upload detected, but there's no file.");
+			return "not found";
 		}
 		
 		boolean isPremiere = false;

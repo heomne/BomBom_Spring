@@ -9,7 +9,6 @@ const editor = new toastui.Editor({
       formData.append("image", blob);
       formData.append("uri", window.location.pathname);
       const imageURL = imageUpload(formData);
-      console.log(imageURL);
       callback(imageURL, "image");
     },
   },
