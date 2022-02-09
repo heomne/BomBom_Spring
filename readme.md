@@ -14,6 +14,12 @@
 <hr>
 <br>
 
+## 0. 프로젝트 DEMO 영상
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/isNimPhoeDM/0.jpg)](https://www.youtube.com/watch?v=isNimPhoeDM)
+
+<br>
+
 
 ## 1. 개요
 
