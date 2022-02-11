@@ -16,7 +16,7 @@
 
 ## 0. 프로젝트 DEMO 영상
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/isNimPhoeDM/0.jpg)](https://www.youtube.com/watch?v=isNimPhoeDM)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EDD4QcE9obI/0.jpg)](https://www.youtube.com/watch?v=EDD4QcE9obI)
 
 <br>
 
